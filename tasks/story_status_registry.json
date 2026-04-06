@@ -5,8 +5,8 @@
       "backlog_id": "roadmap_1_0",
       "sprint_id": "roadmap_1_0_sprint_0_project_onboarding",
       "story_id": "RT00-001",
-      "status": "running",
-      "started_at": "2026-04-05T21:13:14",
+      "status": "done",
+      "started_at": "2026-04-05T21:13:16",
       "source": "agentsystem_runtime",
       "required_modes": [
         "plan-eng-review",
@@ -21,36 +21,27 @@
           "review",
           "qa"
         ],
-        "executed": [],
-        "advisory": [],
-        "missing_required": [
+        "executed": [
           "plan-eng-review",
-          "review",
-          "qa"
+          "qa",
+          "review"
         ],
-        "executed_required_count": 0,
+        "advisory": [],
+        "missing_required": [],
+        "executed_required_count": 3,
         "required_count": 3,
         "advisory_executed": [],
         "advisory_executed_count": 0,
-        "all_required_executed": false
-      }
-    },
-    {
-      "project": "ruletale",
-      "backlog_id": "roadmap_1_0_sprint_0_project_onboarding",
-      "sprint_id": "RT00-001_repo_scaffold_and_project_contracts.yaml",
-      "story_id": "RT00-001",
+        "all_required_executed": true
+      },
       "task_id": "task-d3c02bb1-4",
-      "status": "done",
       "branch": "agent/l1-task-d3c02bb1-4",
       "commit": "",
-      "started_at": "2026-04-05T21:13:16",
       "finished_at": "2026-04-05T21:13:21",
       "verified_at": "2026-04-05T21:13:21",
       "last_node": "Doc Writer",
       "audit_path": "D:\\lyh\\agent\\agent-frame\\agentsystem\\runs\\prod_audit_task-d3c02bb1-4.json",
       "resume_token": "RT00-001",
-      "source": "agentsystem_runtime",
       "summary": "Story completed successfully.",
       "validation_summary": "Install: SKIP (not configured)\nLint: PASS\nTypecheck: SKIP (not configured)\nTest: PASS\nStoryValidation: PASS",
       "delivery_report": "D:\\lyh\\agent\\agent-frame\\agentsystem\\repo-worktree\\.meta\\task-d3c02bb1-4\\delivery",
@@ -76,36 +67,11 @@
         "complete": true
       },
       "evidence_contract_complete": true,
-      "required_modes": [
-        "plan-eng-review",
-        "review",
-        "qa"
-      ],
       "executed_modes": [
         "plan-eng-review",
         "qa",
         "review"
       ],
-      "advisory_modes": [],
-      "agent_mode_coverage": {
-        "required": [
-          "plan-eng-review",
-          "review",
-          "qa"
-        ],
-        "executed": [
-          "plan-eng-review",
-          "qa",
-          "review"
-        ],
-        "advisory": [],
-        "missing_required": [],
-        "executed_required_count": 3,
-        "required_count": 3,
-        "advisory_executed": [],
-        "advisory_executed_count": 0,
-        "all_required_executed": true
-      },
       "formal_acceptance_reviewer": "acceptance_gate",
       "authoritative_attempt": "roadmap_1_0_sprint_0_project_onboarding-attempt-20260405211314",
       "attempt_status": "authoritative",
@@ -113,7 +79,6 @@
       "verified": true,
       "agentized": true,
       "accepted": true,
-      "repository": "ruletale",
       "formal_flow_gap_reasons": [],
       "formal_flow_complete": true,
       "implementation_contract": {
@@ -431,8 +396,8 @@
       "backlog_id": "roadmap_1_0",
       "sprint_id": "roadmap_1_0_sprint_0_project_onboarding",
       "story_id": "RT00-002",
-      "status": "running",
-      "started_at": "2026-04-05T21:13:23",
+      "status": "done",
+      "started_at": "2026-04-05T21:13:34",
       "source": "agentsystem_runtime",
       "required_modes": [
         "plan-eng-review",
@@ -445,80 +410,6 @@
       ],
       "advisory_modes": [],
       "repository": "ruletale",
-      "agent_mode_coverage": {
-        "required": [
-          "plan-eng-review",
-          "review",
-          "qa",
-          "browse",
-          "plan-design-review",
-          "design-consultation",
-          "design-review"
-        ],
-        "executed": [],
-        "advisory": [],
-        "missing_required": [
-          "plan-eng-review",
-          "review",
-          "qa",
-          "browse",
-          "plan-design-review",
-          "design-consultation",
-          "design-review"
-        ],
-        "executed_required_count": 0,
-        "required_count": 7,
-        "advisory_executed": [],
-        "advisory_executed_count": 0,
-        "all_required_executed": false
-      }
-    },
-    {
-      "project": "ruletale",
-      "backlog_id": "roadmap_1_0_sprint_0_project_onboarding",
-      "sprint_id": "RT00-002_dashboard_registration_and_runtime_surface.yaml",
-      "story_id": "RT00-002",
-      "task_id": "task-ba4d2efc-6",
-      "status": "done",
-      "branch": "agent/l1-task-ba4d2efc-6",
-      "commit": "",
-      "started_at": "2026-04-05T21:13:34",
-      "finished_at": "2026-04-05T21:13:58",
-      "verified_at": "2026-04-05T21:13:58",
-      "last_node": "Doc Writer",
-      "audit_path": "D:\\lyh\\agent\\agent-frame\\agentsystem\\runs\\prod_audit_task-ba4d2efc-6.json",
-      "resume_token": "RT00-002",
-      "source": "agentsystem_runtime",
-      "summary": "Story completed successfully.",
-      "blocker_class": "shared_dependency_blocker",
-      "validation_summary": "Install: SKIP (not configured)\nLint: PASS\nTypecheck: SKIP (not configured)\nTest: PASS\nStoryValidation: PASS",
-      "evidence": [
-        "D:\\lyh\\agent\\agent-frame\\agentsystem\\runs\\prod_audit_task-ba4d2efc-6.json",
-        "D:\\lyh\\agent\\agent-frame\\ruletale\\tasks\\runtime\\story_handoffs\\RT00-002.md",
-        "D:\\lyh\\agent\\agent-frame\\ruletale\\docs\\handoff\\current_handoff.md",
-        "D:\\lyh\\agent\\agent-frame\\ruletale\\tasks\\runtime\\story_admissions\\RT00-002.json"
-      ],
-      "formal_entry": true,
-      "required_modes": [
-        "plan-eng-review",
-        "review",
-        "qa",
-        "browse",
-        "plan-design-review",
-        "design-consultation",
-        "design-review"
-      ],
-      "executed_modes": [
-        "plan-eng-review",
-        "browse",
-        "plan-design-review",
-        "design-consultation",
-        "qa",
-        "qa-design-review",
-        "design-review",
-        "review"
-      ],
-      "advisory_modes": [],
       "agent_mode_coverage": {
         "required": [
           "plan-eng-review",
@@ -547,6 +438,34 @@
         "advisory_executed_count": 0,
         "all_required_executed": true
       },
+      "task_id": "task-ba4d2efc-6",
+      "branch": "agent/l1-task-ba4d2efc-6",
+      "commit": "",
+      "finished_at": "2026-04-05T21:13:58",
+      "verified_at": "2026-04-05T21:13:58",
+      "last_node": "Doc Writer",
+      "audit_path": "D:\\lyh\\agent\\agent-frame\\agentsystem\\runs\\prod_audit_task-ba4d2efc-6.json",
+      "resume_token": "RT00-002",
+      "summary": "Story completed successfully.",
+      "blocker_class": "shared_dependency_blocker",
+      "validation_summary": "Install: SKIP (not configured)\nLint: PASS\nTypecheck: SKIP (not configured)\nTest: PASS\nStoryValidation: PASS",
+      "evidence": [
+        "D:\\lyh\\agent\\agent-frame\\agentsystem\\runs\\prod_audit_task-ba4d2efc-6.json",
+        "D:\\lyh\\agent\\agent-frame\\ruletale\\tasks\\runtime\\story_handoffs\\RT00-002.md",
+        "D:\\lyh\\agent\\agent-frame\\ruletale\\docs\\handoff\\current_handoff.md",
+        "D:\\lyh\\agent\\agent-frame\\ruletale\\tasks\\runtime\\story_admissions\\RT00-002.json"
+      ],
+      "formal_entry": true,
+      "executed_modes": [
+        "plan-eng-review",
+        "browse",
+        "plan-design-review",
+        "design-consultation",
+        "qa",
+        "qa-design-review",
+        "design-review",
+        "review"
+      ],
       "formal_acceptance_reviewer": "acceptance_gate",
       "authoritative_attempt": "roadmap_1_0_sprint_0_project_onboarding-attempt-20260405211314",
       "attempt_status": "authoritative",
@@ -554,7 +473,6 @@
       "verified": true,
       "agentized": true,
       "accepted": true,
-      "repository": "ruletale",
       "delivery_report": "D:\\lyh\\agent\\agent-frame\\agentsystem\\repo-worktree\\.meta\\task-ba4d2efc-6\\delivery",
       "workflow_enforcement_policy": "gstack_strict",
       "requirement_ids": [],
@@ -1005,8 +923,8 @@
       "backlog_id": "roadmap_1_0",
       "sprint_id": "roadmap_1_0_sprint_0_project_onboarding",
       "story_id": "RT00-003",
-      "status": "running",
-      "started_at": "2026-04-05T21:14:02",
+      "status": "done",
+      "started_at": "2026-04-05T21:14:04",
       "source": "agentsystem_runtime",
       "required_modes": [
         "plan-eng-review",
@@ -1015,63 +933,6 @@
       ],
       "advisory_modes": [],
       "repository": "ruletale",
-      "agent_mode_coverage": {
-        "required": [
-          "plan-eng-review",
-          "review",
-          "qa"
-        ],
-        "executed": [],
-        "advisory": [],
-        "missing_required": [
-          "plan-eng-review",
-          "review",
-          "qa"
-        ],
-        "executed_required_count": 0,
-        "required_count": 3,
-        "advisory_executed": [],
-        "advisory_executed_count": 0,
-        "all_required_executed": false
-      }
-    },
-    {
-      "project": "ruletale",
-      "backlog_id": "roadmap_1_0_sprint_0_project_onboarding",
-      "sprint_id": "RT00-003_roadmap_bootstrap_and_preflight_assets.yaml",
-      "story_id": "RT00-003",
-      "task_id": "task-a91bf06b-5",
-      "status": "done",
-      "branch": "agent/l1-task-a91bf06b-5",
-      "commit": "",
-      "started_at": "2026-04-05T21:14:04",
-      "finished_at": "2026-04-05T21:14:06",
-      "verified_at": "2026-04-05T21:14:06",
-      "last_node": "Doc Writer",
-      "audit_path": "D:\\lyh\\agent\\agent-frame\\agentsystem\\runs\\prod_audit_task-a91bf06b-5.json",
-      "resume_token": "RT00-003",
-      "source": "agentsystem_runtime",
-      "summary": "Story completed successfully.",
-      "blocker_class": "story_local_blocker",
-      "validation_summary": "Install: SKIP (not configured)\nLint: PASS\nTypecheck: SKIP (not configured)\nTest: SKIP (out of scope)\nStoryValidation: PASS",
-      "evidence": [
-        "D:\\lyh\\agent\\agent-frame\\agentsystem\\runs\\prod_audit_task-a91bf06b-5.json",
-        "D:\\lyh\\agent\\agent-frame\\ruletale\\tasks\\runtime\\story_handoffs\\RT00-003.md",
-        "D:\\lyh\\agent\\agent-frame\\ruletale\\docs\\handoff\\current_handoff.md",
-        "D:\\lyh\\agent\\agent-frame\\ruletale\\tasks\\runtime\\story_admissions\\RT00-003.json"
-      ],
-      "formal_entry": true,
-      "required_modes": [
-        "plan-eng-review",
-        "review",
-        "qa"
-      ],
-      "executed_modes": [
-        "plan-eng-review",
-        "qa",
-        "review"
-      ],
-      "advisory_modes": [],
       "agent_mode_coverage": {
         "required": [
           "plan-eng-review",
@@ -1091,6 +952,29 @@
         "advisory_executed_count": 0,
         "all_required_executed": true
       },
+      "task_id": "task-a91bf06b-5",
+      "branch": "agent/l1-task-a91bf06b-5",
+      "commit": "",
+      "finished_at": "2026-04-05T21:14:06",
+      "verified_at": "2026-04-05T21:14:06",
+      "last_node": "Doc Writer",
+      "audit_path": "D:\\lyh\\agent\\agent-frame\\agentsystem\\runs\\prod_audit_task-a91bf06b-5.json",
+      "resume_token": "RT00-003",
+      "summary": "Story completed successfully.",
+      "blocker_class": "story_local_blocker",
+      "validation_summary": "Install: SKIP (not configured)\nLint: PASS\nTypecheck: SKIP (not configured)\nTest: SKIP (out of scope)\nStoryValidation: PASS",
+      "evidence": [
+        "D:\\lyh\\agent\\agent-frame\\agentsystem\\runs\\prod_audit_task-a91bf06b-5.json",
+        "D:\\lyh\\agent\\agent-frame\\ruletale\\tasks\\runtime\\story_handoffs\\RT00-003.md",
+        "D:\\lyh\\agent\\agent-frame\\ruletale\\docs\\handoff\\current_handoff.md",
+        "D:\\lyh\\agent\\agent-frame\\ruletale\\tasks\\runtime\\story_admissions\\RT00-003.json"
+      ],
+      "formal_entry": true,
+      "executed_modes": [
+        "plan-eng-review",
+        "qa",
+        "review"
+      ],
       "formal_acceptance_reviewer": "acceptance_gate",
       "authoritative_attempt": "roadmap_1_0_sprint_0_project_onboarding-attempt-20260405211314",
       "attempt_status": "authoritative",
@@ -1098,7 +982,6 @@
       "verified": true,
       "agentized": true,
       "accepted": true,
-      "repository": "ruletale",
       "delivery_report": "D:\\lyh\\agent\\agent-frame\\agentsystem\\repo-worktree\\.meta\\task-a91bf06b-5\\delivery",
       "workflow_enforcement_policy": "gstack_strict",
       "requirement_ids": [],
@@ -1428,8 +1311,8 @@
       "backlog_id": "roadmap_1_0",
       "sprint_id": "roadmap_1_0_sprint_1_hall_and_state_foundation",
       "story_id": "RT01-001",
-      "status": "running",
-      "started_at": "2026-04-05T21:36:55",
+      "status": "done",
+      "started_at": "2026-04-05T21:37:07",
       "source": "agentsystem_runtime",
       "required_modes": [
         "plan-eng-review",
@@ -1452,40 +1335,32 @@
           "design-consultation",
           "design-review"
         ],
-        "executed": [],
-        "advisory": [],
-        "missing_required": [
+        "executed": [
           "plan-eng-review",
-          "review",
-          "qa",
           "browse",
           "plan-design-review",
           "design-consultation",
-          "design-review"
+          "qa",
+          "qa-design-review",
+          "design-review",
+          "review"
         ],
-        "executed_required_count": 0,
+        "advisory": [],
+        "missing_required": [],
+        "executed_required_count": 7,
         "required_count": 7,
         "advisory_executed": [],
         "advisory_executed_count": 0,
-        "all_required_executed": false
-      }
-    },
-    {
-      "project": "ruletale",
-      "backlog_id": "roadmap_1_0_sprint_1_hall_and_state_foundation",
-      "sprint_id": "RT01-001_hall_shell_and_session_api.yaml",
-      "story_id": "RT01-001",
+        "all_required_executed": true
+      },
       "task_id": "task-56592687-2",
-      "status": "done",
       "branch": "agent/l1-task-56592687-2",
       "commit": "d0c088fc18ccd0644fdaec7c6848efd7c58862a0",
-      "started_at": "2026-04-05T21:37:07",
       "finished_at": "2026-04-05T21:37:39",
       "verified_at": "2026-04-05T21:37:39",
       "last_node": "Doc Writer",
       "audit_path": "D:\\lyh\\agent\\agent-frame\\agentsystem\\runs\\prod_audit_task-56592687-2.json",
       "resume_token": "RT01-001",
-      "source": "agentsystem_runtime",
       "summary": "Story completed successfully.",
       "blocker_class": "shared_dependency_blocker",
       "validation_summary": "Install: SKIP (not configured)\nLint: PASS\nTypecheck: SKIP (not configured)\nTest: PASS\nStoryValidation: PASS",
@@ -1919,15 +1794,6 @@
         "doc_writer",
         "fixer"
       ],
-      "required_modes": [
-        "plan-eng-review",
-        "review",
-        "qa",
-        "browse",
-        "plan-design-review",
-        "design-consultation",
-        "design-review"
-      ],
       "executed_modes": [
         "plan-eng-review",
         "browse",
@@ -1938,35 +1804,6 @@
         "design-review",
         "review"
       ],
-      "advisory_modes": [],
-      "agent_mode_coverage": {
-        "required": [
-          "plan-eng-review",
-          "review",
-          "qa",
-          "browse",
-          "plan-design-review",
-          "design-consultation",
-          "design-review"
-        ],
-        "executed": [
-          "plan-eng-review",
-          "browse",
-          "plan-design-review",
-          "design-consultation",
-          "qa",
-          "qa-design-review",
-          "design-review",
-          "review"
-        ],
-        "advisory": [],
-        "missing_required": [],
-        "executed_required_count": 7,
-        "required_count": 7,
-        "advisory_executed": [],
-        "advisory_executed_count": 0,
-        "all_required_executed": true
-      },
       "formal_acceptance_reviewer": "acceptance_gate",
       "authoritative_attempt": "roadmap_1_0_sprint_1_hall_and_state_foundation-attempt-20260405213655",
       "attempt_status": "authoritative",
@@ -1974,7 +1811,6 @@
       "verified": true,
       "agentized": true,
       "accepted": true,
-      "repository": "ruletale",
       "delivery_report": "D:\\lyh\\agent\\agent-frame\\agentsystem\\repo-worktree\\.meta\\task-56592687-2\\delivery",
       "workflow_enforcement_policy": "gstack_strict",
       "requirement_ids": [],
@@ -1999,8 +1835,8 @@
       "backlog_id": "roadmap_1_0",
       "sprint_id": "roadmap_1_0_sprint_1_hall_and_state_foundation",
       "story_id": "RT01-002",
-      "status": "running",
-      "started_at": "2026-04-05T21:37:43",
+      "status": "done",
+      "started_at": "2026-04-05T21:37:44",
       "source": "agentsystem_runtime",
       "required_modes": [
         "plan-eng-review",
@@ -2015,36 +1851,27 @@
           "review",
           "qa"
         ],
-        "executed": [],
-        "advisory": [],
-        "missing_required": [
+        "executed": [
           "plan-eng-review",
-          "review",
-          "qa"
+          "qa",
+          "review"
         ],
-        "executed_required_count": 0,
+        "advisory": [],
+        "missing_required": [],
+        "executed_required_count": 3,
         "required_count": 3,
         "advisory_executed": [],
         "advisory_executed_count": 0,
-        "all_required_executed": false
-      }
-    },
-    {
-      "project": "ruletale",
-      "backlog_id": "roadmap_1_0_sprint_1_hall_and_state_foundation",
-      "sprint_id": "RT01-002_archive_notebook_save_load.yaml",
-      "story_id": "RT01-002",
+        "all_required_executed": true
+      },
       "task_id": "task-cef450ae",
-      "status": "done",
       "branch": "agent/l1-task-cef450ae",
       "commit": "",
-      "started_at": "2026-04-05T21:37:44",
       "finished_at": "2026-04-05T21:37:50",
       "verified_at": "2026-04-05T21:37:50",
       "last_node": "Doc Writer",
       "audit_path": "D:\\lyh\\agent\\agent-frame\\agentsystem\\runs\\prod_audit_task-cef450ae.json",
       "resume_token": "RT01-002",
-      "source": "agentsystem_runtime",
       "summary": "Story completed successfully.",
       "validation_summary": "Install: SKIP (not configured)\nLint: PASS\nTypecheck: SKIP (not configured)\nTest: PASS\nStoryValidation: PASS",
       "delivery_report": "D:\\lyh\\agent\\agent-frame\\agentsystem\\repo-worktree\\.meta\\task-cef450ae\\delivery",
@@ -2395,36 +2222,11 @@
         "complete": true
       },
       "evidence_contract_complete": true,
-      "required_modes": [
-        "plan-eng-review",
-        "review",
-        "qa"
-      ],
       "executed_modes": [
         "plan-eng-review",
         "qa",
         "review"
       ],
-      "advisory_modes": [],
-      "agent_mode_coverage": {
-        "required": [
-          "plan-eng-review",
-          "review",
-          "qa"
-        ],
-        "executed": [
-          "plan-eng-review",
-          "qa",
-          "review"
-        ],
-        "advisory": [],
-        "missing_required": [],
-        "executed_required_count": 3,
-        "required_count": 3,
-        "advisory_executed": [],
-        "advisory_executed_count": 0,
-        "all_required_executed": true
-      },
       "formal_acceptance_reviewer": "acceptance_gate",
       "authoritative_attempt": "roadmap_1_0_sprint_1_hall_and_state_foundation-attempt-20260405213655",
       "attempt_status": "authoritative",
@@ -2432,7 +2234,6 @@
       "verified": true,
       "agentized": true,
       "accepted": true,
-      "repository": "ruletale",
       "formal_flow_gap_reasons": [],
       "formal_flow_complete": true
     },
@@ -2441,8 +2242,8 @@
       "backlog_id": "roadmap_1_0",
       "sprint_id": "roadmap_1_0_sprint_1_hall_and_state_foundation",
       "story_id": "RT01-003",
-      "status": "running",
-      "started_at": "2026-04-05T21:37:52",
+      "status": "done",
+      "started_at": "2026-04-05T21:38:03",
       "source": "agentsystem_runtime",
       "required_modes": [
         "plan-eng-review",
@@ -2465,40 +2266,32 @@
           "design-consultation",
           "design-review"
         ],
-        "executed": [],
-        "advisory": [],
-        "missing_required": [
+        "executed": [
           "plan-eng-review",
-          "review",
-          "qa",
           "browse",
           "plan-design-review",
           "design-consultation",
-          "design-review"
+          "qa",
+          "qa-design-review",
+          "design-review",
+          "review"
         ],
-        "executed_required_count": 0,
+        "advisory": [],
+        "missing_required": [],
+        "executed_required_count": 7,
         "required_count": 7,
         "advisory_executed": [],
         "advisory_executed_count": 0,
-        "all_required_executed": false
-      }
-    },
-    {
-      "project": "ruletale",
-      "backlog_id": "roadmap_1_0_sprint_1_hall_and_state_foundation",
-      "sprint_id": "RT01-003_hall_modules_and_status_panels.yaml",
-      "story_id": "RT01-003",
+        "all_required_executed": true
+      },
       "task_id": "task-f5e25c80",
-      "status": "done",
       "branch": "agent/l1-task-f5e25c80",
       "commit": "4c85c65584ad2deb66d8781d864b9c360e6d4a4b",
-      "started_at": "2026-04-05T21:38:03",
       "finished_at": "2026-04-05T21:38:27",
       "verified_at": "2026-04-05T21:38:27",
       "last_node": "Doc Writer",
       "audit_path": "D:\\lyh\\agent\\agent-frame\\agentsystem\\runs\\prod_audit_task-f5e25c80.json",
       "resume_token": "RT01-003",
-      "source": "agentsystem_runtime",
       "summary": "Story completed successfully.",
       "validation_summary": "Install: SKIP (not configured)\nLint: PASS\nTypecheck: SKIP (not configured)\nTest: SKIP (out of scope)\nStoryValidation: PASS",
       "delivery_report": "D:\\lyh\\agent\\agent-frame\\agentsystem\\repo-worktree\\.meta\\task-f5e25c80\\delivery",
@@ -2946,15 +2739,6 @@
         "complete": true
       },
       "evidence_contract_complete": true,
-      "required_modes": [
-        "plan-eng-review",
-        "review",
-        "qa",
-        "browse",
-        "plan-design-review",
-        "design-consultation",
-        "design-review"
-      ],
       "executed_modes": [
         "plan-eng-review",
         "browse",
@@ -2965,35 +2749,6 @@
         "design-review",
         "review"
       ],
-      "advisory_modes": [],
-      "agent_mode_coverage": {
-        "required": [
-          "plan-eng-review",
-          "review",
-          "qa",
-          "browse",
-          "plan-design-review",
-          "design-consultation",
-          "design-review"
-        ],
-        "executed": [
-          "plan-eng-review",
-          "browse",
-          "plan-design-review",
-          "design-consultation",
-          "qa",
-          "qa-design-review",
-          "design-review",
-          "review"
-        ],
-        "advisory": [],
-        "missing_required": [],
-        "executed_required_count": 7,
-        "required_count": 7,
-        "advisory_executed": [],
-        "advisory_executed_count": 0,
-        "all_required_executed": true
-      },
       "formal_acceptance_reviewer": "acceptance_gate",
       "authoritative_attempt": "roadmap_1_0_sprint_1_hall_and_state_foundation-attempt-20260405213655",
       "attempt_status": "authoritative",
@@ -3001,7 +2756,6 @@
       "verified": true,
       "agentized": true,
       "accepted": true,
-      "repository": "ruletale",
       "formal_flow_gap_reasons": [],
       "formal_flow_complete": true
     },
@@ -3010,8 +2764,8 @@
       "backlog_id": "roadmap_1_0",
       "sprint_id": "roadmap_1_0_sprint_2_input_and_rule_engine",
       "story_id": "RT02-001",
-      "status": "running",
-      "started_at": "2026-04-05T23:40:29",
+      "status": "done",
+      "started_at": "2026-04-05T23:40:31",
       "source": "agentsystem_runtime",
       "required_modes": [
         "plan-eng-review",
@@ -3026,36 +2780,27 @@
           "review",
           "qa"
         ],
-        "executed": [],
-        "advisory": [],
-        "missing_required": [
+        "executed": [
           "plan-eng-review",
-          "review",
-          "qa"
+          "qa",
+          "review"
         ],
-        "executed_required_count": 0,
+        "advisory": [],
+        "missing_required": [],
+        "executed_required_count": 3,
         "required_count": 3,
         "advisory_executed": [],
         "advisory_executed_count": 0,
-        "all_required_executed": false
-      }
-    },
-    {
-      "project": "ruletale",
-      "backlog_id": "roadmap_1_0_sprint_2_input_and_rule_engine",
-      "sprint_id": "RT02-001_natural_language_intent_router.yaml",
-      "story_id": "RT02-001",
+        "all_required_executed": true
+      },
       "task_id": "task-1b1e18c1",
-      "status": "done",
       "branch": "agent/l1-task-1b1e18c1",
       "commit": "",
-      "started_at": "2026-04-05T23:40:31",
       "finished_at": "2026-04-05T23:40:36",
       "verified_at": "2026-04-05T23:40:36",
       "last_node": "Doc Writer",
       "audit_path": "D:\\lyh\\agent\\agent-frame\\agentsystem\\runs\\prod_audit_task-1b1e18c1.json",
       "resume_token": "RT02-001",
-      "source": "agentsystem_runtime",
       "summary": "Story completed successfully.",
       "validation_summary": "Install: SKIP (not configured)\nLint: PASS\nTypecheck: SKIP (not configured)\nTest: PASS\nStoryValidation: PASS",
       "delivery_report": "D:\\lyh\\agent\\agent-frame\\agentsystem\\repo-worktree\\.meta\\task-1b1e18c1\\delivery",
@@ -3388,17 +3133,36 @@
         "complete": true
       },
       "evidence_contract_complete": true,
-      "required_modes": [
-        "plan-eng-review",
-        "review",
-        "qa"
-      ],
       "executed_modes": [
         "plan-eng-review",
         "qa",
         "review"
       ],
+      "formal_acceptance_reviewer": "acceptance_gate",
+      "authoritative_attempt": "roadmap_1_0_sprint_2_input_and_rule_engine-attempt-20260405234029",
+      "attempt_status": "authoritative",
+      "implemented": true,
+      "verified": true,
+      "agentized": true,
+      "accepted": true,
+      "formal_flow_gap_reasons": [],
+      "formal_flow_complete": true
+    },
+    {
+      "project": "ruletale",
+      "backlog_id": "roadmap_1_0",
+      "sprint_id": "roadmap_1_0_sprint_2_input_and_rule_engine",
+      "story_id": "RT02-002",
+      "status": "done",
+      "started_at": "2026-04-05T23:40:39",
+      "source": "agentsystem_runtime",
+      "required_modes": [
+        "plan-eng-review",
+        "review",
+        "qa"
+      ],
       "advisory_modes": [],
+      "repository": "ruletale",
       "agent_mode_coverage": {
         "required": [
           "plan-eng-review",
@@ -3418,68 +3182,14 @@
         "advisory_executed_count": 0,
         "all_required_executed": true
       },
-      "formal_acceptance_reviewer": "acceptance_gate",
-      "authoritative_attempt": "roadmap_1_0_sprint_2_input_and_rule_engine-attempt-20260405234029",
-      "attempt_status": "authoritative",
-      "implemented": true,
-      "verified": true,
-      "agentized": true,
-      "accepted": true,
-      "repository": "ruletale",
-      "formal_flow_gap_reasons": [],
-      "formal_flow_complete": true
-    },
-    {
-      "project": "ruletale",
-      "backlog_id": "roadmap_1_0",
-      "sprint_id": "roadmap_1_0_sprint_2_input_and_rule_engine",
-      "story_id": "RT02-002",
-      "status": "running",
-      "started_at": "2026-04-05T23:40:38",
-      "source": "agentsystem_runtime",
-      "required_modes": [
-        "plan-eng-review",
-        "review",
-        "qa"
-      ],
-      "advisory_modes": [],
-      "repository": "ruletale",
-      "agent_mode_coverage": {
-        "required": [
-          "plan-eng-review",
-          "review",
-          "qa"
-        ],
-        "executed": [],
-        "advisory": [],
-        "missing_required": [
-          "plan-eng-review",
-          "review",
-          "qa"
-        ],
-        "executed_required_count": 0,
-        "required_count": 3,
-        "advisory_executed": [],
-        "advisory_executed_count": 0,
-        "all_required_executed": false
-      }
-    },
-    {
-      "project": "ruletale",
-      "backlog_id": "roadmap_1_0_sprint_2_input_and_rule_engine",
-      "sprint_id": "RT02-002_rule_discovery_verification_and_false_rules.yaml",
-      "story_id": "RT02-002",
       "task_id": "task-616848e5",
-      "status": "done",
       "branch": "agent/l1-task-616848e5",
       "commit": "",
-      "started_at": "2026-04-05T23:40:39",
       "finished_at": "2026-04-05T23:40:44",
       "verified_at": "2026-04-05T23:40:44",
       "last_node": "Doc Writer",
       "audit_path": "D:\\lyh\\agent\\agent-frame\\agentsystem\\runs\\prod_audit_task-616848e5.json",
       "resume_token": "RT02-002",
-      "source": "agentsystem_runtime",
       "summary": "Story completed successfully.",
       "validation_summary": "Install: SKIP (not configured)\nLint: PASS\nTypecheck: SKIP (not configured)\nTest: PASS\nStoryValidation: PASS",
       "delivery_report": "D:\\lyh\\agent\\agent-frame\\agentsystem\\repo-worktree\\.meta\\task-616848e5\\delivery",
@@ -3825,36 +3535,11 @@
         "complete": true
       },
       "evidence_contract_complete": true,
-      "required_modes": [
-        "plan-eng-review",
-        "review",
-        "qa"
-      ],
       "executed_modes": [
         "plan-eng-review",
         "qa",
         "review"
       ],
-      "advisory_modes": [],
-      "agent_mode_coverage": {
-        "required": [
-          "plan-eng-review",
-          "review",
-          "qa"
-        ],
-        "executed": [
-          "plan-eng-review",
-          "qa",
-          "review"
-        ],
-        "advisory": [],
-        "missing_required": [],
-        "executed_required_count": 3,
-        "required_count": 3,
-        "advisory_executed": [],
-        "advisory_executed_count": 0,
-        "all_required_executed": true
-      },
       "formal_acceptance_reviewer": "acceptance_gate",
       "authoritative_attempt": "roadmap_1_0_sprint_2_input_and_rule_engine-attempt-20260405234029",
       "attempt_status": "authoritative",
@@ -3862,7 +3547,6 @@
       "verified": true,
       "agentized": true,
       "accepted": true,
-      "repository": "ruletale",
       "formal_flow_gap_reasons": [],
       "formal_flow_complete": true
     },
@@ -3871,8 +3555,8 @@
       "backlog_id": "roadmap_1_0",
       "sprint_id": "roadmap_1_0_sprint_2_input_and_rule_engine",
       "story_id": "RT02-003",
-      "status": "running",
-      "started_at": "2026-04-05T23:40:46",
+      "status": "done",
+      "started_at": "2026-04-05T23:40:57",
       "source": "agentsystem_runtime",
       "required_modes": [
         "plan-eng-review",
@@ -3895,40 +3579,32 @@
           "design-consultation",
           "design-review"
         ],
-        "executed": [],
-        "advisory": [],
-        "missing_required": [
+        "executed": [
           "plan-eng-review",
-          "review",
-          "qa",
           "browse",
           "plan-design-review",
           "design-consultation",
-          "design-review"
+          "qa",
+          "qa-design-review",
+          "design-review",
+          "review"
         ],
-        "executed_required_count": 0,
+        "advisory": [],
+        "missing_required": [],
+        "executed_required_count": 7,
         "required_count": 7,
         "advisory_executed": [],
         "advisory_executed_count": 0,
-        "all_required_executed": false
-      }
-    },
-    {
-      "project": "ruletale",
-      "backlog_id": "roadmap_1_0_sprint_2_input_and_rule_engine",
-      "sprint_id": "RT02-003_notebook_distortion_and_ui_feedback.yaml",
-      "story_id": "RT02-003",
+        "all_required_executed": true
+      },
       "task_id": "task-0d8d9631",
-      "status": "done",
       "branch": "agent/l1-task-0d8d9631",
       "commit": "d8bc5a8388ea8a6c5b2a2e7f68da6a3642c9d7ad",
-      "started_at": "2026-04-05T23:40:57",
       "finished_at": "2026-04-05T23:41:24",
       "verified_at": "2026-04-05T23:41:24",
       "last_node": "Doc Writer",
       "audit_path": "D:\\lyh\\agent\\agent-frame\\agentsystem\\runs\\prod_audit_task-0d8d9631.json",
       "resume_token": "RT02-003",
-      "source": "agentsystem_runtime",
       "summary": "Story completed successfully.",
       "validation_summary": "Install: SKIP (not configured)\nLint: PASS\nTypecheck: SKIP (not configured)\nTest: PASS\nStoryValidation: PASS",
       "delivery_report": "D:\\lyh\\agent\\agent-frame\\agentsystem\\repo-worktree\\.meta\\task-0d8d9631\\delivery",
@@ -4376,15 +4052,6 @@
         "complete": true
       },
       "evidence_contract_complete": true,
-      "required_modes": [
-        "plan-eng-review",
-        "review",
-        "qa",
-        "browse",
-        "plan-design-review",
-        "design-consultation",
-        "design-review"
-      ],
       "executed_modes": [
         "plan-eng-review",
         "browse",
@@ -4395,35 +4062,6 @@
         "design-review",
         "review"
       ],
-      "advisory_modes": [],
-      "agent_mode_coverage": {
-        "required": [
-          "plan-eng-review",
-          "review",
-          "qa",
-          "browse",
-          "plan-design-review",
-          "design-consultation",
-          "design-review"
-        ],
-        "executed": [
-          "plan-eng-review",
-          "browse",
-          "plan-design-review",
-          "design-consultation",
-          "qa",
-          "qa-design-review",
-          "design-review",
-          "review"
-        ],
-        "advisory": [],
-        "missing_required": [],
-        "executed_required_count": 7,
-        "required_count": 7,
-        "advisory_executed": [],
-        "advisory_executed_count": 0,
-        "all_required_executed": true
-      },
       "formal_acceptance_reviewer": "acceptance_gate",
       "authoritative_attempt": "roadmap_1_0_sprint_2_input_and_rule_engine-attempt-20260405234029",
       "attempt_status": "authoritative",
@@ -4431,7 +4069,6 @@
       "verified": true,
       "agentized": true,
       "accepted": true,
-      "repository": "ruletale",
       "formal_flow_gap_reasons": [],
       "formal_flow_complete": true
     },
@@ -4440,8 +4077,8 @@
       "backlog_id": "roadmap_1_0",
       "sprint_id": "roadmap_1_0_sprint_3_dungeon_runtime_and_matching",
       "story_id": "RT03-001",
-      "status": "running",
-      "started_at": "2026-04-06T09:13:17",
+      "status": "done",
+      "started_at": "2026-04-06T09:13:18",
       "source": "agentsystem_runtime",
       "required_modes": [
         "plan-eng-review",
@@ -4456,36 +4093,27 @@
           "review",
           "qa"
         ],
-        "executed": [],
-        "advisory": [],
-        "missing_required": [
+        "executed": [
           "plan-eng-review",
-          "review",
-          "qa"
+          "qa",
+          "review"
         ],
-        "executed_required_count": 0,
+        "advisory": [],
+        "missing_required": [],
+        "executed_required_count": 3,
         "required_count": 3,
         "advisory_executed": [],
         "advisory_executed_count": 0,
-        "all_required_executed": false
-      }
-    },
-    {
-      "project": "ruletale",
-      "backlog_id": "roadmap_1_0_sprint_3_dungeon_runtime_and_matching",
-      "sprint_id": "RT03-001_dynamic_threat_matching_and_run_state.yaml",
-      "story_id": "RT03-001",
+        "all_required_executed": true
+      },
       "task_id": "task-e39b0a14",
-      "status": "done",
       "branch": "agent/l1-task-e39b0a14",
       "commit": "",
-      "started_at": "2026-04-06T09:13:18",
       "finished_at": "2026-04-06T09:13:24",
       "verified_at": "2026-04-06T09:13:24",
       "last_node": "Doc Writer",
       "audit_path": "D:\\lyh\\agent\\agent-frame\\agentsystem\\runs\\prod_audit_task-e39b0a14.json",
       "resume_token": "RT03-001",
-      "source": "agentsystem_runtime",
       "summary": "Story completed successfully.",
       "validation_summary": "Install: SKIP (not configured)\nLint: PASS\nTypecheck: SKIP (not configured)\nTest: PASS\nStoryValidation: PASS",
       "delivery_report": "D:\\lyh\\agent\\agent-frame\\agentsystem\\repo-worktree\\.meta\\task-e39b0a14\\delivery",
@@ -4835,17 +4463,36 @@
         "complete": true
       },
       "evidence_contract_complete": true,
-      "required_modes": [
-        "plan-eng-review",
-        "review",
-        "qa"
-      ],
       "executed_modes": [
         "plan-eng-review",
         "qa",
         "review"
       ],
+      "formal_acceptance_reviewer": "acceptance_gate",
+      "authoritative_attempt": "roadmap_1_0_sprint_3_dungeon_runtime_and_matching-attempt-20260406091317",
+      "attempt_status": "authoritative",
+      "implemented": true,
+      "verified": true,
+      "agentized": true,
+      "accepted": true,
+      "formal_flow_gap_reasons": [],
+      "formal_flow_complete": true
+    },
+    {
+      "project": "ruletale",
+      "backlog_id": "roadmap_1_0",
+      "sprint_id": "roadmap_1_0_sprint_3_dungeon_runtime_and_matching",
+      "story_id": "RT03-002",
+      "status": "done",
+      "started_at": "2026-04-06T09:13:36",
+      "source": "agentsystem_runtime",
+      "required_modes": [
+        "plan-eng-review",
+        "review",
+        "qa"
+      ],
       "advisory_modes": [],
+      "repository": "ruletale",
       "agent_mode_coverage": {
         "required": [
           "plan-eng-review",
@@ -4865,68 +4512,14 @@
         "advisory_executed_count": 0,
         "all_required_executed": true
       },
-      "formal_acceptance_reviewer": "acceptance_gate",
-      "authoritative_attempt": "roadmap_1_0_sprint_3_dungeon_runtime_and_matching-attempt-20260406091317",
-      "attempt_status": "authoritative",
-      "implemented": true,
-      "verified": true,
-      "agentized": true,
-      "accepted": true,
-      "repository": "ruletale",
-      "formal_flow_gap_reasons": [],
-      "formal_flow_complete": true
-    },
-    {
-      "project": "ruletale",
-      "backlog_id": "roadmap_1_0",
-      "sprint_id": "roadmap_1_0_sprint_3_dungeon_runtime_and_matching",
-      "story_id": "RT03-002",
-      "status": "running",
-      "started_at": "2026-04-06T09:13:25",
-      "source": "agentsystem_runtime",
-      "required_modes": [
-        "plan-eng-review",
-        "review",
-        "qa"
-      ],
-      "advisory_modes": [],
-      "repository": "ruletale",
-      "agent_mode_coverage": {
-        "required": [
-          "plan-eng-review",
-          "review",
-          "qa"
-        ],
-        "executed": [],
-        "advisory": [],
-        "missing_required": [
-          "plan-eng-review",
-          "review",
-          "qa"
-        ],
-        "executed_required_count": 0,
-        "required_count": 3,
-        "advisory_executed": [],
-        "advisory_executed_count": 0,
-        "all_required_executed": false
-      }
-    },
-    {
-      "project": "ruletale",
-      "backlog_id": "roadmap_1_0_sprint_3_dungeon_runtime_and_matching",
-      "sprint_id": "RT03-002_hospital_night_shift_dungeon.yaml",
-      "story_id": "RT03-002",
       "task_id": "task-55d990c3",
-      "status": "done",
       "branch": "agent/l1-task-55d990c3",
       "commit": "2dbbe836a83e75a6e1076b10f779c462c4d19c0c",
-      "started_at": "2026-04-06T09:13:36",
       "finished_at": "2026-04-06T09:13:49",
       "verified_at": "2026-04-06T09:13:49",
       "last_node": "Doc Writer",
       "audit_path": "D:\\lyh\\agent\\agent-frame\\agentsystem\\runs\\prod_audit_task-55d990c3.json",
       "resume_token": "RT03-002",
-      "source": "agentsystem_runtime",
       "summary": "Story completed successfully.",
       "validation_summary": "Install: SKIP (not configured)\nLint: PASS\nTypecheck: SKIP (not configured)\nTest: PASS\nStoryValidation: PASS",
       "delivery_report": "D:\\lyh\\agent\\agent-frame\\agentsystem\\repo-worktree\\.meta\\task-55d990c3\\delivery",
@@ -5274,17 +4867,36 @@
         "complete": true
       },
       "evidence_contract_complete": true,
-      "required_modes": [
-        "plan-eng-review",
-        "review",
-        "qa"
-      ],
       "executed_modes": [
         "plan-eng-review",
         "qa",
         "review"
       ],
+      "formal_acceptance_reviewer": "acceptance_gate",
+      "authoritative_attempt": "roadmap_1_0_sprint_3_dungeon_runtime_and_matching-attempt-20260406091317",
+      "attempt_status": "authoritative",
+      "implemented": true,
+      "verified": true,
+      "agentized": true,
+      "accepted": true,
+      "formal_flow_gap_reasons": [],
+      "formal_flow_complete": true
+    },
+    {
+      "project": "ruletale",
+      "backlog_id": "roadmap_1_0",
+      "sprint_id": "roadmap_1_0_sprint_3_dungeon_runtime_and_matching",
+      "story_id": "RT03-003",
+      "status": "done",
+      "started_at": "2026-04-06T09:14:03",
+      "source": "agentsystem_runtime",
+      "required_modes": [
+        "plan-eng-review",
+        "review",
+        "qa"
+      ],
       "advisory_modes": [],
+      "repository": "ruletale",
       "agent_mode_coverage": {
         "required": [
           "plan-eng-review",
@@ -5304,68 +4916,14 @@
         "advisory_executed_count": 0,
         "all_required_executed": true
       },
-      "formal_acceptance_reviewer": "acceptance_gate",
-      "authoritative_attempt": "roadmap_1_0_sprint_3_dungeon_runtime_and_matching-attempt-20260406091317",
-      "attempt_status": "authoritative",
-      "implemented": true,
-      "verified": true,
-      "agentized": true,
-      "accepted": true,
-      "repository": "ruletale",
-      "formal_flow_gap_reasons": [],
-      "formal_flow_complete": true
-    },
-    {
-      "project": "ruletale",
-      "backlog_id": "roadmap_1_0",
-      "sprint_id": "roadmap_1_0_sprint_3_dungeon_runtime_and_matching",
-      "story_id": "RT03-003",
-      "status": "running",
-      "started_at": "2026-04-06T09:13:52",
-      "source": "agentsystem_runtime",
-      "required_modes": [
-        "plan-eng-review",
-        "review",
-        "qa"
-      ],
-      "advisory_modes": [],
-      "repository": "ruletale",
-      "agent_mode_coverage": {
-        "required": [
-          "plan-eng-review",
-          "review",
-          "qa"
-        ],
-        "executed": [],
-        "advisory": [],
-        "missing_required": [
-          "plan-eng-review",
-          "review",
-          "qa"
-        ],
-        "executed_required_count": 0,
-        "required_count": 3,
-        "advisory_executed": [],
-        "advisory_executed_count": 0,
-        "all_required_executed": false
-      }
-    },
-    {
-      "project": "ruletale",
-      "backlog_id": "roadmap_1_0_sprint_3_dungeon_runtime_and_matching",
-      "sprint_id": "RT03-003_apartment_night_return_and_hall_return.yaml",
-      "story_id": "RT03-003",
       "task_id": "task-a72133a3",
-      "status": "done",
       "branch": "agent/l1-task-a72133a3",
       "commit": "",
-      "started_at": "2026-04-06T09:14:03",
       "finished_at": "2026-04-06T09:14:17",
       "verified_at": "2026-04-06T09:14:17",
       "last_node": "Doc Writer",
       "audit_path": "D:\\lyh\\agent\\agent-frame\\agentsystem\\runs\\prod_audit_task-a72133a3.json",
       "resume_token": "RT03-003",
-      "source": "agentsystem_runtime",
       "summary": "Story completed successfully.",
       "validation_summary": "Install: SKIP (not configured)\nLint: PASS\nTypecheck: SKIP (not configured)\nTest: PASS\nStoryValidation: PASS",
       "delivery_report": "D:\\lyh\\agent\\agent-frame\\agentsystem\\repo-worktree\\.meta\\task-a72133a3\\delivery",
@@ -5713,17 +5271,36 @@
         "complete": true
       },
       "evidence_contract_complete": true,
-      "required_modes": [
-        "plan-eng-review",
-        "review",
-        "qa"
-      ],
       "executed_modes": [
         "plan-eng-review",
         "qa",
         "review"
       ],
+      "formal_acceptance_reviewer": "acceptance_gate",
+      "authoritative_attempt": "roadmap_1_0_sprint_3_dungeon_runtime_and_matching-attempt-20260406091317",
+      "attempt_status": "authoritative",
+      "implemented": true,
+      "verified": true,
+      "agentized": true,
+      "accepted": true,
+      "formal_flow_gap_reasons": [],
+      "formal_flow_complete": true
+    },
+    {
+      "project": "ruletale",
+      "backlog_id": "roadmap_1_0",
+      "sprint_id": "roadmap_1_0_sprint_4_monsters_and_combat",
+      "story_id": "RT04-001",
+      "status": "done",
+      "started_at": "2026-04-06T09:14:51",
+      "source": "agentsystem_runtime",
+      "required_modes": [
+        "plan-eng-review",
+        "review",
+        "qa"
+      ],
       "advisory_modes": [],
+      "repository": "ruletale",
       "agent_mode_coverage": {
         "required": [
           "plan-eng-review",
@@ -5743,68 +5320,14 @@
         "advisory_executed_count": 0,
         "all_required_executed": true
       },
-      "formal_acceptance_reviewer": "acceptance_gate",
-      "authoritative_attempt": "roadmap_1_0_sprint_3_dungeon_runtime_and_matching-attempt-20260406091317",
-      "attempt_status": "authoritative",
-      "implemented": true,
-      "verified": true,
-      "agentized": true,
-      "accepted": true,
-      "repository": "ruletale",
-      "formal_flow_gap_reasons": [],
-      "formal_flow_complete": true
-    },
-    {
-      "project": "ruletale",
-      "backlog_id": "roadmap_1_0",
-      "sprint_id": "roadmap_1_0_sprint_4_monsters_and_combat",
-      "story_id": "RT04-001",
-      "status": "running",
-      "started_at": "2026-04-06T09:14:50",
-      "source": "agentsystem_runtime",
-      "required_modes": [
-        "plan-eng-review",
-        "review",
-        "qa"
-      ],
-      "advisory_modes": [],
-      "repository": "ruletale",
-      "agent_mode_coverage": {
-        "required": [
-          "plan-eng-review",
-          "review",
-          "qa"
-        ],
-        "executed": [],
-        "advisory": [],
-        "missing_required": [
-          "plan-eng-review",
-          "review",
-          "qa"
-        ],
-        "executed_required_count": 0,
-        "required_count": 3,
-        "advisory_executed": [],
-        "advisory_executed_count": 0,
-        "all_required_executed": false
-      }
-    },
-    {
-      "project": "ruletale",
-      "backlog_id": "roadmap_1_0_sprint_4_monsters_and_combat",
-      "sprint_id": "RT04-001_monster_taxonomy_and_archive.yaml",
-      "story_id": "RT04-001",
       "task_id": "task-fc5f1ee0",
-      "status": "done",
       "branch": "agent/l1-task-fc5f1ee0",
       "commit": "",
-      "started_at": "2026-04-06T09:14:51",
       "finished_at": "2026-04-06T09:14:56",
       "verified_at": "2026-04-06T09:14:56",
       "last_node": "Doc Writer",
       "audit_path": "D:\\lyh\\agent\\agent-frame\\agentsystem\\runs\\prod_audit_task-fc5f1ee0.json",
       "resume_token": "RT04-001",
-      "source": "agentsystem_runtime",
       "summary": "Story completed successfully.",
       "validation_summary": "Install: SKIP (not configured)\nLint: PASS\nTypecheck: SKIP (not configured)\nTest: PASS\nStoryValidation: PASS",
       "delivery_report": "D:\\lyh\\agent\\agent-frame\\agentsystem\\repo-worktree\\.meta\\task-fc5f1ee0\\delivery",
@@ -6150,17 +5673,36 @@
         "complete": true
       },
       "evidence_contract_complete": true,
-      "required_modes": [
-        "plan-eng-review",
-        "review",
-        "qa"
-      ],
       "executed_modes": [
         "plan-eng-review",
         "qa",
         "review"
       ],
+      "formal_acceptance_reviewer": "acceptance_gate",
+      "authoritative_attempt": "roadmap_1_0_sprint_4_monsters_and_combat-attempt-20260406091449",
+      "attempt_status": "authoritative",
+      "implemented": true,
+      "verified": true,
+      "agentized": true,
+      "accepted": true,
+      "formal_flow_gap_reasons": [],
+      "formal_flow_complete": true
+    },
+    {
+      "project": "ruletale",
+      "backlog_id": "roadmap_1_0",
+      "sprint_id": "roadmap_1_0_sprint_4_monsters_and_combat",
+      "story_id": "RT04-002",
+      "status": "done",
+      "started_at": "2026-04-06T09:15:00",
+      "source": "agentsystem_runtime",
+      "required_modes": [
+        "plan-eng-review",
+        "review",
+        "qa"
+      ],
       "advisory_modes": [],
+      "repository": "ruletale",
       "agent_mode_coverage": {
         "required": [
           "plan-eng-review",
@@ -6180,68 +5722,14 @@
         "advisory_executed_count": 0,
         "all_required_executed": true
       },
-      "formal_acceptance_reviewer": "acceptance_gate",
-      "authoritative_attempt": "roadmap_1_0_sprint_4_monsters_and_combat-attempt-20260406091449",
-      "attempt_status": "authoritative",
-      "implemented": true,
-      "verified": true,
-      "agentized": true,
-      "accepted": true,
-      "repository": "ruletale",
-      "formal_flow_gap_reasons": [],
-      "formal_flow_complete": true
-    },
-    {
-      "project": "ruletale",
-      "backlog_id": "roadmap_1_0",
-      "sprint_id": "roadmap_1_0_sprint_4_monsters_and_combat",
-      "story_id": "RT04-002",
-      "status": "running",
-      "started_at": "2026-04-06T09:14:58",
-      "source": "agentsystem_runtime",
-      "required_modes": [
-        "plan-eng-review",
-        "review",
-        "qa"
-      ],
-      "advisory_modes": [],
-      "repository": "ruletale",
-      "agent_mode_coverage": {
-        "required": [
-          "plan-eng-review",
-          "review",
-          "qa"
-        ],
-        "executed": [],
-        "advisory": [],
-        "missing_required": [
-          "plan-eng-review",
-          "review",
-          "qa"
-        ],
-        "executed_required_count": 0,
-        "required_count": 3,
-        "advisory_executed": [],
-        "advisory_executed_count": 0,
-        "all_required_executed": false
-      }
-    },
-    {
-      "project": "ruletale",
-      "backlog_id": "roadmap_1_0_sprint_4_monsters_and_combat",
-      "sprint_id": "RT04-002_effective_combat_value_and_branch_resolution.yaml",
-      "story_id": "RT04-002",
       "task_id": "task-ec657108",
-      "status": "done",
       "branch": "agent/l1-task-ec657108",
       "commit": "",
-      "started_at": "2026-04-06T09:15:00",
       "finished_at": "2026-04-06T09:15:06",
       "verified_at": "2026-04-06T09:15:06",
       "last_node": "Doc Writer",
       "audit_path": "D:\\lyh\\agent\\agent-frame\\agentsystem\\runs\\prod_audit_task-ec657108.json",
       "resume_token": "RT04-002",
-      "source": "agentsystem_runtime",
       "summary": "Story completed successfully.",
       "validation_summary": "Install: SKIP (not configured)\nLint: PASS\nTypecheck: SKIP (not configured)\nTest: PASS\nStoryValidation: PASS",
       "delivery_report": "D:\\lyh\\agent\\agent-frame\\agentsystem\\repo-worktree\\.meta\\task-ec657108\\delivery",
@@ -6570,36 +6058,11 @@
         "complete": true
       },
       "evidence_contract_complete": true,
-      "required_modes": [
-        "plan-eng-review",
-        "review",
-        "qa"
-      ],
       "executed_modes": [
         "plan-eng-review",
         "qa",
         "review"
       ],
-      "advisory_modes": [],
-      "agent_mode_coverage": {
-        "required": [
-          "plan-eng-review",
-          "review",
-          "qa"
-        ],
-        "executed": [
-          "plan-eng-review",
-          "qa",
-          "review"
-        ],
-        "advisory": [],
-        "missing_required": [],
-        "executed_required_count": 3,
-        "required_count": 3,
-        "advisory_executed": [],
-        "advisory_executed_count": 0,
-        "all_required_executed": true
-      },
       "formal_acceptance_reviewer": "acceptance_gate",
       "authoritative_attempt": "roadmap_1_0_sprint_4_monsters_and_combat-attempt-20260406091449",
       "attempt_status": "authoritative",
@@ -6607,7 +6070,6 @@
       "verified": true,
       "agentized": true,
       "accepted": true,
-      "repository": "ruletale",
       "formal_flow_gap_reasons": [],
       "formal_flow_complete": true
     },
@@ -6616,8 +6078,8 @@
       "backlog_id": "roadmap_1_0",
       "sprint_id": "roadmap_1_0_sprint_4_monsters_and_combat",
       "story_id": "RT04-003",
-      "status": "running",
-      "started_at": "2026-04-06T09:15:07",
+      "status": "done",
+      "started_at": "2026-04-06T09:15:17",
       "source": "agentsystem_runtime",
       "required_modes": [
         "plan-eng-review",
@@ -6640,40 +6102,32 @@
           "design-consultation",
           "design-review"
         ],
-        "executed": [],
-        "advisory": [],
-        "missing_required": [
+        "executed": [
           "plan-eng-review",
-          "review",
-          "qa",
           "browse",
           "plan-design-review",
           "design-consultation",
-          "design-review"
+          "qa",
+          "qa-design-review",
+          "design-review",
+          "review"
         ],
-        "executed_required_count": 0,
+        "advisory": [],
+        "missing_required": [],
+        "executed_required_count": 7,
         "required_count": 7,
         "advisory_executed": [],
         "advisory_executed_count": 0,
-        "all_required_executed": false
-      }
-    },
-    {
-      "project": "ruletale",
-      "backlog_id": "roadmap_1_0_sprint_4_monsters_and_combat",
-      "sprint_id": "RT04-003_combat_controls_and_browser_qa_surface.yaml",
-      "story_id": "RT04-003",
+        "all_required_executed": true
+      },
       "task_id": "task-6f0ea557",
-      "status": "done",
       "branch": "agent/l1-task-6f0ea557",
       "commit": "989029486ac4a68aad4dce05bf8061c0f5760904",
-      "started_at": "2026-04-06T09:15:17",
       "finished_at": "2026-04-06T09:15:57",
       "verified_at": "2026-04-06T09:15:57",
       "last_node": "Doc Writer",
       "audit_path": "D:\\lyh\\agent\\agent-frame\\agentsystem\\runs\\prod_audit_task-6f0ea557.json",
       "resume_token": "RT04-003",
-      "source": "agentsystem_runtime",
       "summary": "Story completed successfully.",
       "validation_summary": "Install: SKIP (not configured)\nLint: PASS\nTypecheck: SKIP (not configured)\nTest: PASS\nStoryValidation: PASS",
       "delivery_report": "D:\\lyh\\agent\\agent-frame\\agentsystem\\repo-worktree\\.meta\\task-6f0ea557\\delivery",
@@ -7121,15 +6575,6 @@
         "complete": true
       },
       "evidence_contract_complete": true,
-      "required_modes": [
-        "plan-eng-review",
-        "review",
-        "qa",
-        "browse",
-        "plan-design-review",
-        "design-consultation",
-        "design-review"
-      ],
       "executed_modes": [
         "plan-eng-review",
         "browse",
@@ -7140,35 +6585,6 @@
         "design-review",
         "review"
       ],
-      "advisory_modes": [],
-      "agent_mode_coverage": {
-        "required": [
-          "plan-eng-review",
-          "review",
-          "qa",
-          "browse",
-          "plan-design-review",
-          "design-consultation",
-          "design-review"
-        ],
-        "executed": [
-          "plan-eng-review",
-          "browse",
-          "plan-design-review",
-          "design-consultation",
-          "qa",
-          "qa-design-review",
-          "design-review",
-          "review"
-        ],
-        "advisory": [],
-        "missing_required": [],
-        "executed_required_count": 7,
-        "required_count": 7,
-        "advisory_executed": [],
-        "advisory_executed_count": 0,
-        "all_required_executed": true
-      },
       "formal_acceptance_reviewer": "acceptance_gate",
       "authoritative_attempt": "roadmap_1_0_sprint_4_monsters_and_combat-attempt-20260406091449",
       "attempt_status": "authoritative",
@@ -7176,7 +6592,6 @@
       "verified": true,
       "agentized": true,
       "accepted": true,
-      "repository": "ruletale",
       "formal_flow_gap_reasons": [],
       "formal_flow_complete": true
     },
@@ -7185,8 +6600,8 @@
       "backlog_id": "roadmap_1_0",
       "sprint_id": "roadmap_1_0_sprint_5_settlement_growth_and_black_zone",
       "story_id": "RT05-001",
-      "status": "running",
-      "started_at": "2026-04-06T09:16:20",
+      "status": "done",
+      "started_at": "2026-04-06T09:16:21",
       "source": "agentsystem_runtime",
       "required_modes": [
         "plan-eng-review",
@@ -7201,36 +6616,27 @@
           "review",
           "qa"
         ],
-        "executed": [],
-        "advisory": [],
-        "missing_required": [
+        "executed": [
           "plan-eng-review",
-          "review",
-          "qa"
+          "qa",
+          "review"
         ],
-        "executed_required_count": 0,
+        "advisory": [],
+        "missing_required": [],
+        "executed_required_count": 3,
         "required_count": 3,
         "advisory_executed": [],
         "advisory_executed_count": 0,
-        "all_required_executed": false
-      }
-    },
-    {
-      "project": "ruletale",
-      "backlog_id": "roadmap_1_0_sprint_5_settlement_growth_and_black_zone",
-      "sprint_id": "RT05-001_multidimensional_settlement_and_rewards.yaml",
-      "story_id": "RT05-001",
+        "all_required_executed": true
+      },
       "task_id": "task-9125cd7e",
-      "status": "done",
       "branch": "agent/l1-task-9125cd7e",
       "commit": "",
-      "started_at": "2026-04-06T09:16:21",
       "finished_at": "2026-04-06T09:16:27",
       "verified_at": "2026-04-06T09:16:27",
       "last_node": "Doc Writer",
       "audit_path": "D:\\lyh\\agent\\agent-frame\\agentsystem\\runs\\prod_audit_task-9125cd7e.json",
       "resume_token": "RT05-001",
-      "source": "agentsystem_runtime",
       "summary": "Story completed successfully.",
       "validation_summary": "Install: SKIP (not configured)\nLint: PASS\nTypecheck: SKIP (not configured)\nTest: PASS\nStoryValidation: PASS",
       "delivery_report": "D:\\lyh\\agent\\agent-frame\\agentsystem\\repo-worktree\\.meta\\task-9125cd7e\\delivery",
@@ -7580,17 +6986,36 @@
         "complete": true
       },
       "evidence_contract_complete": true,
-      "required_modes": [
-        "plan-eng-review",
-        "review",
-        "qa"
-      ],
       "executed_modes": [
         "plan-eng-review",
         "qa",
         "review"
       ],
+      "formal_acceptance_reviewer": "acceptance_gate",
+      "authoritative_attempt": "roadmap_1_0_sprint_5_settlement_growth_and_black_zone-attempt-20260406091619",
+      "attempt_status": "authoritative",
+      "implemented": true,
+      "verified": true,
+      "agentized": true,
+      "accepted": true,
+      "formal_flow_gap_reasons": [],
+      "formal_flow_complete": true
+    },
+    {
+      "project": "ruletale",
+      "backlog_id": "roadmap_1_0",
+      "sprint_id": "roadmap_1_0_sprint_5_settlement_growth_and_black_zone",
+      "story_id": "RT05-002",
+      "status": "done",
+      "started_at": "2026-04-06T09:16:31",
+      "source": "agentsystem_runtime",
+      "required_modes": [
+        "plan-eng-review",
+        "review",
+        "qa"
+      ],
       "advisory_modes": [],
+      "repository": "ruletale",
       "agent_mode_coverage": {
         "required": [
           "plan-eng-review",
@@ -7610,68 +7035,14 @@
         "advisory_executed_count": 0,
         "all_required_executed": true
       },
-      "formal_acceptance_reviewer": "acceptance_gate",
-      "authoritative_attempt": "roadmap_1_0_sprint_5_settlement_growth_and_black_zone-attempt-20260406091619",
-      "attempt_status": "authoritative",
-      "implemented": true,
-      "verified": true,
-      "agentized": true,
-      "accepted": true,
-      "repository": "ruletale",
-      "formal_flow_gap_reasons": [],
-      "formal_flow_complete": true
-    },
-    {
-      "project": "ruletale",
-      "backlog_id": "roadmap_1_0",
-      "sprint_id": "roadmap_1_0_sprint_5_settlement_growth_and_black_zone",
-      "story_id": "RT05-002",
-      "status": "running",
-      "started_at": "2026-04-06T09:16:29",
-      "source": "agentsystem_runtime",
-      "required_modes": [
-        "plan-eng-review",
-        "review",
-        "qa"
-      ],
-      "advisory_modes": [],
-      "repository": "ruletale",
-      "agent_mode_coverage": {
-        "required": [
-          "plan-eng-review",
-          "review",
-          "qa"
-        ],
-        "executed": [],
-        "advisory": [],
-        "missing_required": [
-          "plan-eng-review",
-          "review",
-          "qa"
-        ],
-        "executed_required_count": 0,
-        "required_count": 3,
-        "advisory_executed": [],
-        "advisory_executed_count": 0,
-        "all_required_executed": false
-      }
-    },
-    {
-      "project": "ruletale",
-      "backlog_id": "roadmap_1_0_sprint_5_settlement_growth_and_black_zone",
-      "sprint_id": "RT05-002_behavior_profile_permissions_and_npc_progression.yaml",
-      "story_id": "RT05-002",
       "task_id": "task-a938965c",
-      "status": "done",
       "branch": "agent/l1-task-a938965c",
       "commit": "",
-      "started_at": "2026-04-06T09:16:31",
       "finished_at": "2026-04-06T09:16:37",
       "verified_at": "2026-04-06T09:16:37",
       "last_node": "Doc Writer",
       "audit_path": "D:\\lyh\\agent\\agent-frame\\agentsystem\\runs\\prod_audit_task-a938965c.json",
       "resume_token": "RT05-002",
-      "source": "agentsystem_runtime",
       "summary": "Story completed successfully.",
       "validation_summary": "Install: SKIP (not configured)\nLint: PASS\nTypecheck: SKIP (not configured)\nTest: PASS\nStoryValidation: PASS",
       "delivery_report": "D:\\lyh\\agent\\agent-frame\\agentsystem\\repo-worktree\\.meta\\task-a938965c\\delivery",
@@ -8017,36 +7388,11 @@
         "complete": true
       },
       "evidence_contract_complete": true,
-      "required_modes": [
-        "plan-eng-review",
-        "review",
-        "qa"
-      ],
       "executed_modes": [
         "plan-eng-review",
         "qa",
         "review"
       ],
-      "advisory_modes": [],
-      "agent_mode_coverage": {
-        "required": [
-          "plan-eng-review",
-          "review",
-          "qa"
-        ],
-        "executed": [
-          "plan-eng-review",
-          "qa",
-          "review"
-        ],
-        "advisory": [],
-        "missing_required": [],
-        "executed_required_count": 3,
-        "required_count": 3,
-        "advisory_executed": [],
-        "advisory_executed_count": 0,
-        "all_required_executed": true
-      },
       "formal_acceptance_reviewer": "acceptance_gate",
       "authoritative_attempt": "roadmap_1_0_sprint_5_settlement_growth_and_black_zone-attempt-20260406091619",
       "attempt_status": "authoritative",
@@ -8054,7 +7400,6 @@
       "verified": true,
       "agentized": true,
       "accepted": true,
-      "repository": "ruletale",
       "formal_flow_gap_reasons": [],
       "formal_flow_complete": true
     },
@@ -8063,8 +7408,8 @@
       "backlog_id": "roadmap_1_0",
       "sprint_id": "roadmap_1_0_sprint_5_settlement_growth_and_black_zone",
       "story_id": "RT05-003",
-      "status": "running",
-      "started_at": "2026-04-06T09:16:38",
+      "status": "done",
+      "started_at": "2026-04-06T09:16:49",
       "source": "agentsystem_runtime",
       "required_modes": [
         "plan-eng-review",
@@ -8087,40 +7432,32 @@
           "design-consultation",
           "design-review"
         ],
-        "executed": [],
-        "advisory": [],
-        "missing_required": [
+        "executed": [
           "plan-eng-review",
-          "review",
-          "qa",
           "browse",
           "plan-design-review",
           "design-consultation",
-          "design-review"
+          "qa",
+          "qa-design-review",
+          "design-review",
+          "review"
         ],
-        "executed_required_count": 0,
+        "advisory": [],
+        "missing_required": [],
+        "executed_required_count": 7,
         "required_count": 7,
         "advisory_executed": [],
         "advisory_executed_count": 0,
-        "all_required_executed": false
-      }
-    },
-    {
-      "project": "ruletale",
-      "backlog_id": "roadmap_1_0_sprint_5_settlement_growth_and_black_zone",
-      "sprint_id": "RT05-003_black_zone_entry_and_mirror_records_event.yaml",
-      "story_id": "RT05-003",
+        "all_required_executed": true
+      },
       "task_id": "task-5c510fc0",
-      "status": "done",
       "branch": "agent/l1-task-5c510fc0",
       "commit": "ce7482b203794f594441f76eccfc1a4f7d9ed073",
-      "started_at": "2026-04-06T09:16:49",
       "finished_at": "2026-04-06T09:17:25",
       "verified_at": "2026-04-06T09:17:25",
       "last_node": "Doc Writer",
       "audit_path": "D:\\lyh\\agent\\agent-frame\\agentsystem\\runs\\prod_audit_task-5c510fc0.json",
       "resume_token": "RT05-003",
-      "source": "agentsystem_runtime",
       "summary": "Story completed successfully.",
       "validation_summary": "Install: SKIP (not configured)\nLint: PASS\nTypecheck: SKIP (not configured)\nTest: PASS\nStoryValidation: PASS",
       "delivery_report": "D:\\lyh\\agent\\agent-frame\\agentsystem\\repo-worktree\\.meta\\task-5c510fc0\\delivery",
@@ -8569,15 +7906,6 @@
         "complete": true
       },
       "evidence_contract_complete": true,
-      "required_modes": [
-        "plan-eng-review",
-        "review",
-        "qa",
-        "browse",
-        "plan-design-review",
-        "design-consultation",
-        "design-review"
-      ],
       "executed_modes": [
         "plan-eng-review",
         "browse",
@@ -8588,7 +7916,35 @@
         "design-review",
         "review"
       ],
+      "formal_acceptance_reviewer": "acceptance_gate",
+      "authoritative_attempt": "roadmap_1_0_sprint_5_settlement_growth_and_black_zone-attempt-20260406091619",
+      "attempt_status": "authoritative",
+      "implemented": true,
+      "verified": true,
+      "agentized": true,
+      "accepted": true,
+      "formal_flow_gap_reasons": [],
+      "formal_flow_complete": true
+    },
+    {
+      "project": "ruletale",
+      "backlog_id": "roadmap_1_0",
+      "sprint_id": "roadmap_1_0_sprint_6_authoritative_closeout",
+      "story_id": "RT06-001",
+      "status": "done",
+      "started_at": "2026-04-06T09:17:56",
+      "source": "agentsystem_runtime",
+      "required_modes": [
+        "plan-eng-review",
+        "review",
+        "qa",
+        "browse",
+        "plan-design-review",
+        "design-consultation",
+        "design-review"
+      ],
       "advisory_modes": [],
+      "repository": "ruletale",
       "agent_mode_coverage": {
         "required": [
           "plan-eng-review",
@@ -8617,80 +7973,14 @@
         "advisory_executed_count": 0,
         "all_required_executed": true
       },
-      "formal_acceptance_reviewer": "acceptance_gate",
-      "authoritative_attempt": "roadmap_1_0_sprint_5_settlement_growth_and_black_zone-attempt-20260406091619",
-      "attempt_status": "authoritative",
-      "implemented": true,
-      "verified": true,
-      "agentized": true,
-      "accepted": true,
-      "repository": "ruletale",
-      "formal_flow_gap_reasons": [],
-      "formal_flow_complete": true
-    },
-    {
-      "project": "ruletale",
-      "backlog_id": "roadmap_1_0",
-      "sprint_id": "roadmap_1_0_sprint_6_authoritative_closeout",
-      "story_id": "RT06-001",
-      "status": "running",
-      "started_at": "2026-04-06T09:17:46",
-      "source": "agentsystem_runtime",
-      "required_modes": [
-        "plan-eng-review",
-        "review",
-        "qa",
-        "browse",
-        "plan-design-review",
-        "design-consultation",
-        "design-review"
-      ],
-      "advisory_modes": [],
-      "repository": "ruletale",
-      "agent_mode_coverage": {
-        "required": [
-          "plan-eng-review",
-          "review",
-          "qa",
-          "browse",
-          "plan-design-review",
-          "design-consultation",
-          "design-review"
-        ],
-        "executed": [],
-        "advisory": [],
-        "missing_required": [
-          "plan-eng-review",
-          "review",
-          "qa",
-          "browse",
-          "plan-design-review",
-          "design-consultation",
-          "design-review"
-        ],
-        "executed_required_count": 0,
-        "required_count": 7,
-        "advisory_executed": [],
-        "advisory_executed_count": 0,
-        "all_required_executed": false
-      }
-    },
-    {
-      "project": "ruletale",
-      "backlog_id": "roadmap_1_0_sprint_6_authoritative_closeout",
-      "sprint_id": "RT06-001_runtime_showcase_and_replay_archives.yaml",
-      "story_id": "RT06-001",
       "task_id": "task-d2a85a96",
-      "status": "done",
       "branch": "agent/l1-task-d2a85a96",
       "commit": "ab8c879e58a732d89928e5344a8c68cb24984a56",
-      "started_at": "2026-04-06T09:17:56",
       "finished_at": "2026-04-06T09:18:25",
       "verified_at": "2026-04-06T09:18:25",
       "last_node": "Doc Writer",
       "audit_path": "D:\\lyh\\agent\\agent-frame\\agentsystem\\runs\\prod_audit_task-d2a85a96.json",
       "resume_token": "RT06-001",
-      "source": "agentsystem_runtime",
       "summary": "Story completed successfully.",
       "validation_summary": "Install: SKIP (not configured)\nLint: PASS\nTypecheck: SKIP (not configured)\nTest: PASS\nStoryValidation: PASS",
       "delivery_report": "D:\\lyh\\agent\\agent-frame\\agentsystem\\repo-worktree\\.meta\\task-d2a85a96\\delivery",
@@ -9137,15 +8427,6 @@
         "complete": true
       },
       "evidence_contract_complete": true,
-      "required_modes": [
-        "plan-eng-review",
-        "review",
-        "qa",
-        "browse",
-        "plan-design-review",
-        "design-consultation",
-        "design-review"
-      ],
       "executed_modes": [
         "plan-eng-review",
         "browse",
@@ -9156,35 +8437,6 @@
         "design-review",
         "review"
       ],
-      "advisory_modes": [],
-      "agent_mode_coverage": {
-        "required": [
-          "plan-eng-review",
-          "review",
-          "qa",
-          "browse",
-          "plan-design-review",
-          "design-consultation",
-          "design-review"
-        ],
-        "executed": [
-          "plan-eng-review",
-          "browse",
-          "plan-design-review",
-          "design-consultation",
-          "qa",
-          "qa-design-review",
-          "design-review",
-          "review"
-        ],
-        "advisory": [],
-        "missing_required": [],
-        "executed_required_count": 7,
-        "required_count": 7,
-        "advisory_executed": [],
-        "advisory_executed_count": 0,
-        "all_required_executed": true
-      },
       "formal_acceptance_reviewer": "acceptance_gate",
       "authoritative_attempt": "roadmap_1_0_sprint_6_authoritative_closeout-attempt-20260406091746",
       "attempt_status": "authoritative",
@@ -9192,7 +8444,6 @@
       "verified": true,
       "agentized": true,
       "accepted": true,
-      "repository": "ruletale",
       "formal_flow_gap_reasons": [],
       "formal_flow_complete": true
     },
@@ -9201,8 +8452,8 @@
       "backlog_id": "roadmap_1_0",
       "sprint_id": "roadmap_1_0_sprint_6_authoritative_closeout",
       "story_id": "RT06-002",
-      "status": "running",
-      "started_at": "2026-04-06T09:18:28",
+      "status": "done",
+      "started_at": "2026-04-06T09:18:31",
       "source": "agentsystem_runtime",
       "required_modes": [
         "plan-eng-review",
@@ -9217,36 +8468,27 @@
           "review",
           "qa"
         ],
-        "executed": [],
-        "advisory": [],
-        "missing_required": [
+        "executed": [
           "plan-eng-review",
-          "review",
-          "qa"
+          "qa",
+          "review"
         ],
-        "executed_required_count": 0,
+        "advisory": [],
+        "missing_required": [],
+        "executed_required_count": 3,
         "required_count": 3,
         "advisory_executed": [],
         "advisory_executed_count": 0,
-        "all_required_executed": false
-      }
-    },
-    {
-      "project": "ruletale",
-      "backlog_id": "roadmap_1_0_sprint_6_authoritative_closeout",
-      "sprint_id": "RT06-002_docs_handoff_and_release_evidence.yaml",
-      "story_id": "RT06-002",
+        "all_required_executed": true
+      },
       "task_id": "task-9a1ede36",
-      "status": "done",
       "branch": "agent/l1-task-9a1ede36",
       "commit": "",
-      "started_at": "2026-04-06T09:18:31",
       "finished_at": "2026-04-06T09:18:33",
       "verified_at": "2026-04-06T09:18:33",
       "last_node": "Doc Writer",
       "audit_path": "D:\\lyh\\agent\\agent-frame\\agentsystem\\runs\\prod_audit_task-9a1ede36.json",
       "resume_token": "RT06-002",
-      "source": "agentsystem_runtime",
       "summary": "Story completed successfully.",
       "validation_summary": "Install: SKIP (not configured)\nLint: PASS\nTypecheck: SKIP (not configured)\nTest: SKIP (out of scope)\nStoryValidation: PASS",
       "delivery_report": "D:\\lyh\\agent\\agent-frame\\agentsystem\\repo-worktree\\.meta\\task-9a1ede36\\delivery",
@@ -9576,36 +8818,11 @@
         "complete": true
       },
       "evidence_contract_complete": true,
-      "required_modes": [
-        "plan-eng-review",
-        "review",
-        "qa"
-      ],
       "executed_modes": [
         "plan-eng-review",
         "qa",
         "review"
       ],
-      "advisory_modes": [],
-      "agent_mode_coverage": {
-        "required": [
-          "plan-eng-review",
-          "review",
-          "qa"
-        ],
-        "executed": [
-          "plan-eng-review",
-          "qa",
-          "review"
-        ],
-        "advisory": [],
-        "missing_required": [],
-        "executed_required_count": 3,
-        "required_count": 3,
-        "advisory_executed": [],
-        "advisory_executed_count": 0,
-        "all_required_executed": true
-      },
       "formal_acceptance_reviewer": "acceptance_gate",
       "authoritative_attempt": "roadmap_1_0_sprint_6_authoritative_closeout-attempt-20260406091746",
       "attempt_status": "authoritative",
@@ -9613,7 +8830,6 @@
       "verified": true,
       "agentized": true,
       "accepted": true,
-      "repository": "ruletale",
       "formal_flow_gap_reasons": [],
       "formal_flow_complete": true
     },
@@ -9622,8 +8838,8 @@
       "backlog_id": "roadmap_1_0",
       "sprint_id": "roadmap_1_0_sprint_6_authoritative_closeout",
       "story_id": "RT06-003",
-      "status": "running",
-      "started_at": "2026-04-06T09:18:35",
+      "status": "done",
+      "started_at": "2026-04-06T09:18:45",
       "source": "agentsystem_runtime",
       "required_modes": [
         "plan-eng-review",
@@ -9646,40 +8862,32 @@
           "design-consultation",
           "design-review"
         ],
-        "executed": [],
-        "advisory": [],
-        "missing_required": [
+        "executed": [
           "plan-eng-review",
-          "review",
-          "qa",
           "browse",
           "plan-design-review",
           "design-consultation",
-          "design-review"
+          "qa",
+          "qa-design-review",
+          "design-review",
+          "review"
         ],
-        "executed_required_count": 0,
+        "advisory": [],
+        "missing_required": [],
+        "executed_required_count": 7,
         "required_count": 7,
         "advisory_executed": [],
         "advisory_executed_count": 0,
-        "all_required_executed": false
-      }
-    },
-    {
-      "project": "ruletale",
-      "backlog_id": "roadmap_1_0_sprint_6_authoritative_closeout",
-      "sprint_id": "RT06-003_authoritative_closeout_validation_story.yaml",
-      "story_id": "RT06-003",
+        "all_required_executed": true
+      },
       "task_id": "task-e6031427",
-      "status": "done",
       "branch": "agent/l1-task-e6031427",
       "commit": "f2c22b40d7a8934b3b2cea33f0f731745655c74d",
-      "started_at": "2026-04-06T09:18:45",
       "finished_at": "2026-04-06T09:19:02",
       "verified_at": "2026-04-06T09:19:02",
       "last_node": "Doc Writer",
       "audit_path": "D:\\lyh\\agent\\agent-frame\\agentsystem\\runs\\prod_audit_task-e6031427.json",
       "resume_token": "RT06-003",
-      "source": "agentsystem_runtime",
       "summary": "Story completed successfully.",
       "validation_summary": "Install: SKIP (not configured)\nLint: PASS\nTypecheck: SKIP (not configured)\nTest: PASS\nStoryValidation: PASS",
       "delivery_report": "D:\\lyh\\agent\\agent-frame\\agentsystem\\repo-worktree\\.meta\\task-e6031427\\delivery",
@@ -10131,15 +9339,6 @@
         "complete": true
       },
       "evidence_contract_complete": true,
-      "required_modes": [
-        "plan-eng-review",
-        "review",
-        "qa",
-        "browse",
-        "plan-design-review",
-        "design-consultation",
-        "design-review"
-      ],
       "executed_modes": [
         "plan-eng-review",
         "browse",
@@ -10150,35 +9349,6 @@
         "design-review",
         "review"
       ],
-      "advisory_modes": [],
-      "agent_mode_coverage": {
-        "required": [
-          "plan-eng-review",
-          "review",
-          "qa",
-          "browse",
-          "plan-design-review",
-          "design-consultation",
-          "design-review"
-        ],
-        "executed": [
-          "plan-eng-review",
-          "browse",
-          "plan-design-review",
-          "design-consultation",
-          "qa",
-          "qa-design-review",
-          "design-review",
-          "review"
-        ],
-        "advisory": [],
-        "missing_required": [],
-        "executed_required_count": 7,
-        "required_count": 7,
-        "advisory_executed": [],
-        "advisory_executed_count": 0,
-        "all_required_executed": true
-      },
       "formal_acceptance_reviewer": "acceptance_gate",
       "authoritative_attempt": "roadmap_1_0_sprint_6_authoritative_closeout-attempt-20260406091746",
       "attempt_status": "authoritative",
@@ -10186,7 +9356,6 @@
       "verified": true,
       "agentized": true,
       "accepted": true,
-      "repository": "ruletale",
       "formal_flow_gap_reasons": [],
       "formal_flow_complete": true
     }
