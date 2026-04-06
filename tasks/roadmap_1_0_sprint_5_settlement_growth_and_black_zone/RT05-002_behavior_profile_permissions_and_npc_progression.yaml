@@ -1,0 +1,40 @@
+project: ruletale
+task_id: RT05-002
+task_name: Behavior Profile Permissions And Npc Progression
+sprint: Sprint 5 Settlement Growth And Black Zone
+epic: Sprint 5 Settlement Growth And Black Zone
+story_id: RT05-002
+blast_radius: L1
+execution_mode: Safe
+mode: Safe
+agent_policy: auto
+story_kind: api
+goal: Track hidden behavior profile tags, update hall permissions, and persist lightweight
+  NPC trust changes.
+business_value: Supports long-term progression and makes the hall react to how the
+  player survives.
+dependencies:
+- RT05-001
+acceptance_criteria:
+- Behavior profile tags are accumulated from player choices.
+- Hall permissions can unlock after milestone clears.
+- NPC trust changes can be reflected in later responses or archive context.
+constraints:
+- Keep behavior profiling hidden in the main UI except where surfaced intentionally.
+- Do not require a full relationship simulator in this stage.
+related_files:
+- apps/api/src/engine.py
+- apps/api/src/game_content.py
+- apps/api/src/models.py
+primary_files:
+- apps/api/src/engine.py
+- apps/api/src/models.py
+secondary_files:
+- apps/api/src/game_content.py
+test_cases:
+  normal:
+  - Complete the main happy-path workflow for Behavior Profile Permissions And Npc
+    Progression.
+  exception:
+  - Validate a guardrail or degraded state for Behavior Profile Permissions And Npc
+    Progression.

@@ -1,0 +1,47 @@
+project: ruletale
+task_id: RT03-003
+task_name: Apartment Night Return And Hall Return
+sprint: Sprint 3 Dungeon Runtime And Matching
+epic: Sprint 3 Dungeon Runtime And Matching
+story_id: RT03-003
+blast_radius: L2
+execution_mode: Safe
+mode: Safe
+agent_policy: auto
+story_kind: mixed
+goal: Implement the apartment night return dungeon and wire successful runs back into
+  hall return and progression state.
+business_value: Adds the second MVP dungeon and proves that the outer hall loop works
+  across multiple runs.
+dependencies:
+- RT03-001
+- RT03-002
+acceptance_criteria:
+- Apartment night return includes stairwell, power room, tenant door, and street exit
+  nodes.
+- Completing the apartment run updates hall state and progression.
+- After hospital plus apartment clears, the hall can expose black-zone access.
+constraints:
+- The familiar-door voice must remain a psychological lure, not a flat quest giver.
+- Keep the hall return chain explicit in API and smoke tests.
+related_files:
+- apps/api/src/game_content.py
+- apps/api/src/engine.py
+- apps/api/tests/test_game_flow.py
+- scripts/full_flow_smoke.py
+primary_files:
+- apps/api/src/game_content.py
+- apps/api/src/engine.py
+secondary_files:
+- apps/api/tests/test_game_flow.py
+- scripts/full_flow_smoke.py
+test_cases:
+  normal:
+  - Complete the main happy-path workflow for Apartment Night Return And Hall Return.
+  exception:
+  - Validate a guardrail or degraded state for Apartment Night Return And Hall Return.
+preview_base_url: http://127.0.0.1:3001
+preview_urls:
+- http://127.0.0.1:3001
+qa_urls:
+- http://127.0.0.1:3001

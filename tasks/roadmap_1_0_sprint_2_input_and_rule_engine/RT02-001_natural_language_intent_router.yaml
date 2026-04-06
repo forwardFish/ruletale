@@ -1,0 +1,37 @@
+project: ruletale
+task_id: RT02-001
+task_name: Natural Language Intent Router
+sprint: Sprint 2 Input And Rule Engine
+epic: Sprint 2 Input And Rule Engine
+story_id: RT02-001
+blast_radius: L1
+execution_mode: Safe
+mode: Safe
+agent_policy: auto
+story_kind: api
+goal: Translate natural language input into structured action intents and risk tendencies.
+business_value: Supports active player thinking instead of static menu-only progression.
+dependencies:
+- RT01-002
+acceptance_criteria:
+- Action interpretation returns structured intent, cautious level, and risk tendency
+  fields.
+- Common observe, inspect, move, verify, fight, flee, and hide inputs are recognized.
+- Interpretation remains deterministic enough for tests and smoke runs.
+constraints:
+- Do not let free-form text directly author new story outcomes.
+- The engine, not the classifier, decides final state changes.
+related_files:
+- apps/api/src/engine.py
+- apps/api/tests/test_game_flow.py
+- docs/contracts/api/game-api.md
+primary_files:
+- apps/api/src/engine.py
+- docs/contracts/api/game-api.md
+secondary_files:
+- apps/api/tests/test_game_flow.py
+test_cases:
+  normal:
+  - Complete the main happy-path workflow for Natural Language Intent Router.
+  exception:
+  - Validate a guardrail or degraded state for Natural Language Intent Router.

@@ -1,0 +1,39 @@
+project: ruletale
+task_id: RT01-002
+task_name: Archive Notebook Save Load
+sprint: Sprint 1 Hall And State Foundation
+epic: Sprint 1 Hall And State Foundation
+story_id: RT01-002
+blast_radius: L1
+execution_mode: Safe
+mode: Safe
+agent_policy: auto
+story_kind: api
+goal: Implement save/load, notebook persistence, archives, and run history storage.
+business_value: Makes progression recoverable and gives later sprints a stable evidence
+  spine.
+dependencies:
+- RT01-001
+acceptance_criteria:
+- Sessions can be saved and loaded through explicit slots.
+- Archives expose notebook entries, discovered rules, and run history.
+- Persistence survives smoke-flow reloads without losing session state.
+constraints:
+- Use local file-backed persistence for the MVP.
+- Do not require external infrastructure.
+related_files:
+- apps/api/src/models.py
+- apps/api/src/persistence.py
+- apps/api/src/engine.py
+- apps/api/tests/test_game_flow.py
+primary_files:
+- apps/api/src/persistence.py
+- apps/api/src/engine.py
+secondary_files:
+- apps/api/src/models.py
+- apps/api/tests/test_game_flow.py
+test_cases:
+  normal:
+  - Complete the main happy-path workflow for Archive Notebook Save Load.
+  exception:
+  - Validate a guardrail or degraded state for Archive Notebook Save Load.

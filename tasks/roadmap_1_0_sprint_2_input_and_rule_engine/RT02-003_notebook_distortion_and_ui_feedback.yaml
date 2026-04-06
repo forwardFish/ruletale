@@ -1,0 +1,44 @@
+project: ruletale
+task_id: RT02-003
+task_name: Notebook Distortion And Ui Feedback
+sprint: Sprint 2 Input And Rule Engine
+epic: Sprint 2 Input And Rule Engine
+story_id: RT02-003
+blast_radius: L2
+execution_mode: Safe
+mode: Safe
+agent_policy: auto
+story_kind: mixed
+goal: Surface notebook entries, SAN text drift, and high-corruption notebook tampering
+  in both API and web shell.
+business_value: Turns psychological erosion into something players can feel rather
+  than only read about in a document.
+dependencies:
+- RT02-001
+- RT02-002
+acceptance_criteria:
+- Low SAN can distort scene or combat text.
+- High COR can mark notebook entries as tampered.
+- The web shell displays rule and notebook state changes after each action.
+constraints:
+- Keep distorted text readable enough for acceptance testing.
+- Do not mutate the canonical stored notebook entry beyond reversible display effects.
+related_files:
+- apps/api/src/engine.py
+- apps/web/src/app/page.tsx
+- apps/web/src/app/globals.css
+primary_files:
+- apps/api/src/engine.py
+- apps/web/src/app/page.tsx
+secondary_files:
+- apps/web/src/app/globals.css
+test_cases:
+  normal:
+  - Complete the main happy-path workflow for Notebook Distortion And Ui Feedback.
+  exception:
+  - Validate a guardrail or degraded state for Notebook Distortion And Ui Feedback.
+preview_base_url: http://127.0.0.1:3001
+preview_urls:
+- http://127.0.0.1:3001
+qa_urls:
+- http://127.0.0.1:3001

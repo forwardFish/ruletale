@@ -1,0 +1,53 @@
+name: ruletale
+description: Rule-horror game platform delivered through agentsystem
+type: fullstack_game_platform
+
+paths:
+  style_guide: ".agents/style_guide.md"
+  review_policy: ".agents/review_policy.yaml"
+  commands: ".agents/commands.yaml"
+  contracts_root: "docs/contracts"
+  backend_root: "apps/api"
+  frontend_root: "apps/web"
+
+stack:
+  frontend:
+    framework: nextjs
+    language: typescript
+    package_manager: npm
+    path: apps/web
+  backend:
+    framework: fastapi
+    language: python
+    package_manager: pip
+    path: apps/api
+
+git:
+  default_branch: main
+  working_branch_prefix: "agent/"
+  protected_branches:
+    - main
+
+environments:
+  local: true
+  test: true
+  preview: false
+  prod: false
+
+code_style:
+  python: "typed pydantic models + explicit pure game-engine helpers"
+  frontend: "nextjs app router + client console for hall and dungeon orchestration"
+  indent:
+    python: 4
+    frontend: 2
+  line_length: 120
+
+acceptance_rules:
+  - "Every story must preserve the declared scope and write delivery evidence."
+  - "Rule logic stays in backend engine modules, not in the page layer."
+  - "Every dungeon flow must remain replayable from persisted run artifacts."
+  - "Black zone access must remain gated by explicit game state, not hidden UI shortcuts."
+
+owners:
+  human_reviewer: "default"
+

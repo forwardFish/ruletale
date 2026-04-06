@@ -1,0 +1,40 @@
+project: ruletale
+task_id: RT02-002
+task_name: Rule Discovery Verification And False Rules
+sprint: Sprint 2 Input And Rule Engine
+epic: Sprint 2 Input And Rule Engine
+story_id: RT02-002
+blast_radius: L1
+execution_mode: Safe
+mode: Safe
+agent_policy: auto
+story_kind: api
+goal: Implement explicit, hidden, false, and conditional rules with discovery and
+  verification states.
+business_value: Preserves the core rule-horror loop of incomplete information and
+  judgement.
+dependencies:
+- RT02-001
+acceptance_criteria:
+- Discovered rules and verified rules are tracked separately.
+- False-rule verification carries penalty and can change player state.
+- Conditional rules can be surfaced only after the relevant scene or item trigger.
+constraints:
+- Do not flatten all rules into a system popup list.
+- Conflict information must remain visible in archives or notebook evidence.
+related_files:
+- apps/api/src/game_content.py
+- apps/api/src/engine.py
+- apps/api/src/models.py
+primary_files:
+- apps/api/src/game_content.py
+- apps/api/src/engine.py
+secondary_files:
+- apps/api/src/models.py
+test_cases:
+  normal:
+  - Complete the main happy-path workflow for Rule Discovery Verification And False
+    Rules.
+  exception:
+  - Validate a guardrail or degraded state for Rule Discovery Verification And False
+    Rules.

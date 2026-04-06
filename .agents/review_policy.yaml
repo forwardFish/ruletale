@@ -1,0 +1,20 @@
+review_requirements:
+  require_summary: true
+  require_changed_files_list: true
+  require_risk_notes: true
+  require_test_evidence: true
+
+risk_levels:
+  low:
+    auto_merge_allowed: false
+  medium:
+    auto_merge_allowed: false
+  high:
+    auto_merge_allowed: false
+
+human_gate:
+  required_for:
+    - release
+    - schema_change
+    - content_contract_change
+

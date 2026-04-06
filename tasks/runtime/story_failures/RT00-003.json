@@ -1,0 +1,15 @@
+{
+  "project": "ruletale",
+  "backlog_id": "roadmap_1_0",
+  "sprint_id": "roadmap_1_0_sprint_0_project_onboarding",
+  "story_id": "RT00-003",
+  "task_id": "task-a91bf06b",
+  "task_name": "RT00-003",
+  "failure_type": "loop_detected",
+  "blocker_class": "story_local_blocker",
+  "last_node": "Fixer",
+  "recommended_recovery_action": "Resume from the failed story after the recorded blocker is addressed.",
+  "error_message": "Loop detected after repeated reviewer/fixer attempts with no material progress.",
+  "audit_path": "D:\\lyh\\agent\\agent-frame\\agentsystem\\runs\\prod_audit_task-a91bf06b.json",
+  "captured_at": "2026-04-05T20:30:09"
+}

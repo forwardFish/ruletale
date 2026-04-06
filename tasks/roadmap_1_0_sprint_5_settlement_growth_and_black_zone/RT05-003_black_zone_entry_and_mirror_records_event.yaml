@@ -1,0 +1,48 @@
+project: ruletale
+task_id: RT05-003
+task_name: Black Zone Entry And Mirror Records Event
+sprint: Sprint 5 Settlement Growth And Black Zone
+epic: Sprint 5 Settlement Growth And Black Zone
+story_id: RT05-003
+blast_radius: L2
+execution_mode: Safe
+mode: Safe
+agent_policy: auto
+story_kind: mixed
+goal: Implement the black-zone mirror-records event and expose its progression and
+  archive impact through API and web.
+business_value: Pays off the hall loop by opening a higher-risk hidden route with
+  stronger narrative consequences.
+dependencies:
+- RT05-001
+- RT05-002
+acceptance_criteria:
+- Black zone access unlocks only after the expected hall progression.
+- Mirror records includes its own rules, archive evidence, and exit encounter.
+- The full smoke flow can complete the black-zone run after the two base dungeons.
+constraints:
+- The black zone should feel like a progression payoff, not a reskinned normal dungeon.
+- Keep name-based rule pressure central to the encounter.
+related_files:
+- apps/api/src/game_content.py
+- apps/api/src/engine.py
+- apps/web/src/app/page.tsx
+- scripts/full_flow_smoke.py
+primary_files:
+- apps/api/src/game_content.py
+- scripts/full_flow_smoke.py
+secondary_files:
+- apps/api/src/engine.py
+- apps/web/src/app/page.tsx
+test_cases:
+  normal:
+  - Complete the main happy-path workflow for Black Zone Entry And Mirror Records
+    Event.
+  exception:
+  - Validate a guardrail or degraded state for Black Zone Entry And Mirror Records
+    Event.
+preview_base_url: http://127.0.0.1:3001
+preview_urls:
+- http://127.0.0.1:3001
+qa_urls:
+- http://127.0.0.1:3001

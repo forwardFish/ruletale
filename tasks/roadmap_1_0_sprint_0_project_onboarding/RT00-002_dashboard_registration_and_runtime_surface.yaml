@@ -1,0 +1,48 @@
+project: ruletale
+task_id: RT00-002
+task_name: Dashboard Registration And Runtime Surface
+sprint: Sprint 0 Project Onboarding
+epic: Sprint 0 Project Onboarding
+story_id: RT00-002
+blast_radius: L2
+execution_mode: Safe
+mode: Safe
+agent_policy: auto
+story_kind: mixed
+goal: Register ruletale in agentsystem config, project registry, dashboard list, and
+  runtime showcase surfaces.
+business_value: Lets agentsystem treat ruletale as a first-class project with runtime
+  visibility.
+dependencies:
+- RT00-001
+acceptance_criteria:
+- agentsystem config resolves ruletale in test and production environments.
+- The dashboard project list exposes ruletale and its runtime path.
+- A dedicated ruletale runtime surface can load showcase payloads without breaking
+  existing projects.
+constraints:
+- Only touch agentsystem where ruletale registration is required.
+- Preserve existing dirty changes outside the needed insertion points.
+related_files:
+- ../agentsystem/config/test.yaml
+- ../agentsystem/config/production.yaml
+- ../agentsystem/src/agentsystem/dashboard/main.py
+- ../agentsystem/src/agentsystem/dashboard/static/ruletale_runtime.html
+- ../agentsystem/tests/test_dashboard_api.py
+primary_files:
+- ../agentsystem/src/agentsystem/dashboard/main.py
+- ../agentsystem/tests/test_dashboard_api.py
+secondary_files:
+- ../agentsystem/config/test.yaml
+- ../agentsystem/config/production.yaml
+test_cases:
+  normal:
+  - Complete the main happy-path workflow for Dashboard Registration And Runtime Surface.
+  exception:
+  - Validate a guardrail or degraded state for Dashboard Registration And Runtime
+    Surface.
+preview_base_url: http://127.0.0.1:3001
+preview_urls:
+- http://127.0.0.1:3001
+qa_urls:
+- http://127.0.0.1:3001

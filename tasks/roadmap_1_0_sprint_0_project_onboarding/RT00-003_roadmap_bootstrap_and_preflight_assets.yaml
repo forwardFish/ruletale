@@ -1,0 +1,44 @@
+project: ruletale
+task_id: RT00-003
+task_name: Roadmap Bootstrap And Preflight Assets
+sprint: Sprint 0 Project Onboarding
+epic: Sprint 0 Project Onboarding
+story_id: RT00-003
+blast_radius: L1
+execution_mode: Safe
+mode: Safe
+agent_policy: auto
+story_kind: runtime_data
+goal: Generate the roadmap_1_0 sprint directories, story cards, planning artifacts,
+  and preflight-safe execution order.
+business_value: Creates the authoritative execution lane for later full Story and
+  Sprint delivery.
+dependencies:
+- RT00-001
+- RT00-002
+acceptance_criteria:
+- roadmap_1_0 sprint directories, sprint_plan.md files, and execution_order.txt files
+  exist.
+- Every roadmap story can pass workflow admission in preflight mode.
+- The planning package links office-hours, CEO review, and engineering review decisions
+  back to the requirement source.
+constraints:
+- Use the original requirement document as the only business source.
+- Do not fabricate accepted Story status.
+related_files:
+- docs/requirements/20260405_ruletale_office_hours.md
+- docs/requirements/20260405_ruletale_full_delivery_requirement.md
+- docs/requirements/20260405_ruletale_plan_eng_review.md
+- tasks/story_status_registry.json
+- tasks/story_acceptance_reviews.json
+primary_files:
+- docs/requirements/20260405_ruletale_full_delivery_requirement.md
+- tasks/story_status_registry.json
+secondary_files:
+- docs/requirements/20260405_ruletale_office_hours.md
+- docs/requirements/20260405_ruletale_plan_eng_review.md
+test_cases:
+  normal:
+  - Complete the main happy-path workflow for Roadmap Bootstrap And Preflight Assets.
+  exception:
+  - Validate a guardrail or degraded state for Roadmap Bootstrap And Preflight Assets.

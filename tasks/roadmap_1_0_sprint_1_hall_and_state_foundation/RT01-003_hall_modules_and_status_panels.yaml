@@ -1,0 +1,43 @@
+project: ruletale
+task_id: RT01-003
+task_name: Hall Modules And Status Panels
+sprint: Sprint 1 Hall And State Foundation
+epic: Sprint 1 Hall And State Foundation
+story_id: RT01-003
+blast_radius: L1
+execution_mode: Safe
+mode: Safe
+agent_policy: auto
+story_kind: ui
+goal: Render hall modules, visible stats, psych hints, and archive previews in the
+  web shell.
+business_value: Provides a readable control surface for preparing, returning, and
+  reviewing runs.
+dependencies:
+- RT01-001
+- RT01-002
+acceptance_criteria:
+- The page renders hall modules, visible stats, psych hints, and archive previews.
+- Returning to the hall after a run updates module state and unlock indicators.
+- The hall surface remains responsive on desktop and mobile.
+constraints:
+- Do not bury critical state inside developer-only logs.
+- Use the established Ruletale visual language rather than generic admin UI.
+related_files:
+- apps/web/src/app/page.tsx
+- apps/web/src/app/globals.css
+primary_files:
+- apps/web/src/app/page.tsx
+- apps/web/src/app/globals.css
+secondary_files:
+- apps/api/src/main.py
+test_cases:
+  normal:
+  - Complete the main happy-path workflow for Hall Modules And Status Panels.
+  exception:
+  - Validate a guardrail or degraded state for Hall Modules And Status Panels.
+preview_base_url: http://127.0.0.1:3001
+preview_urls:
+- http://127.0.0.1:3001
+qa_urls:
+- http://127.0.0.1:3001

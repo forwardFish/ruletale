@@ -1,0 +1,44 @@
+project: ruletale
+task_id: RT04-003
+task_name: Combat Controls And Browser Qa Surface
+sprint: Sprint 4 Monsters And Combat
+epic: Sprint 4 Monsters And Combat
+story_id: RT04-003
+blast_radius: L1
+execution_mode: Safe
+mode: Safe
+agent_policy: auto
+story_kind: ui
+goal: Expose combat branch controls, current encounter state, and narrative combat
+  feedback in the web shell.
+business_value: Lets QA and product review the rule-combat tradeoffs from a real page
+  instead of only API traces.
+dependencies:
+- RT04-002
+acceptance_criteria:
+- The page shows when combat is active and exposes avoid, probe, fight, flee, and
+  exploit-rule controls.
+- Combat results update the narrative and session state without manual refresh.
+- The battle surface remains usable on narrow screens.
+constraints:
+- Do not turn combat into a separate detached dashboard.
+- Keep the same horror language and scene continuity as the exploration surface.
+related_files:
+- apps/web/src/app/page.tsx
+- apps/web/src/app/globals.css
+- apps/api/src/main.py
+primary_files:
+- apps/web/src/app/page.tsx
+- apps/web/src/app/globals.css
+secondary_files:
+- apps/api/src/main.py
+test_cases:
+  normal:
+  - Complete the main happy-path workflow for Combat Controls And Browser Qa Surface.
+  exception:
+  - Validate a guardrail or degraded state for Combat Controls And Browser Qa Surface.
+preview_base_url: http://127.0.0.1:3001
+preview_urls:
+- http://127.0.0.1:3001
+qa_urls:
+- http://127.0.0.1:3001

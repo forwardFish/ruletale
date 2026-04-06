@@ -1,0 +1,20 @@
+{
+  "generated_at": "2026-04-05T23:41:27",
+  "project": "ruletale",
+  "sprint_id": "roadmap_1_0_sprint_2_input_and_rule_engine",
+  "completed_story_ids": [
+    "RT02-001",
+    "RT02-002",
+    "RT02-003"
+  ],
+  "failed_story_ids": [],
+  "story_reports": [],
+  "requirement_statuses": [],
+  "post_hook_artifacts": {
+    "document_release_path": "D:\\lyh\\agent\\agent-frame\\agentsystem\\runs\\sprints\\ruletale\\roadmap_1_0_sprint_2_input_and_rule_engine\\document_release_report.md",
+    "retro_path": "D:\\lyh\\agent\\agent-frame\\agentsystem\\runs\\sprints\\ruletale\\roadmap_1_0_sprint_2_input_and_rule_engine\\retro_report.md",
+    "ship_report_path": "D:\\lyh\\agent\\agent-frame\\.meta\\ruletale\\ship\\ship_readiness_report.md"
+  },
+  "missing_items": [],
+  "passed": true
+}

@@ -1,0 +1,12 @@
+commands:
+  format:
+    - "python scripts/check_scaffold.py"
+  lint:
+    - "python scripts/check_scaffold.py"
+  test:
+    - "python -m pytest apps/api/tests -q"
+  validation:
+    - "python scripts/check_scaffold.py"
+    - "python scripts/full_flow_smoke.py"
+    - "python -m pytest apps/api/tests -q"
+
