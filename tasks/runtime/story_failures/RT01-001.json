@@ -1,0 +1,15 @@
+{
+  "project": "ruletale",
+  "backlog_id": "roadmap_1_0",
+  "sprint_id": "roadmap_1_0_sprint_1_hall_and_state_foundation",
+  "story_id": "RT01-001",
+  "task_id": "task-56592687",
+  "task_name": "RT01-001",
+  "failure_type": "run_prod_task_exception",
+  "blocker_class": "shared_dependency_blocker",
+  "last_node": "Browser QA",
+  "recommended_recovery_action": "Resume from the failed story after the recorded blocker is addressed.",
+  "error_message": "run_prod_task_exception",
+  "audit_path": "D:\\lyh\\agent\\agent-frame\\agentsystem\\runs\\prod_audit_task-56592687.json",
+  "captured_at": "2026-04-05T21:28:29"
+}

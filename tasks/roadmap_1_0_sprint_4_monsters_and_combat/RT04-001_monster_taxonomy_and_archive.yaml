@@ -1,0 +1,36 @@
+project: ruletale
+task_id: RT04-001
+task_name: Monster Taxonomy And Archive
+sprint: Sprint 4 Monsters And Combat
+epic: Sprint 4 Monsters And Combat
+story_id: RT04-001
+blast_radius: L1
+execution_mode: Safe
+mode: Safe
+agent_policy: auto
+story_kind: api
+goal: Implement lure, hunter, parasite, and judge monster metadata and archive persistence.
+business_value: Makes monsters feel like rule-bound entities instead of generic enemies.
+dependencies:
+- RT03-003
+acceptance_criteria:
+- Monster specs include trigger condition, weakness rule, threat, and psych hooks.
+- Encountered monsters can be persisted into the archive with weakness hints.
+- Monster typing remains visible through runtime and archive payloads.
+constraints:
+- Monsters must interact with rules and psychology, not only hit points.
+- Archive hints should reveal pattern, not give a spoiler dump.
+related_files:
+- apps/api/src/models.py
+- apps/api/src/game_content.py
+- apps/api/src/engine.py
+primary_files:
+- apps/api/src/models.py
+- apps/api/src/game_content.py
+secondary_files:
+- apps/api/src/engine.py
+test_cases:
+  normal:
+  - Complete the main happy-path workflow for Monster Taxonomy And Archive.
+  exception:
+  - Validate a guardrail or degraded state for Monster Taxonomy And Archive.

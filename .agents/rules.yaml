@@ -1,0 +1,26 @@
+code_rules:
+  require_small_changesets: true
+  max_files_per_change: 24
+  require_tests_for_backend: true
+  require_tests_for_frontend: true
+  forbid_unreviewed_schema_drop: true
+
+protected_paths:
+  - "docs/requirements/**"
+  - ".env"
+  - ".env.local"
+
+readonly_paths:
+  - "docs/archive/**"
+
+forbidden_actions:
+  - direct_push_main
+  - skip_required_checks
+  - bypass_review
+  - delete_runtime_history
+
+approval_triggers:
+  schema_changes: true
+  auth_logic_changes: false
+  infra_changes: true
+

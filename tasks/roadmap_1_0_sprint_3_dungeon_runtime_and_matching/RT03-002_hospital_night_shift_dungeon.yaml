@@ -1,0 +1,46 @@
+project: ruletale
+task_id: RT03-002
+task_name: Hospital Night Shift Dungeon
+sprint: Sprint 3 Dungeon Runtime And Matching
+epic: Sprint 3 Dungeon Runtime And Matching
+story_id: RT03-002
+blast_radius: L2
+execution_mode: Safe
+mode: Safe
+agent_policy: auto
+story_kind: mixed
+goal: Implement the hospital night shift dungeon with scene nodes, rule clues, NPC
+  hints, and exit encounter flow.
+business_value: Delivers the first full playable rule-horror sample from the requirement
+  document.
+dependencies:
+- RT03-001
+acceptance_criteria:
+- Hospital night shift includes at least lobby, nurse station, isolation ward, and
+  service exit nodes.
+- The dungeon exposes explicit, hidden, false, and conditional rule evidence.
+- The hospital flow can complete through action interpretation, combat, and settlement.
+constraints:
+- Do not reduce the dungeon to a single linear text blob.
+- The nurse guidance must remain ambiguous rather than fully trustworthy.
+related_files:
+- apps/api/src/game_content.py
+- apps/api/src/engine.py
+- apps/api/tests/test_game_flow.py
+- scripts/full_flow_smoke.py
+primary_files:
+- apps/api/src/game_content.py
+- scripts/full_flow_smoke.py
+secondary_files:
+- apps/api/src/engine.py
+- apps/api/tests/test_game_flow.py
+test_cases:
+  normal:
+  - Complete the main happy-path workflow for Hospital Night Shift Dungeon.
+  exception:
+  - Validate a guardrail or degraded state for Hospital Night Shift Dungeon.
+preview_base_url: http://127.0.0.1:3001
+preview_urls:
+- http://127.0.0.1:3001
+qa_urls:
+- http://127.0.0.1:3001

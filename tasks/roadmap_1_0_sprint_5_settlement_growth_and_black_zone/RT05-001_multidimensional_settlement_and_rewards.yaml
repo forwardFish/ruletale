@@ -1,0 +1,37 @@
+project: ruletale
+task_id: RT05-001
+task_name: Multidimensional Settlement And Rewards
+sprint: Sprint 5 Settlement Growth And Black Zone
+epic: Sprint 5 Settlement Growth And Black Zone
+story_id: RT05-001
+blast_radius: L1
+execution_mode: Safe
+mode: Safe
+agent_policy: auto
+story_kind: api
+goal: Implement settlement grading across survival, mental, rules, combat, and choice
+  with reward mapping.
+business_value: Makes success style matter as much as basic completion.
+dependencies:
+- RT04-002
+acceptance_criteria:
+- Settlement returns five sub-grades plus overall grade.
+- Rewards can differ by rules, mental, and survival performance.
+- Settlement can distinguish normal, perfect, corrupted, hidden, and failed outcomes.
+constraints:
+- Do not replace multi-grade output with one opaque total score.
+- Keep outcome names understandable for future archive and replay surfaces.
+related_files:
+- apps/api/src/models.py
+- apps/api/src/engine.py
+- apps/api/tests/test_game_flow.py
+primary_files:
+- apps/api/src/engine.py
+- apps/api/src/models.py
+secondary_files:
+- apps/api/tests/test_game_flow.py
+test_cases:
+  normal:
+  - Complete the main happy-path workflow for Multidimensional Settlement And Rewards.
+  exception:
+  - Validate a guardrail or degraded state for Multidimensional Settlement And Rewards.

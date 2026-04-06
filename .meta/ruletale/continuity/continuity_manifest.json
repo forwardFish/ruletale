@@ -1,0 +1,15 @@
+{
+  "project": "ruletale",
+  "status": "seeded",
+  "docs": {
+    "now": "NOW.md",
+    "state": "STATE.md",
+    "decisions": "DECISIONS.md",
+    "handoff": "docs/handoff/current_handoff.md"
+  },
+  "runtime": {
+    "story_status_registry": "tasks/story_status_registry.json",
+    "story_acceptance_reviews": "tasks/story_acceptance_reviews.json",
+    "resume_state": "tasks/runtime/auto_resume_state.json"
+  }
+}

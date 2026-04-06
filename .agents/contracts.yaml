@@ -1,0 +1,44 @@
+contract_policy:
+  change_units:
+    execution_unit: story
+    planning_units:
+      - roadmap
+      - sprint
+      - epic
+      - story
+  boundaries:
+    allowed_roots:
+      - .agents
+      - apps/api
+      - apps/web
+      - docs
+      - scripts
+      - tasks
+    protected_paths:
+      - docs/requirements
+  required_gates:
+    - code_style_review
+    - tester
+    - reviewer
+    - code_acceptance
+    - acceptance_gate
+
+contracts:
+  - name: RuleTaleSession
+    owner: backend
+    consumers:
+      - frontend
+    path: "docs/contracts/api/game-api.md"
+  - name: SettlementReport
+    owner: backend
+    consumers:
+      - frontend
+      - dashboard
+    path: "docs/contracts/api/game-api.md"
+  - name: RuntimeReplay
+    owner: backend
+    consumers:
+      - frontend
+      - dashboard
+    path: "docs/contracts/api/game-api.md"
+

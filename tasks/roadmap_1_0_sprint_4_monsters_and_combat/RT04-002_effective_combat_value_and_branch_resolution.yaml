@@ -1,0 +1,40 @@
+project: ruletale
+task_id: RT04-002
+task_name: Effective Combat Value And Branch Resolution
+sprint: Sprint 4 Monsters And Combat
+epic: Sprint 4 Monsters And Combat
+story_id: RT04-002
+blast_radius: L2
+execution_mode: Safe
+mode: Safe
+agent_policy: auto
+story_kind: api
+goal: Compute effective combat value and resolve avoid, probe, fight, flee, and exploit-rule
+  branches.
+business_value: Keeps combat high-risk and rule-aware instead of becoming a dominant
+  RPG subsystem.
+dependencies:
+- RT04-001
+acceptance_criteria:
+- Combat resolution accounts for visible stats, psych state, world state, and weakness
+  knowledge.
+- Exploit-rule and probe branches can outperform direct fighting when the player reads
+  the rules correctly.
+- Combat can change HP, SAN, FEAR, COR, and AGGRO.
+constraints:
+- Direct fighting must remain viable but not optimal by default.
+- Do not collapse all combat outcomes into a single damage race.
+related_files:
+- apps/api/src/engine.py
+- apps/api/tests/test_game_flow.py
+- scripts/full_flow_smoke.py
+primary_files:
+- apps/api/src/engine.py
+- apps/api/tests/test_game_flow.py
+secondary_files:
+- scripts/full_flow_smoke.py
+test_cases:
+  normal:
+  - Complete the main happy-path workflow for Effective Combat Value And Branch Resolution.
+  exception:
+  - Validate a guardrail or degraded state for Effective Combat Value And Branch Resolution.

@@ -1,0 +1,45 @@
+project: ruletale
+task_id: RT01-001
+task_name: Hall Shell And Session Api
+sprint: Sprint 1 Hall And State Foundation
+epic: Sprint 1 Hall And State Foundation
+story_id: RT01-001
+blast_radius: L2
+execution_mode: Safe
+mode: Safe
+agent_policy: auto
+story_kind: mixed
+goal: Implement hall-facing session start, hall status, module access, and the minimal
+  web shell.
+business_value: Turns the hall into the player entry surface instead of a placeholder
+  page.
+dependencies:
+- RT00-001
+acceptance_criteria:
+- Session start returns a hall-facing snapshot and module state.
+- Hall API exposes six modules with lock status and narrative feedback.
+- The web shell can bootstrap a session and render the hall summary.
+constraints:
+- The hall must feel like outer-layer story space, not a plain menu.
+- Keep user-facing copy aligned with the horror tone.
+related_files:
+- apps/api/src/main.py
+- apps/api/src/engine.py
+- apps/web/src/app/page.tsx
+- apps/web/src/app/globals.css
+primary_files:
+- apps/api/src/engine.py
+- apps/web/src/app/page.tsx
+secondary_files:
+- apps/api/src/main.py
+- apps/web/src/app/globals.css
+test_cases:
+  normal:
+  - Complete the main happy-path workflow for Hall Shell And Session Api.
+  exception:
+  - Validate a guardrail or degraded state for Hall Shell And Session Api.
+preview_base_url: http://127.0.0.1:3001
+preview_urls:
+- http://127.0.0.1:3001
+qa_urls:
+- http://127.0.0.1:3001

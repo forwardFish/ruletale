@@ -1,0 +1,46 @@
+project: ruletale
+task_id: RT06-001
+task_name: Runtime Showcase And Replay Archives
+sprint: Sprint 6 Authoritative Closeout
+epic: Sprint 6 Authoritative Closeout
+story_id: RT06-001
+blast_radius: L2
+execution_mode: Safe
+mode: Safe
+agent_policy: auto
+story_kind: mixed
+goal: Expose ruletale runtime showcase data, replay archives, and report links through
+  agentsystem and repo runtime assets.
+business_value: Makes the new project inspectable in the same operational plane as
+  the existing products.
+dependencies:
+- RT00-002
+- RT05-003
+acceptance_criteria:
+- agentsystem can load a ruletale runtime showcase payload.
+- Replay and settlement artifacts are visible through runtime endpoints.
+- A ruletale runtime dashboard asset exists for project-level review.
+constraints:
+- Keep the showcase focused on real runtime outputs rather than placeholder cards.
+- Do not disturb existing versefina or finahunt runtime views.
+related_files:
+- ../agentsystem/src/agentsystem/dashboard/main.py
+- ../agentsystem/src/agentsystem/dashboard/static/ruletale_runtime.html
+- .runtime/test_reports/full_flow.json
+- apps/api/src/engine.py
+primary_files:
+- ../agentsystem/src/agentsystem/dashboard/main.py
+- ../agentsystem/src/agentsystem/dashboard/static/ruletale_runtime.html
+secondary_files:
+- .runtime/test_reports/full_flow.json
+- apps/api/src/engine.py
+test_cases:
+  normal:
+  - Complete the main happy-path workflow for Runtime Showcase And Replay Archives.
+  exception:
+  - Validate a guardrail or degraded state for Runtime Showcase And Replay Archives.
+preview_base_url: http://127.0.0.1:3001
+preview_urls:
+- http://127.0.0.1:3001
+qa_urls:
+- http://127.0.0.1:3001

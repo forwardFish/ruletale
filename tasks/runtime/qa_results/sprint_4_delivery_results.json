@@ -1,0 +1,20 @@
+{
+  "generated_at": "2026-04-06T09:16:00",
+  "project": "ruletale",
+  "sprint_id": "roadmap_1_0_sprint_4_monsters_and_combat",
+  "completed_story_ids": [
+    "RT04-001",
+    "RT04-002",
+    "RT04-003"
+  ],
+  "failed_story_ids": [],
+  "story_reports": [],
+  "requirement_statuses": [],
+  "post_hook_artifacts": {
+    "document_release_path": "D:\\lyh\\agent\\agent-frame\\agentsystem\\runs\\sprints\\ruletale\\roadmap_1_0_sprint_4_monsters_and_combat\\document_release_report.md",
+    "retro_path": "D:\\lyh\\agent\\agent-frame\\agentsystem\\runs\\sprints\\ruletale\\roadmap_1_0_sprint_4_monsters_and_combat\\retro_report.md",
+    "ship_report_path": "D:\\lyh\\agent\\agent-frame\\.meta\\ruletale\\ship\\ship_readiness_report.md"
+  },
+  "missing_items": [],
+  "passed": true
+}

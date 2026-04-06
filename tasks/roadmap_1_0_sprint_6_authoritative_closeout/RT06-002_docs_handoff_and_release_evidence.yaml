@@ -1,0 +1,43 @@
+project: ruletale
+task_id: RT06-002
+task_name: Docs Handoff And Release Evidence
+sprint: Sprint 6 Authoritative Closeout
+epic: Sprint 6 Authoritative Closeout
+story_id: RT06-002
+blast_radius: L1
+execution_mode: Safe
+mode: Safe
+agent_policy: auto
+story_kind: runtime_data
+goal: Align README, handoff, bootstrap docs, continuity notes, and verification commands
+  with the delivered product scope.
+business_value: Lets a fresh Codex session resume real work without hidden chat context.
+dependencies:
+- RT06-001
+acceptance_criteria:
+- README and handoff docs reflect the delivered APIs, web shell, tests, and roadmap
+  boundary.
+- Continuity files describe the current state and next safe step.
+- The release evidence references smoke, pytest, build, and roadmap preflight commands.
+constraints:
+- Keep docs concrete and resumable.
+- Do not claim story acceptance that has not actually run.
+related_files:
+- README.md
+- NOW.md
+- STATE.md
+- DECISIONS.md
+- docs/handoff/current_handoff.md
+- docs/bootstrap/roadmap_1_0_execution_playbook.md
+primary_files:
+- README.md
+- docs/handoff/current_handoff.md
+secondary_files:
+- NOW.md
+- STATE.md
+- DECISIONS.md
+test_cases:
+  normal:
+  - Complete the main happy-path workflow for Docs Handoff And Release Evidence.
+  exception:
+  - Validate a guardrail or degraded state for Docs Handoff And Release Evidence.

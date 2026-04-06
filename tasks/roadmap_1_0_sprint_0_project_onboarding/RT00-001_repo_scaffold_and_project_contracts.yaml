@@ -1,0 +1,44 @@
+project: ruletale
+task_id: RT00-001
+task_name: Repo Scaffold And Project Contracts
+sprint: Sprint 0 Project Onboarding
+epic: Sprint 0 Project Onboarding
+story_id: RT00-001
+blast_radius: L1
+execution_mode: Safe
+mode: Safe
+agent_policy: auto
+story_kind: api
+goal: Create the ruletale repository scaffold, .agents contracts, continuity files,
+  and bootstrap scripts.
+business_value: Makes ruletale a resumable project instead of a loose document folder.
+dependencies: []
+acceptance_criteria:
+- Repository scaffold exists with .agents, docs, scripts, continuity, and runtime
+  roots.
+- Ruletale continuity files and project contracts are aligned.
+- check_scaffold can validate the bootstrap boundary.
+constraints:
+- Keep the scaffold additive and repository-local.
+- Do not modify unrelated dirty files in existing repos.
+related_files:
+- README.md
+- NOW.md
+- STATE.md
+- DECISIONS.md
+- .agents/project.yaml
+- .agents/commands.yaml
+- .meta/ruletale/continuity/continuity_manifest.json
+- scripts/check_scaffold.py
+primary_files:
+- README.md
+- .agents/project.yaml
+- scripts/check_scaffold.py
+secondary_files:
+- .agents/commands.yaml
+- docs/handoff/current_handoff.md
+test_cases:
+  normal:
+  - Complete the main happy-path workflow for Repo Scaffold And Project Contracts.
+  exception:
+  - Validate a guardrail or degraded state for Repo Scaffold And Project Contracts.

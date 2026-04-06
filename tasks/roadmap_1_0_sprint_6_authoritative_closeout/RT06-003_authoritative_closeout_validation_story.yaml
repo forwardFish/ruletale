@@ -1,0 +1,42 @@
+project: ruletale
+task_id: RT06-003
+task_name: Authoritative Closeout Validation Story
+sprint: Sprint 6 Authoritative Closeout
+epic: Sprint 6 Authoritative Closeout
+story_id: RT06-003
+blast_radius: L1
+execution_mode: Safe
+mode: Safe
+agent_policy: auto
+story_kind: api
+goal: Execute the authoritative local validation set for ruletale and leave the project
+  ready for later formal roadmap execution.
+business_value: Creates a trustworthy finish line instead of stopping at code existing.
+dependencies:
+- RT06-001
+- RT06-002
+acceptance_criteria:
+- check_scaffold, pytest, full_flow_smoke, and npm build all pass locally.
+- roadmap_1_0 can pass agentsystem preflight.
+- The closeout note records remaining gaps between implemented code and not-yet-run
+  formal story acceptance.
+constraints:
+- Be explicit about remaining process gaps.
+- Do not overwrite status registries with fake acceptance evidence.
+related_files:
+- scripts/check_scaffold.py
+- scripts/full_flow_smoke.py
+- apps/api/tests/test_game_flow.py
+- apps/web/package.json
+- tasks/story_status_registry.json
+primary_files:
+- scripts/full_flow_smoke.py
+- apps/api/tests/test_game_flow.py
+secondary_files:
+- apps/web/package.json
+- tasks/story_status_registry.json
+test_cases:
+  normal:
+  - Complete the main happy-path workflow for Authoritative Closeout Validation Story.
+  exception:
+  - Validate a guardrail or degraded state for Authoritative Closeout Validation Story.

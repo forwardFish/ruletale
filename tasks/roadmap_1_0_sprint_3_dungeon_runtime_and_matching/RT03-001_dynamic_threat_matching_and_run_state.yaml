@@ -1,0 +1,38 @@
+project: ruletale
+task_id: RT03-001
+task_name: Dynamic Threat Matching And Run State
+sprint: Sprint 3 Dungeon Runtime And Matching
+epic: Sprint 3 Dungeon Runtime And Matching
+story_id: RT03-001
+blast_radius: L1
+execution_mode: Safe
+mode: Safe
+agent_policy: auto
+story_kind: api
+goal: Implement run-state creation, current effective power scoring, and hidden threat
+  matching multipliers.
+business_value: Keeps every run pressurized without making difficulty feel fixed or
+  stale.
+dependencies:
+- RT02-003
+acceptance_criteria:
+- Entering a dungeon computes a hidden threat multiplier based on current state.
+- Run state persists threat value, current node, flags, and combat readiness.
+- The matching logic remains deterministic enough for local tests.
+constraints:
+- Do not reveal the exact multiplier to the player UI.
+- Keep new-player protection slightly softer than later runs.
+related_files:
+- apps/api/src/engine.py
+- apps/api/src/models.py
+- apps/api/tests/test_game_flow.py
+primary_files:
+- apps/api/src/engine.py
+- apps/api/src/models.py
+secondary_files:
+- apps/api/tests/test_game_flow.py
+test_cases:
+  normal:
+  - Complete the main happy-path workflow for Dynamic Threat Matching And Run State.
+  exception:
+  - Validate a guardrail or degraded state for Dynamic Threat Matching And Run State.
