@@ -9,7 +9,7 @@ const display = Cormorant_Garamond({
   variable: "--font-display",
 });
 
-const body = IBM_Plex_Sans({
+const bodyFont = IBM_Plex_Sans({
   subsets: ["latin"],
   weight: ["400", "500", "600"],
   variable: "--font-body",
@@ -26,8 +26,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="zh-CN">
-      <body className={`${display.variable} ${body.variable}`}>{children}</body>
+    <html lang="zh-CN" className={`${display.variable} ${bodyFont.variable}`}>
+      <body>{children}</body>
     </html>
   );
 }

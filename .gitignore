@@ -6,4 +6,6 @@ node_modules/
 .runtime/
 dist/
 build/
+apps/web/.env.local
+apps/web/.env*.local
 
