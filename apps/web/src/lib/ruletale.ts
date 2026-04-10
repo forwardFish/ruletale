@@ -13,7 +13,7 @@ export type {
   RunSnapshot,
   SceneChoice,
   SceneView,
-} from "@/lib/types/game";
+} from "@game-core/types/game";
 
 export type JsonMap = Record<string, unknown>;
 

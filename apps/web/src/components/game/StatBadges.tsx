@@ -1,4 +1,4 @@
-import type { VisibleStats } from "@/lib/types/game";
+import type { VisibleStats } from "@game-core/types/game";
 
 const primaryStats: Array<keyof VisibleStats> = ["hp", "san", "sta", "cog", "cor"];
 

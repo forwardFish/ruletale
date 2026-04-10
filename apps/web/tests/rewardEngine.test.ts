@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 
-import { generateRewards } from "@/lib/engine/rewardEngine";
-import type { SettlementResult } from "@/lib/types/score";
+import { generateRewards } from "@game-core/engine/rewardEngine";
+import type { SettlementResult } from "@game-core/types/score";
 
 function makeSettlement(overrides: Partial<SettlementResult>): SettlementResult {
   return {

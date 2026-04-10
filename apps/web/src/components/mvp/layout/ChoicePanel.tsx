@@ -1,6 +1,6 @@
 "use client";
 
-import type { SceneActionSuggestion } from "@/lib/types/node";
+import type { SceneActionSuggestion } from "@game-core/types/node";
 
 import { InteractionList } from "@/components/mvp/game/InteractionList";
 import { Surface, SurfaceHeader } from "@/components/mvp/ui/Surface";

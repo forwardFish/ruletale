@@ -1,6 +1,6 @@
 import { BadgeAlert, Package2 } from "lucide-react";
 
-import type { InventoryItemView } from "@/lib/types/game";
+import type { InventoryItemView } from "@game-core/types/game";
 
 export function ItemCard({
   item,

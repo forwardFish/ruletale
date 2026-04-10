@@ -1,4 +1,4 @@
-import type { RuleArchiveEntry } from "@/lib/types/rule";
+import type { RuleArchiveEntry } from "@game-core/types/rule";
 
 import { StatusPill } from "@/components/mvp/ui/Surface";
 

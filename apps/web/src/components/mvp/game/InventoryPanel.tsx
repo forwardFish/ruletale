@@ -1,6 +1,6 @@
 "use client";
 
-import type { InventoryEntry } from "@/lib/types/inventory";
+import type { InventoryEntry } from "@game-core/types/inventory";
 
 import { EmptyState } from "@/components/mvp/ui/EmptyState";
 

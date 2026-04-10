@@ -1,4 +1,4 @@
-import type { UnderstandingProgress as UnderstandingProgressType } from "@/lib/types/game";
+import type { UnderstandingProgress as UnderstandingProgressType } from "@game-core/types/game";
 
 export function UnderstandingProgress({
   understanding,

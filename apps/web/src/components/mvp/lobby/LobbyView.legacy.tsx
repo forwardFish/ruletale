@@ -17,8 +17,8 @@ import {
 } from "lucide-react";
 import { useRouter } from "next/navigation";
 
-import { ITEM_DEFINITIONS, SHOP_PRICES } from "@/lib/data/items";
-import { buildDungeonCards } from "@/lib/data/lobby";
+import { ITEM_DEFINITIONS, SHOP_PRICES } from "@game-core/data/items";
+import { buildDungeonCards } from "@game-core/data/lobby";
 import { InventoryDrawer } from "@/components/mvp/game/InventoryDrawer";
 import { ArchivePanel } from "@/components/mvp/layout/ArchivePanel";
 import { ResultPanel } from "@/components/mvp/layout/ResultPanel";

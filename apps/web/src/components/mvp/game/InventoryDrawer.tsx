@@ -3,7 +3,7 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { X } from "lucide-react";
 
-import type { InventoryEntry } from "@/lib/types/inventory";
+import type { InventoryEntry } from "@game-core/types/inventory";
 
 import { Button } from "@/components/mvp/ui/Button";
 import { SurfaceHeader } from "@/components/mvp/ui/Surface";

@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import type { GameApiClient } from "@/lib/api/client";
 import { buildHallViewModel } from "@/lib/viewModels";
 import type { NavigationAdapter, SessionStorageAdapter } from "@/lib/platform";
-import type { ArchivesView, HallModuleId, HallView, SessionSnapshot } from "@/lib/types/game";
+import type { ArchivesView, HallModuleId, HallView, SessionSnapshot } from "@game-core/types/game";
 
 type HallExperienceDeps = {
   client: GameApiClient;

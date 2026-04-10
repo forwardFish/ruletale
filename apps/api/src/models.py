@@ -4,12 +4,32 @@ from datetime import datetime
 from typing import Any, Literal
 from uuid import uuid4
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, field_validator
 
 
 RuleType = Literal["explicit", "hidden", "false", "conditional"]
 MonsterType = Literal["lure", "hunter", "parasite", "judge"]
 RunStatus = Literal["idle", "active", "combat", "settlement_ready", "completed", "failed"]
+CombatAction = Literal["avoid", "probe", "fight", "flee", "exploit_rule"]
+ItemType = Literal["recovery", "insight", "access", "rule_tool", "story", "corrupted", "passive"]
+ItemRarity = Literal["common", "rare", "fragment", "consumable", "passive"]
+ItemEffectType = Literal[
+    "recover_hp",
+    "recover_san",
+    "recover_sta",
+    "reduce_fear",
+    "boost_res",
+    "boost_cog",
+    "reveal_clue",
+    "stabilize_rule",
+    "unlock_access",
+    "focus_observation",
+    "lower_aggro",
+    "increase_cor",
+    "mirror_insight",
+    "ward_identity",
+    "flag_unlock",
+]
 
 
 class VisibleStats(BaseModel):
@@ -41,13 +61,47 @@ class WorldState(BaseModel):
     hostile: int = 12
 
 
+class InventoryItem(BaseModel):
+    item_id: str
+    name: str
+    item_type: ItemType
+    rarity: ItemRarity
+    description: str
+    effect_type: ItemEffectType
+    effect_value: int = 0
+    use_condition: str = ""
+    stackable: bool = False
+    quantity: int = 1
+    usable_in_lobby: bool = False
+    usable_in_dungeon: bool = True
+    consume_on_use: bool = False
+    tags: list[str] = Field(default_factory=list)
+    aliases: list[str] = Field(default_factory=list)
+    unlocks_insight: bool = False
+    modifies_understanding_check: bool = False
+    passive_modifiers: dict[str, int] = Field(default_factory=dict)
+
+
+class RewardRecord(BaseModel):
+    item_id: str
+    name: str
+    rarity: ItemRarity
+    description: str
+    reason: str
+    quantity: int = 1
+
+
 class RuleRecord(BaseModel):
     rule_id: str
+    title: str | None = None
     text: str
     rule_type: RuleType
     source: str
+    confidence: float = 0.5
     conflict_info: list[str] = Field(default_factory=list)
+    contradictions: list[str] = Field(default_factory=list)
     conditions: list[str] = Field(default_factory=list)
+    note: str = ""
     discovered: bool = False
     verified: bool = False
     discovered_at: str | None = None
@@ -74,6 +128,9 @@ class MonsterSpec(BaseModel):
     combat_bias: str
     psych_hooks: list[str] = Field(default_factory=list)
     archive_hint: str
+    sanity_damage: int = 8
+    corruption_impact: int = 6
+    special_mechanic: str = ""
 
 
 class SceneInteraction(BaseModel):
@@ -86,6 +143,9 @@ class SceneInteraction(BaseModel):
     trust_delta: float = 0.0
     status_effects: dict[str, int] = Field(default_factory=dict)
     flag_updates: dict[str, bool] = Field(default_factory=dict)
+    understanding_delta: int = 0
+    grants_items: list[str] = Field(default_factory=list)
+    requires_item_tags: list[str] = Field(default_factory=list)
 
 
 class SceneNode(BaseModel):
@@ -99,6 +159,13 @@ class SceneNode(BaseModel):
     discoverable_rules: list[str] = Field(default_factory=list)
     encounter_monster_id: str | None = None
     is_exit: bool = False
+    recommended_actions: list[str] = Field(default_factory=list)
+    event_tags: list[str] = Field(default_factory=list)
+    understanding_rewards: dict[str, int] = Field(default_factory=dict)
+    understanding_penalty: int = 0
+    insight_threshold: int = 0
+    bonus_description_by_understanding: str | None = None
+    blocked_without_items: list[str] = Field(default_factory=list)
 
 
 class NpcSpec(BaseModel):
@@ -133,7 +200,7 @@ class EncounterState(BaseModel):
     active: bool = False
     monster_id: str | None = None
     monster_name: str | None = None
-    options: list[str] = Field(default_factory=lambda: ["avoid", "probe", "fight", "flee", "exploit_rule"])
+    options: list[CombatAction] = Field(default_factory=lambda: ["avoid", "probe", "fight", "flee", "exploit_rule"])
     reason: str | None = None
     weakness_known: bool = False
 
@@ -144,6 +211,7 @@ class SettlementGrades(BaseModel):
     rules: str
     combat: str
     choice: str
+    understanding: str
     overall: str
 
 
@@ -155,10 +223,13 @@ class SettlementReport(BaseModel):
     outcome: str
     grades: SettlementGrades
     summary: str
-    rewards: list[str] = Field(default_factory=list)
+    rewards: list[RewardRecord] = Field(default_factory=list)
     hidden_behavior_tag: str = "规避型"
     unlocked_features: list[str] = Field(default_factory=list)
     metrics: dict[str, float] = Field(default_factory=dict)
+    understanding_delta: int = 0
+    total_understanding: int = 0
+    understanding_level: str = "未知者"
     generated_at: str = Field(default_factory=lambda: datetime.now().isoformat(timespec="seconds"))
 
 
@@ -167,7 +238,7 @@ class PlayerState(BaseModel):
     visible_stats: VisibleStats = Field(default_factory=VisibleStats)
     psych_state: PsychState = Field(default_factory=PsychState)
     world_state: WorldState = Field(default_factory=WorldState)
-    inventory: list[str] = Field(default_factory=lambda: ["镇静剂", "白噪耳塞"])
+    inventory: list[InventoryItem] = Field(default_factory=list)
     discovered_rules: list[RuleRecord] = Field(default_factory=list)
     notebook_entries: list[NotebookEntry] = Field(default_factory=list)
     monster_archive: list[dict[str, Any]] = Field(default_factory=list)
@@ -181,6 +252,20 @@ class PlayerState(BaseModel):
             "执念型": 0,
         }
     )
+    understanding: int = 0
+    understanding_level: str = "未知者"
+    obtained_items: list[str] = Field(default_factory=list)
+    recent_rewards: list[RewardRecord] = Field(default_factory=list)
+    unlocked_archives: list[str] = Field(default_factory=list)
+
+    @field_validator("inventory", mode="before")
+    @classmethod
+    def _normalize_inventory(cls, value: Any) -> Any:
+        if value in (None, ""):
+            return []
+        from .item_catalog import normalize_inventory_payload
+
+        return normalize_inventory_payload(value)
 
 
 class RunState(BaseModel):
@@ -201,6 +286,11 @@ class RunState(BaseModel):
     combat: EncounterState = Field(default_factory=EncounterState)
     outcome: str | None = None
     settlement_report: SettlementReport | None = None
+    understanding_delta: int = 0
+    insight_log: list[str] = Field(default_factory=list)
+    false_rule_hits: list[str] = Field(default_factory=list)
+    hidden_route_triggered: bool = False
+    used_item_ids: list[str] = Field(default_factory=list)
     started_at: str = Field(default_factory=lambda: datetime.now().isoformat(timespec="seconds"))
     ended_at: str | None = None
 
@@ -236,7 +326,7 @@ class InterpretActionRequest(BaseModel):
 
 
 class CombatActionRequest(BaseModel):
-    action: Literal["avoid", "probe", "fight", "flee", "exploit_rule"]
+    action: CombatAction
 
 
 class SaveSlotRequest(BaseModel):

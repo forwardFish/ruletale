@@ -1,4 +1,4 @@
-import { getUnderstandingSnapshot } from "@/lib/engine/understandingEngine";
+import { getUnderstandingSnapshot } from "@game-core/engine/understandingEngine";
 
 export function UnderstandingProgress({ total }: { total: number }) {
   const snapshot = getUnderstandingSnapshot(total);

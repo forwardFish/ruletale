@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { resolveCombat } from "@/lib/engine/combatEngine";
+import { resolveCombat } from "@game-core/engine/combatEngine";
 
 const stats = {
   HP: 88,

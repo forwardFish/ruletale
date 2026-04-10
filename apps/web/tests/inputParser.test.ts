@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { parseInput } from "@/lib/engine/inputParser";
+import { parseInput } from "@game-core/engine/inputParser";
 
 describe("inputParser", () => {
   it("parses inspection around nurse station", () => {

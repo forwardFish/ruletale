@@ -3,6 +3,7 @@ from __future__ import annotations
 from datetime import datetime
 from random import Random
 from typing import Any
+from urllib.parse import quote
 
 from .game_content import HALL_MODULES, get_dungeon_config, list_dungeon_configs
 from .models import (
@@ -84,6 +85,118 @@ def _run_snapshot(run: RunState | None) -> dict[str, Any] | None:
         "combat": run.combat.model_dump(mode="json"),
         "outcome": run.outcome,
         "settlement_report": run.settlement_report.model_dump(mode="json") if run.settlement_report else None,
+    }
+
+
+def _action_label(text: str, *, move: bool = False) -> str:
+    if any(text.startswith(prefix) for prefix in ("前往", "去", "回", "进入", "查看", "检查", "观察", "验证规则：")):
+        return text
+    return f"{'前往' if move else '查看'}{text}"
+
+
+def _choice_id(kind: str, text: str) -> str:
+    return f"{kind}-{quote(text, safe='')}"
+
+
+def _scene_ai_hint(session: GameSession, run: RunState, node: SceneNode) -> str:
+    visible = session.player_state.visible_stats
+    if run.combat.active and run.combat.monster_name:
+        return f"{run.combat.monster_name} 已经显形。先判断弱点是否明确，再决定规避、试探还是正面处理。"
+    if run.status in {"settlement_ready", "completed", "failed"}:
+        return "当前副本已经进入收束阶段，先查看结算，再决定是否回到大厅继续下一轮。"
+    if visible.san < 45 or visible.cor >= 35:
+        return "你的感知已经开始失真。优先做低风险观察和规则验证，不要连续冲刺到下一个节点。"
+    if node.discoverable_rules:
+        return "这个场景仍有规则线索可挖。先观察或检查关键物件，再根据确认过的规则继续移动。"
+    if node.move_aliases:
+        return "当前场景的静态线索已经不多了，可以顺着可达区域继续推进。"
+    return "先稳住，再根据场景反馈做下一步选择。"
+
+
+def _scene_choice_payload(session: GameSession, run: RunState, config: DungeonConfig, node: SceneNode) -> list[dict[str, Any]]:
+    choices: list[dict[str, Any]] = []
+    if run.combat.active:
+        return choices
+
+    choices.append(
+        {
+            "choice_id": _choice_id("observe", node.node_id),
+            "kind": "observe",
+            "label": f"观察{node.title}",
+            "action_text": f"观察{node.title}",
+            "reason": "先让系统重新读取当前场景，补齐可疑线索与可发现规则。",
+        }
+    )
+    choices.append(
+        {
+            "choice_id": _choice_id("inventory", "open_bag"),
+            "kind": "inventory",
+            "label": "查看背包",
+            "action_text": "查看背包",
+            "reason": "确认当前可用道具，再决定是继续推进还是先用物品应对风险。",
+        }
+    )
+
+    for interaction in node.interactions:
+        alias = next((item for item in interaction.aliases if any(token in item for token in ("查看", "检查", "观察", "检视"))), interaction.aliases[0] if interaction.aliases else interaction.interaction_id)
+        action_text = _action_label(alias)
+        choices.append(
+            {
+                "choice_id": _choice_id("inspect", interaction.interaction_id),
+                "kind": "inspect",
+                "label": action_text,
+                "action_text": action_text,
+                "reason": "这个对象在当前节点可直接交互，通常会带来规则、笔记或状态变化。",
+            }
+        )
+
+    seen_targets: set[str] = set()
+    for alias, target in node.move_aliases.items():
+        if target in seen_targets:
+            continue
+        seen_targets.add(target)
+        action_text = _action_label(alias, move=True)
+        choices.append(
+            {
+                "choice_id": _choice_id("move", target),
+                "kind": "move",
+                "label": action_text,
+                "action_text": action_text,
+                "reason": "推进到下一处场景，让副本继续演化。",
+            }
+        )
+
+    candidate_rule_ids = [rule_id for rule_id in run.discovered_rule_ids if rule_id not in run.verified_rule_ids]
+    if not candidate_rule_ids:
+        candidate_rule_ids = [rule_id for rule_id in node.discoverable_rules if rule_id not in run.verified_rule_ids]
+    rule_index = {rule.rule_id: rule for rule in config.rules}
+    for rule_id in candidate_rule_ids[:2]:
+        rule = rule_index.get(rule_id)
+        if rule is None:
+            continue
+        action_text = f"验证规则：{rule.text}"
+        choices.append(
+            {
+                "choice_id": _choice_id("verify", rule_id),
+                "kind": "verify",
+                "label": action_text,
+                "action_text": action_text,
+                "reason": "把已经掌握的规则从线索升级成可用于推进和压制风险的已验证规则。",
+            }
+        )
+
+    return choices
+
+
+def _scene_payload(session: GameSession, run: RunState, config: DungeonConfig, node: SceneNode) -> dict[str, Any]:
+    return {
+        "node_id": node.node_id,
+        "title": node.title,
+        "description": _distort_text(node.description, session.player_state.visible_stats.san, session.player_state.visible_stats.cor),
+        "visible_objects": list(node.visible_objects),
+        "clues": list(node.clues),
+        "ai_hint": _scene_ai_hint(session, run, node),
+        "suggested_actions": _scene_choice_payload(session, run, config, node),
     }
 
 
@@ -223,6 +336,8 @@ def classify_intent(session: GameSession, text: str) -> dict[str, Any]:
     intent = "observe"
     if any(token in text for token in ("前往", "去", "进入", "走到", "move", "go ")):
         intent = "move_to_area"
+    elif any(token in text for token in ("查看背包", "打开背包", "检查背包", "看包", "查看包")):
+        intent = "inspect_inventory"
     elif any(token in text for token in ("验证", "核对", "确认规则", "verify")):
         intent = "verify_rule"
     elif any(token in text for token in ("询问", "问", "ask", "交谈", "搭话")):
@@ -337,6 +452,7 @@ def visit_hall_module(session_id: str, module_id: str) -> dict[str, Any]:
     narrative = {
         "task_wall": "任务墙上的纸条总比你刚完成的副本多一张，像大厅提前知道你会回来。",
         "archives": "档案室的柜门里夹着你自己写过却不记得的笔迹。",
+        "backpack": f"你翻开了背包。里面现在有 {len(player.inventory)} 件物品：{'、'.join(player.inventory) if player.inventory else '空空如也'}。",
         "shop": "商店只收结算印记，不问你是怎么活下来的。",
         "rest_area": "休息区的热水永远烫不到舌头，像温度也被某条规则限制了。",
         "settlement_desk": "结算台会把你的通关方式写得比结果更详细。",
@@ -390,13 +506,7 @@ def enter_dungeon(session_id: str, dungeon_id: str) -> dict[str, Any]:
     return {
         "session": _session_snapshot(session),
         "run": _run_snapshot(run),
-        "scene": {
-            "node_id": node.node_id,
-            "title": node.title,
-            "description": _distort_text(node.description, session.player_state.visible_stats.san, session.player_state.visible_stats.cor),
-            "visible_objects": list(node.visible_objects),
-            "clues": list(node.clues),
-        },
+        "scene": _scene_payload(session, run, config, node),
     }
 
 
@@ -405,13 +515,7 @@ def _action_response(session: GameSession, node: SceneNode, config: DungeonConfi
     response = {
         "session": _session_snapshot(session),
         "run": _run_snapshot(run),
-        "scene": {
-            "node_id": node.node_id,
-            "title": node.title,
-            "description": _distort_text(node.description, session.player_state.visible_stats.san, session.player_state.visible_stats.cor),
-            "visible_objects": list(node.visible_objects),
-            "clues": list(node.clues),
-        },
+        "scene": _scene_payload(session, run, config, node) if run else None,
         "classification": classification,
         "narrative": _distort_text(narrative, session.player_state.visible_stats.san, session.player_state.visible_stats.cor),
         "combat": run.combat.model_dump(mode="json") if run else {},
@@ -421,6 +525,18 @@ def _action_response(session: GameSession, node: SceneNode, config: DungeonConfi
     }
     session.last_action_result = response
     return response
+
+
+def active_run_view(session_id: str) -> dict[str, Any]:
+    session = load_session(session_id)
+    run, config, node, _, _ = _get_current_context(session)
+    return {
+        "session": _session_snapshot(session),
+        "run": _run_snapshot(run),
+        "scene": _scene_payload(session, run, config, node),
+        "settlement_ready": run.status in {"settlement_ready", "completed", "failed"},
+        "settlement": run.settlement_report.model_dump(mode="json") if run.settlement_report else None,
+    }
 
 
 def _enter_combat(run: RunState, monster_id: str, monster_index: dict[str, Any]) -> None:
@@ -485,6 +601,12 @@ def interpret_action(session_id: str, text: str) -> dict[str, Any]:
             if interaction.trust_target:
                 run.npc_trust[interaction.trust_target] = round(run.npc_trust.get(interaction.trust_target, 0.3) + interaction.trust_delta, 2)
             _record_behavior(session, "试探型")
+
+    elif intent == "inspect_inventory":
+        if session.player_state.inventory:
+            narrative = f"你在 {node.title} 快速翻看背包：{'、'.join(session.player_state.inventory)}。至少现在，你还没把这些保命物件弄丢。"
+        else:
+            narrative = "你摸了一遍背包，里面已经空了。接下来的每一步都得更谨慎。"
 
     elif intent == "move_to_area":
         target = _match_move_target(node, text)

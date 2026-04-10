@@ -1,0 +1,13 @@
+{
+  "miniprogramRoot": "dist",
+  "projectname": "ruletale-mini",
+  "description": "Ruletale local-first WeChat mini program shell",
+  "appid": "touristappid",
+  "setting": {
+    "urlCheck": false,
+    "es6": true,
+    "enhance": true,
+    "postcss": true,
+    "minified": false
+  }
+}

@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 
-import { addInventoryItem, applyInventoryItem, findUsableItems, useInventoryItem } from "@/lib/engine/inventoryEngine";
-import type { InventoryEntry } from "@/lib/types/inventory";
+import { addInventoryItem, applyInventoryItem, findUsableItems, useInventoryItem } from "@game-core/engine/inventoryEngine";
+import type { InventoryEntry } from "@game-core/types/inventory";
 
 const flashlight: InventoryEntry = {
   id: "half_broken_flashlight",

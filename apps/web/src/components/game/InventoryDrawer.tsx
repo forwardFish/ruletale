@@ -2,7 +2,7 @@
 
 import { AnimatePresence, motion } from "framer-motion";
 
-import type { InventoryItemView } from "@/lib/types/game";
+import type { InventoryItemView } from "@game-core/types/game";
 
 import { InventoryPanel } from "./InventoryPanel";
 

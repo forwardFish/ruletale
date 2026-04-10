@@ -1,6 +1,6 @@
 import type { HTMLAttributes, ReactNode } from "react";
 
-import { cn } from "@/lib/utils/cn";
+import { cn } from "@game-core/utils/cn";
 
 type SurfaceTone = "default" | "soft" | "hero" | "accent" | "danger";
 

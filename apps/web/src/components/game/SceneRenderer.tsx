@@ -1,4 +1,4 @@
-import type { SceneView } from "@/lib/types/game";
+import type { SceneView } from "@game-core/types/game";
 
 export function SceneRenderer({ scene }: { scene: SceneView }) {
   return (

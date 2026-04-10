@@ -2,7 +2,7 @@ import type { ReactNode } from "react";
 
 import { hallModuleCopy } from "@/lib/copy";
 import type { HallViewModel } from "@/lib/viewModels";
-import type { HallModuleId } from "@/lib/types/game";
+import type { HallModuleId } from "@game-core/types/game";
 
 import { InventoryButton } from "./InventoryButton";
 import { InventoryPanel } from "./InventoryPanel";

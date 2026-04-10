@@ -2,9 +2,9 @@
 
 import Image from "next/image";
 
-import { ITEM_DEFINITIONS } from "@/lib/data/items";
-import type { MvpPlayerState, MvpProgressState } from "@/lib/types/game";
-import type { InventoryEntry } from "@/lib/types/inventory";
+import { ITEM_DEFINITIONS } from "@game-core/data/items";
+import type { MvpPlayerState, MvpProgressState } from "@game-core/types/game";
+import type { InventoryEntry } from "@game-core/types/inventory";
 
 import { Button } from "@/components/mvp/ui/Button";
 import { Surface, StatusPill } from "@/components/mvp/ui/Surface";

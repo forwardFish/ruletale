@@ -1,6 +1,6 @@
-import type { RuleArchiveEntry } from "@/lib/types/rule";
+import type { RuleArchiveEntry } from "@game-core/types/rule";
 
-import { getFalseRuleAnomaly } from "@/lib/engine/understandingEngine";
+import { getFalseRuleAnomaly } from "@game-core/engine/understandingEngine";
 import { EmptyState } from "@/components/mvp/ui/EmptyState";
 
 import { RuleHintCard } from "@/components/mvp/game/RuleHintCard";

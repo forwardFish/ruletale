@@ -3,7 +3,8 @@ from __future__ import annotations
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 
-from .engine import (
+from .engine_v2 import (
+    active_run_view,
     archives_view,
     dungeon_catalog,
     enter_dungeon,
@@ -125,6 +126,16 @@ def api_runs(session_id: str) -> dict:
         return session_runs(session_id)
     except FileNotFoundError as exc:
         raise HTTPException(status_code=404, detail="session_not_found") from exc
+
+
+@app.get("/api/v1/runs/{session_id}/active")
+def api_active_run(session_id: str) -> dict:
+    try:
+        return active_run_view(session_id)
+    except FileNotFoundError as exc:
+        raise HTTPException(status_code=404, detail="session_not_found") from exc
+    except ValueError as exc:
+        raise HTTPException(status_code=400, detail=str(exc)) from exc
 
 
 @app.post("/api/v1/actions/{session_id}/interpret")

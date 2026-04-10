@@ -1,4 +1,6 @@
-export type RuntimePlatform = "web" | "miniapp";
+import type { AssistantMode, GameStorageAdapter, PlatformRuntimeCapabilities } from "@game-core/platform";
+
+export type RuntimePlatform = PlatformRuntimeCapabilities["platform"];
 
 export type SafeAreaInsets = {
   top: number;
@@ -7,9 +9,8 @@ export type SafeAreaInsets = {
   left: number;
 };
 
-export type RuntimeConfig = {
+export type RuntimeConfig = PlatformRuntimeCapabilities & {
   apiBase: string;
-  platform: RuntimePlatform;
   enableMotion: boolean;
   safeAreaInsets?: SafeAreaInsets;
 };
@@ -25,3 +26,5 @@ export type NavigationAdapter = {
   replace: (href: string) => void;
   back: () => void;
 };
+
+export type { AssistantMode, GameStorageAdapter, PlatformRuntimeCapabilities };

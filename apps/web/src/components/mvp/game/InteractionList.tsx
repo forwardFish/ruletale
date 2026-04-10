@@ -1,6 +1,6 @@
 "use client";
 
-import type { SceneActionSuggestion } from "@/lib/types/node";
+import type { SceneActionSuggestion } from "@game-core/types/node";
 
 import { StatusPill } from "@/components/mvp/ui/Surface";
 

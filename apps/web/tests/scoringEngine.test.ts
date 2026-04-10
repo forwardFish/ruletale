@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { calculateScoreBreakdown } from "@/lib/engine/scoringEngine";
+import { calculateScoreBreakdown } from "@game-core/engine/scoringEngine";
 
 describe("scoringEngine", () => {
   it("scores a strong understanding route higher", () => {

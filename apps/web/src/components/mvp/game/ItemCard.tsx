@@ -2,7 +2,7 @@
 
 import type { ReactNode } from "react";
 
-import type { InventoryEntry } from "@/lib/types/inventory";
+import type { InventoryEntry } from "@game-core/types/inventory";
 
 import { Button } from "@/components/mvp/ui/Button";
 import { StatusPill } from "@/components/mvp/ui/Surface";

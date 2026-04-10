@@ -1,4 +1,4 @@
-import type { InventoryItemView } from "@/lib/types/game";
+import type { InventoryItemView } from "@game-core/types/game";
 
 import { ItemCard } from "./ItemCard";
 

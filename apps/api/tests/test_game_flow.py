@@ -8,7 +8,7 @@ from apps.api.src.main import app
 client = TestClient(app)
 
 
-def _start_session(name: str = "测试员") -> str:
+def _start_session(name: str = "测试玩家") -> str:
     response = client.post("/api/v1/session/start", json={"player_name": name})
     response.raise_for_status()
     return response.json()["session"]["session_id"]
@@ -29,6 +29,19 @@ def _combat(session_id: str, action: str) -> dict:
     response = client.post(f"/api/v1/combat/{session_id}/resolve", json={"action": action})
     response.raise_for_status()
     return response.json()
+
+
+def _suggested_action(session_id: str, kind: str, contains: str | None = None) -> str:
+    response = client.get(f"/api/v1/runs/{session_id}/active")
+    response.raise_for_status()
+    choices = response.json()["scene"]["suggested_actions"]
+    for item in choices:
+        if item["kind"] != kind:
+            continue
+        action_text = item["action_text"]
+        if contains is None or contains in item["label"] or contains in action_text:
+            return action_text
+    raise AssertionError(f"missing suggested action kind={kind!r} contains={contains!r}")
 
 
 def test_two_core_dungeons_unlock_black_zone_and_support_save_load() -> None:
@@ -70,13 +83,13 @@ def test_two_core_dungeons_unlock_black_zone_and_support_save_load() -> None:
     assert modules["black_zone"]["locked"] is False
 
     _enter(session_id, "black_zone_mirror_records")
-    _act(session_id, "观察镜厅")
-    _act(session_id, "前往档案井")
-    _act(session_id, "查看井壁刻痕")
-    _act(session_id, "前往访客记录")
-    _act(session_id, "查看访客记录")
+    _act(session_id, _suggested_action(session_id, "observe"))
+    _act(session_id, _suggested_action(session_id, "move", "档案"))
+    _act(session_id, _suggested_action(session_id, "inspect", "井壁"))
+    _act(session_id, _suggested_action(session_id, "move", "访客"))
+    _act(session_id, _suggested_action(session_id, "inspect", "访客记录"))
     _act(session_id, "验证规则：不要说出自己的真实姓名")
-    move_exit = _act(session_id, "前往真出口")
+    move_exit = _act(session_id, _suggested_action(session_id, "move", "真出口"))
     assert move_exit["combat"]["active"] is True
     _combat(session_id, "exploit_rule")
     black_settlement = client.get(f"/api/v1/settlement/{session_id}")
@@ -101,3 +114,39 @@ def test_idempotent_replay_and_illegal_action_guardrails() -> None:
 
     illegal = _act(session_id, "前往不存在的区域")
     assert illegal["illegal_action"] is True
+
+
+def test_active_run_view_exposes_scene_guidance_and_suggested_actions() -> None:
+    session_id = _start_session("active-view")
+    _enter(session_id, "hospital_night_shift")
+
+    response = client.get(f"/api/v1/runs/{session_id}/active")
+    response.raise_for_status()
+    payload = response.json()
+
+    assert payload["run"]["dungeon_id"] == "hospital_night_shift"
+    assert payload["scene"]["node_id"] == "hospital_lobby"
+    assert payload["scene"]["ai_hint"]
+    choices = payload["scene"]["suggested_actions"]
+    assert len(choices) >= 3
+    assert any(item["kind"] == "inspect" for item in choices)
+    assert any(item["kind"] == "move" for item in choices)
+    assert any(item["kind"] == "inventory" for item in choices)
+
+
+def test_backpack_module_and_inventory_action_are_available() -> None:
+    session_id = _start_session("backpack")
+
+    hall = client.get(f"/api/v1/hall/{session_id}")
+    hall.raise_for_status()
+    module_ids = [item["module_id"] for item in hall.json()["hall"]["modules"]]
+    assert "backpack" in module_ids
+
+    visit = client.post(f"/api/v1/hall/{session_id}/visit", json={"module_id": "backpack"})
+    visit.raise_for_status()
+    assert "背包" in visit.json()["visit"]["narrative"]
+
+    _enter(session_id, "hospital_night_shift")
+    inspect_inventory = _act(session_id, "查看背包")
+    assert inspect_inventory["illegal_action"] is False
+    assert "背包" in inspect_inventory["narrative"]

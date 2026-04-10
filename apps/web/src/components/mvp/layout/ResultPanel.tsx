@@ -2,8 +2,8 @@
 
 import { ArrowLeft, LockKeyhole, Trophy } from "lucide-react";
 
-import { ITEM_DEFINITIONS } from "@/lib/data/items";
-import type { SettlementResult } from "@/lib/types/score";
+import { ITEM_DEFINITIONS } from "@game-core/data/items";
+import type { SettlementResult } from "@game-core/types/score";
 
 import { Button } from "@/components/mvp/ui/Button";
 import { EmptyState } from "@/components/mvp/ui/EmptyState";

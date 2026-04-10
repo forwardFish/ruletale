@@ -1,6 +1,6 @@
-import type { MvpPlayerState } from "@/lib/types/game";
+import type { MvpPlayerState } from "@game-core/types/game";
 
-import { cn } from "@/lib/utils/cn";
+import { cn } from "@game-core/utils/cn";
 
 type Props = {
   player: MvpPlayerState;

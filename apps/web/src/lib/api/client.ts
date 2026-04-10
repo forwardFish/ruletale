@@ -9,7 +9,7 @@ import type {
   SceneView,
   SessionSnapshot,
   SettlementView,
-} from "@/lib/types/game";
+} from "@game-core/types/game";
 
 export const DEFAULT_RULETALE_API_BASE = "http://127.0.0.1:8011";
 export const DEFAULT_PLAYER_NAME = "无名访客";

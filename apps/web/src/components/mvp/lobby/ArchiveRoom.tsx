@@ -1,4 +1,4 @@
-import type { MvpProgressState } from "@/lib/types/game";
+import type { MvpProgressState } from "@game-core/types/game";
 
 import { Surface, SurfaceHeader } from "@/components/mvp/ui/Surface";
 

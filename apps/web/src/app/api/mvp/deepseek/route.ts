@@ -1,11 +1,11 @@
 import { NextResponse } from "next/server";
 
-import type { DeepseekSceneRequest } from "@/lib/types/assistant";
+import type { DeepseekSceneRequest } from "@game-core/types/assistant";
 import {
   deepseekSceneRequestSchema,
   deepseekSceneResponseSchema,
-} from "@/lib/types/assistant";
-import type { SceneActionSuggestion } from "@/lib/types/node";
+} from "@game-core/types/assistant";
+import type { SceneActionSuggestion } from "@game-core/types/node";
 
 const DEEPSEEK_URL = "https://api.deepseek.com/chat/completions";
 
@@ -14,7 +14,7 @@ function stripCodeFence(raw: string) {
 }
 
 function withIds(actions: Array<Omit<SceneActionSuggestion, "id">>, prefix: string) {
-  return actions.map((action, index) => ({
+  return actions.map((action: Omit<SceneActionSuggestion, "id">, index: number) => ({
     id: `${prefix}-${index}-${action.kind}`,
     ...action,
   }));
@@ -23,7 +23,7 @@ function withIds(actions: Array<Omit<SceneActionSuggestion, "id">>, prefix: stri
 function fallbackSuggestions(request: DeepseekSceneRequest): SceneActionSuggestion[] {
   const safeFallbacks = request.localSuggestedActions
     .slice(0, 5)
-    .map((action, index) => ({
+    .map((action: DeepseekSceneRequest["localSuggestedActions"][number], index: number) => ({
       id: `fallback-${index}-${action.kind}`,
       ...action,
       riskTone: action.riskTone ?? "balanced",
@@ -257,10 +257,12 @@ export async function POST(request: Request) {
       );
     }
 
-    const suggestions = parsedContent.data.suggestions.map((suggestion, index) => ({
+    const suggestions = parsedContent.data.suggestions.map(
+      (suggestion: (typeof parsedContent.data.suggestions)[number], index: number) => ({
       id: `ai-${index}-${suggestion.kind}`,
       ...suggestion,
-    }));
+      }),
+    );
 
     return NextResponse.json(
       {

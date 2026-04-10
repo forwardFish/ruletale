@@ -4,7 +4,7 @@ import type {
   HallModuleId,
   SettlementView,
   VisibleStats,
-} from "@/lib/types/game";
+} from "@game-core/types/game";
 
 export const hallModuleOrder: HallModuleId[] = [
   "task_wall",

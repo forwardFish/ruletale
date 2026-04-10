@@ -1,17 +1,18 @@
 "use client";
 
 import { create } from "zustand";
-import { createJSONStorage, persist } from "zustand/middleware";
+import { persist } from "zustand/middleware";
 
-import { ITEM_DEFINITIONS, SHOP_PRICES } from "@/lib/data/items";
-import { buildDungeonCards, DEFAULT_LOBBY_STATE, evaluateBlackZoneProgress, HALL_ADMIN_NOTES } from "@/lib/data/lobby";
-import { createInitialProfile, createInitialRuntime, resolveCombatAction, submitDungeonAction } from "@/lib/engine/gameEngine";
-import { addItemById } from "@/lib/engine/inventoryEngine";
-import { getNode } from "@/lib/engine/nodeEngine";
-import { behaviorLabel, dominantBehavior } from "@/lib/engine/profileEngine";
-import type { MvpCombatAction, MvpGameStoreState } from "@/lib/types/game";
-import { mvpSaveSchema } from "@/lib/types/game";
-import type { InventoryEntry } from "@/lib/types/inventory";
+import { ITEM_DEFINITIONS, SHOP_PRICES } from "@game-core/data/items";
+import { buildDungeonCards, DEFAULT_LOBBY_STATE, evaluateBlackZoneProgress, HALL_ADMIN_NOTES } from "@game-core/data/lobby";
+import { createInitialProfile, createInitialRuntime, resolveCombatAction, submitDungeonAction } from "@game-core/engine/gameEngine";
+import { addItemById } from "@game-core/engine/inventoryEngine";
+import { getNode } from "@game-core/engine/nodeEngine";
+import { behaviorLabel, dominantBehavior } from "@game-core/engine/profileEngine";
+import type { MvpCombatAction, MvpGameStoreState } from "@game-core/types/game";
+import { mvpSaveSchema } from "@game-core/types/game";
+import type { InventoryEntry } from "@game-core/types/inventory";
+import { createPersistStorage, webGameStorageAdapter } from "@/platform/web/storage";
 
 export const MVP_SAVE_KEY = "ruletale-mvp-save-v1";
 
@@ -48,6 +49,12 @@ function syncLobbyState(state: Pick<MvpGameStoreState, "player" | "progress" | "
   const availableDungeons = ["hospital_night_shift"];
   if (state.progress.completedDungeons.includes("hospital_night_shift")) {
     availableDungeons.push("apartment_night_return");
+  }
+  if (state.progress.completedDungeons.includes("apartment_night_return")) {
+    availableDungeons.push("subway_last_train");
+  }
+  if (state.progress.completedDungeons.includes("subway_last_train")) {
+    availableDungeons.push("campus_night_patrol");
   }
 
   return {
@@ -438,7 +445,7 @@ export const useGameStore = create<GameStore>()(
     }),
     {
       name: MVP_SAVE_KEY,
-      storage: createJSONStorage(() => localStorage),
+      storage: createPersistStorage<MvpGameStoreState>(webGameStorageAdapter),
       partialize: (state) => persistSlice(state),
       merge: (persistedState, currentState) => {
         const parsed = mvpSaveSchema.safeParse(persistedState);

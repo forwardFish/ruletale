@@ -1,5 +1,5 @@
-import { ITEM_DEFINITIONS } from "@/lib/data/items";
-import type { MvpProgressState } from "@/lib/types/game";
+import { ITEM_DEFINITIONS } from "@game-core/data/items";
+import type { MvpProgressState } from "@game-core/types/game";
 
 import { EmptyState } from "@/components/mvp/ui/EmptyState";
 import { Surface, SurfaceHeader, StatusPill } from "@/components/mvp/ui/Surface";

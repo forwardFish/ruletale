@@ -1,6 +1,6 @@
 import { Eye } from "lucide-react";
 
-import { getUnderstandingSnapshot } from "@/lib/engine/understandingEngine";
+import { getUnderstandingSnapshot } from "@game-core/engine/understandingEngine";
 
 export function UnderstandingBadge({ total }: { total: number }) {
   const snapshot = getUnderstandingSnapshot(total);

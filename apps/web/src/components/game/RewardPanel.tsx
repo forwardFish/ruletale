@@ -1,6 +1,6 @@
 import { Gift } from "lucide-react";
 
-import type { RewardView } from "@/lib/types/game";
+import type { RewardView } from "@game-core/types/game";
 
 export function RewardPanel({ rewards }: { rewards: RewardView[] }) {
   return (

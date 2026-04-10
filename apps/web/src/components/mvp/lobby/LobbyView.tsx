@@ -23,8 +23,8 @@ import { InventoryDrawer } from "@/components/mvp/game/InventoryDrawer";
 import { Button } from "@/components/mvp/ui/Button";
 import { EmptyState } from "@/components/mvp/ui/EmptyState";
 import { SurfaceHeader } from "@/components/mvp/ui/Surface";
-import { ITEM_DEFINITIONS, SHOP_PRICES } from "@/lib/data/items";
-import { buildDungeonCards } from "@/lib/data/lobby";
+import { ITEM_DEFINITIONS, SHOP_PRICES } from "@game-core/data/items";
+import { buildDungeonCards } from "@game-core/data/lobby";
 import { useGameStore, usePrimaryBehaviorLabel } from "@/store/gameStore";
 
 type SectionTitleProps = {

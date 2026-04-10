@@ -1,4 +1,4 @@
-import type { RunSnapshot, SessionSnapshot } from "@/lib/types/game";
+import type { RunSnapshot, SessionSnapshot } from "@game-core/types/game";
 
 const ACTIVE_RUN_STATUSES = new Set(["active", "combat", "settlement_ready"]);
 

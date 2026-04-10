@@ -17,4 +17,6 @@ def test_health_and_session_bootstrap() -> None:
     assert start.status_code == 200
     payload = start.json()
     assert payload["session"]["player"]["player_name"] == "巡查员"
-    assert len(payload["hall"]["modules"]) == 6
+    module_ids = [item["module_id"] for item in payload["hall"]["modules"]]
+    assert len(module_ids) == 7
+    assert "backpack" in module_ids

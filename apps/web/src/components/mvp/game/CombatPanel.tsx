@@ -2,7 +2,7 @@
 
 import { Shield, Swords, TrendingDown, Zap } from "lucide-react";
 
-import type { MvpCombatState } from "@/lib/types/game";
+import type { MvpCombatState } from "@game-core/types/game";
 
 import { Button } from "@/components/mvp/ui/Button";
 import { Surface, SurfaceHeader, StatusPill } from "@/components/mvp/ui/Surface";

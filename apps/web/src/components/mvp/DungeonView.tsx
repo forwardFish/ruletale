@@ -4,11 +4,11 @@ import { useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import { ArrowLeft, Compass, Package2, ShieldAlert, Sparkles } from "lucide-react";
 
-import { MONSTERS } from "@/lib/data/monsters";
-import { parseInput } from "@/lib/engine/inputParser";
-import { buildSceneNode, getDungeonConfig, getNode } from "@/lib/engine/nodeEngine";
-import type { DeepseekSceneRequest, DeepseekSceneResponse } from "@/lib/types/assistant";
-import type { SceneActionSuggestion } from "@/lib/types/node";
+import { MONSTERS } from "@game-core/data/monsters";
+import { parseInput } from "@game-core/engine/inputParser";
+import { buildSceneNode, getDungeonConfig, getNode } from "@game-core/engine/nodeEngine";
+import type { DeepseekSceneRequest, DeepseekSceneResponse } from "@game-core/types/assistant";
+import type { SceneActionSuggestion } from "@game-core/types/node";
 import { ArchivePanel } from "@/components/mvp/layout/ArchivePanel";
 import { ChoicePanel } from "@/components/mvp/layout/ChoicePanel";
 import { GameShell } from "@/components/mvp/layout/GameShell";
@@ -30,12 +30,15 @@ import { UnderstandingBadge } from "@/components/mvp/game/UnderstandingBadge";
 import { UnderstandingProgress } from "@/components/mvp/game/UnderstandingProgress";
 import { EmptyState } from "@/components/mvp/ui/EmptyState";
 import { Surface } from "@/components/mvp/ui/Surface";
+import { webRuntimeConfig } from "@/platform/web/runtime";
 import { useGameStore, usePrimaryBehaviorLabel } from "@/store/gameStore";
 
 const MONSTER_MAP = new Map(MONSTERS.map((monster) => [monster.id, monster]));
 const DUNGEON_COVER_MAP: Record<string, string> = {
   hospital_night_shift: "/mvp/cover-hospital.svg",
   apartment_night_return: "/mvp/cover-apartment.svg",
+  subway_last_train: "/mvp/cover-subway.svg",
+  campus_night_patrol: "/mvp/cover-campus.svg",
   black_zone_entry: "/mvp/cover-blackzone.svg",
 };
 
@@ -404,6 +407,7 @@ function buildLocalInputPreview(params: {
 
 export function DungeonView({ dungeonId }: { dungeonId: string }) {
   const router = useRouter();
+  const assistantEnabled = webRuntimeConfig.assistantMode === "direct-model-dev";
   const [showIntro, setShowIntro] = useState(true);
   const [sceneSuggestions, setSceneSuggestions] = useState<SceneActionSuggestion[] | null>(null);
   const [sceneHint, setSceneHint] = useState<string | null>(null);
@@ -498,15 +502,29 @@ export function DungeonView({ dungeonId }: { dungeonId: string }) {
       : withInventoryChoice(activeNode?.suggestedActions ?? [], inventory);
 
   const displayedHint = input.text.trim()
-    ? inputHint ?? localInputPreview?.hint ?? "正在根据你的输入整理更贴近当前场景的动作。"
-    : sceneHint ??
-      "你可以直接点击这些动作推进副本；如果想更自由地表达，也可以继续使用下面的输入框。";
-  const displayedGuidance = input.text.trim()
-    ? inputGuidance ?? localInputPreview?.guidance ?? null
-    : sceneGuidance;
+    ? assistantEnabled
+      ? inputHint ?? localInputPreview?.hint ?? "正在根据你的输入整理更贴近当前场景的动作。"
+      : localInputPreview?.hint ?? "当前是纯本地判定模式，动作语义、规则命中和副本推进都会由本地引擎结算。"
+    : assistantEnabled
+      ? sceneHint ?? "你可以直接点击这些动作推进副本；如果想更自由地表达，也可以继续使用下方的输入框。"
+      : "当前是纯本地副本模式，可直接点击动作或输入指令，副本结算不依赖任何在线模型。";
+  const displayedGuidance = assistantEnabled
+    ? input.text.trim()
+      ? inputGuidance ?? localInputPreview?.guidance ?? null
+      : sceneGuidance
+    : input.text.trim()
+      ? localInputPreview?.guidance ?? null
+      : null;
 
   useEffect(() => {
-    if (!runtime || !activeNode || runtime.pendingSettlement || runtime.status !== "exploring" || runtime.activeCombat) {
+    if (
+      !assistantEnabled ||
+      !runtime ||
+      !activeNode ||
+      runtime.pendingSettlement ||
+      runtime.status !== "exploring" ||
+      runtime.activeCombat
+    ) {
       setSceneSuggestions(null);
       setSceneHint(null);
       setSceneGuidance(null);
@@ -541,7 +559,7 @@ export function DungeonView({ dungeonId }: { dungeonId: string }) {
         const response = await requestDeepSeekScene(payload);
         if (cancelled) return;
         setSceneSuggestions(
-          response.suggestions.map((action, index) => ({
+          response.suggestions.map((action: DeepseekSceneResponse["suggestions"][number], index: number) => ({
             id: `ai-${activeNode.id}-${index}-${action.kind}`,
             ...action,
           })),
@@ -571,10 +589,17 @@ export function DungeonView({ dungeonId }: { dungeonId: string }) {
     return () => {
       cancelled = true;
     };
-  }, [activeNode, inventoryNames, inventorySignature, player.contamination, player.understanding, primaryBehavior, runtime]);
+  }, [activeNode, assistantEnabled, inventoryNames, inventorySignature, player.contamination, player.understanding, primaryBehavior, runtime]);
 
   useEffect(() => {
-    if (!runtime || !activeNode || runtime.pendingSettlement || runtime.status !== "exploring" || runtime.activeCombat) {
+    if (
+      !assistantEnabled ||
+      !runtime ||
+      !activeNode ||
+      runtime.pendingSettlement ||
+      runtime.status !== "exploring" ||
+      runtime.activeCombat
+    ) {
       setInputSuggestions(null);
       setInputHint(null);
       setInputNormalizedAction(null);
@@ -622,7 +647,7 @@ export function DungeonView({ dungeonId }: { dungeonId: string }) {
         if (cancelled) return;
         setInputNormalizedAction(response.normalizedAction?.trim() || raw);
         setInputSuggestions(
-          response.suggestions.map((action, index) => ({
+          response.suggestions.map((action: DeepseekSceneResponse["suggestions"][number], index: number) => ({
             id: `typed-ai-${activeNode.id}-${index}-${action.kind}`,
             ...action,
           })),
@@ -657,6 +682,7 @@ export function DungeonView({ dungeonId }: { dungeonId: string }) {
     };
   }, [
     activeNode,
+    assistantEnabled,
     input.text,
     inventoryNames,
     inventorySignature,
@@ -705,7 +731,7 @@ export function DungeonView({ dungeonId }: { dungeonId: string }) {
 
     let command = inputNormalizedAction?.trim() && input.text.trim() === raw ? inputNormalizedAction.trim() : raw;
 
-    if (!inputNormalizedAction?.trim()) {
+    if (assistantEnabled && !inputNormalizedAction?.trim()) {
       try {
         const payload = buildAssistantPayload({
           mode: "normalize",
@@ -832,10 +858,12 @@ export function DungeonView({ dungeonId }: { dungeonId: string }) {
               </>
             ) : (
               <>
-                <AssistantModelPanel
-                  guidance={displayedGuidance}
-                  loading={isSceneAssistantLoading || isInputAssistantLoading}
-                />
+                {assistantEnabled ? (
+                  <AssistantModelPanel
+                    guidance={displayedGuidance}
+                    loading={isSceneAssistantLoading || isInputAssistantLoading}
+                  />
+                ) : null}
                 <ChoicePanel
                   actions={displayedActions}
                   onCommand={handleQuickAction}

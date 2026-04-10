@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { calculateThreatProfile } from "@/lib/engine/threatEngine";
+import { calculateThreatProfile } from "@game-core/engine/threatEngine";
 
 describe("threatEngine", () => {
   it("calculates hidden threat from player state", () => {

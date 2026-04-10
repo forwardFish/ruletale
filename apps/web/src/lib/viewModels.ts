@@ -18,7 +18,7 @@ import type {
   SceneView,
   SessionSnapshot,
   SettlementView,
-} from "@/lib/types/game";
+} from "@game-core/types/game";
 
 export type HallViewModel = {
   booting: boolean;

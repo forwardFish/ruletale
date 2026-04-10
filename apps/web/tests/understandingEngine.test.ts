@@ -1,8 +1,8 @@
 import { describe, expect, it } from "vitest";
 
-import { APARTMENT_DUNGEON } from "@/lib/data/dungeon_apartment_night_return";
-import { addItemById } from "@/lib/engine/inventoryEngine";
-import { getNodeInsight, getUnderstandingSnapshot } from "@/lib/engine/understandingEngine";
+import { APARTMENT_DUNGEON } from "@game-core/data/dungeon_apartment_night_return";
+import { addItemById } from "@game-core/engine/inventoryEngine";
+import { getNodeInsight, getUnderstandingSnapshot } from "@game-core/engine/understandingEngine";
 
 describe("understandingEngine", () => {
   it("returns stable level snapshots", () => {

@@ -1,6 +1,6 @@
 "use client";
 
-import { ITEM_DEFINITIONS, SHOP_PRICES } from "@/lib/data/items";
+import { ITEM_DEFINITIONS, SHOP_PRICES } from "@game-core/data/items";
 
 import { Button } from "@/components/mvp/ui/Button";
 import { Surface, SurfaceHeader, StatusPill } from "@/components/mvp/ui/Surface";

@@ -1,4 +1,4 @@
-import type { SceneChoice } from "@/lib/types/game";
+import type { SceneChoice } from "@game-core/types/game";
 
 import { formatChoiceKind } from "@/lib/copy";
 

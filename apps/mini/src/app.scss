@@ -1,0 +1,116 @@
+:root {
+  --rt-bg: #090709;
+  --rt-surface: #171015;
+  --rt-surface-soft: #22151b;
+  --rt-border: rgba(255, 255, 255, 0.1);
+  --rt-text: #f5ece9;
+  --rt-text-soft: #baa8a6;
+  --rt-accent: #9d1e28;
+  --rt-accent-soft: rgba(157, 30, 40, 0.18);
+}
+
+page {
+  background: radial-gradient(circle at top, rgba(157, 30, 40, 0.14), transparent 28%), var(--rt-bg);
+  color: var(--rt-text);
+  font-size: 28px;
+}
+
+.page-shell {
+  min-height: 100vh;
+  padding: 24px;
+  box-sizing: border-box;
+}
+
+.page-title {
+  font-size: 44px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.page-subtitle {
+  margin-top: 12px;
+  color: var(--rt-text-soft);
+  line-height: 1.6;
+}
+
+.surface-card {
+  margin-top: 20px;
+  padding: 24px;
+  border: 1px solid var(--rt-border);
+  border-radius: 28px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.02)), var(--rt-surface);
+  box-sizing: border-box;
+}
+
+.surface-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.muted {
+  color: var(--rt-text-soft);
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 18px;
+  border-radius: 999px;
+  border: 1px solid var(--rt-border);
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--rt-text);
+  font-size: 22px;
+}
+
+.card-title {
+  font-size: 32px;
+  font-weight: 600;
+}
+
+.card-copy {
+  margin-top: 10px;
+  color: var(--rt-text-soft);
+  line-height: 1.7;
+}
+
+.action-button {
+  margin-top: 16px;
+  border-radius: 24px;
+  background: var(--rt-accent-soft);
+  color: var(--rt-text);
+  border: 1px solid rgba(157, 30, 40, 0.36);
+}
+
+.action-button[disabled] {
+  opacity: 0.45;
+}
+
+.grid-two {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.section-title {
+  margin-top: 28px;
+  font-size: 28px;
+  font-weight: 600;
+}
+
+.list-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.input-box {
+  margin-top: 16px;
+  min-height: 92px;
+  padding: 20px;
+  border-radius: 24px;
+  border: 1px solid var(--rt-border);
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--rt-text);
+  box-sizing: border-box;
+}

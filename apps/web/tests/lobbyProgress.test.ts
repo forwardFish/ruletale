@@ -1,8 +1,8 @@
 import { describe, expect, it } from "vitest";
 
-import { evaluateBlackZoneProgress } from "@/lib/data/lobby";
-import { createInitialProfile } from "@/lib/engine/gameEngine";
-import { addItemById } from "@/lib/engine/inventoryEngine";
+import { evaluateBlackZoneProgress } from "@game-core/data/lobby";
+import { createInitialProfile } from "@game-core/engine/gameEngine";
+import { addItemById } from "@game-core/engine/inventoryEngine";
 
 describe("black zone progress", () => {
   it("stays locked when only one condition is met", () => {

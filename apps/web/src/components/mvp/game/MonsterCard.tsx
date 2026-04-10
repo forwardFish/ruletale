@@ -1,4 +1,4 @@
-import type { MonsterDefinition } from "@/lib/types/monster";
+import type { MonsterDefinition } from "@game-core/types/monster";
 
 import { StatusPill, Surface, SurfaceHeader } from "@/components/mvp/ui/Surface";
 

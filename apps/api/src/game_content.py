@@ -6,6 +6,7 @@ from .models import DungeonConfig, MonsterSpec, NotebookEntry, NpcSpec, RuleReco
 HALL_MODULES = [
     {"module_id": "task_wall", "title": "任务墙", "summary": "选择副本并查看当前威胁评级。"},
     {"module_id": "archives", "title": "档案室", "summary": "查看已发现规则、怪物档案与事件碎片。"},
+    {"module_id": "backpack", "title": "背包", "summary": "查看当前携带道具与临时补给。"},
     {"module_id": "shop", "title": "商店", "summary": "兑换恢复、识别与特殊通行类道具。"},
     {"module_id": "rest_area", "title": "休息区", "summary": "恢复状态并触发 NPC 侧向线索。"},
     {"module_id": "settlement_desk", "title": "结算台", "summary": "领取评级奖励并查看长期画像。"},
@@ -24,7 +25,7 @@ def _hospital_config() -> DungeonConfig:
         kind="规则探索",
         difficulty_band="T1",
         recommended_style="先观察、后验证，再决定是否战斗。",
-        reward_pool=["止血贴", "认知标签", "值班区通行条"],
+        reward_pool=["old_duty_key", "record_clip_page", "paper_badge"],
         entry_node_id="hospital_lobby",
         success_rule_id="h_rule_bell",
         failure_rule_id="h_rule_whitecoat",
@@ -91,12 +92,17 @@ def _hospital_config() -> DungeonConfig:
                 visible_objects=["导诊台", "告示牌", "封存口罩盒"],
                 clues=["双响铃的频率不正常。", "白大褂脚印只到护士站门外就消失。"],
                 discoverable_rules=["h_rule_bell"],
+                recommended_actions=["观察告示牌", "拿口罩", "前往护士站"],
+                understanding_rewards={"observe": 2, "inspect_object": 3},
+                insight_threshold=90,
+                bonus_description_by_understanding="你能确定告示牌边缘新增的那句“立刻跑”不是同一支笔写出来的，它更像事后补上的诱导。",
                 interactions=[
                     SceneInteraction(
                         interaction_id="inspect_notice",
                         aliases=["告示牌", "大厅告示牌", "观察告示牌", "查看告示牌"],
                         response="告示牌写着: 听到双响铃时，低头数到四，再移动。边角却有人补写了'立刻跑'三个字。",
                         discover_rules=["h_rule_bell", "h_rule_whitecoat"],
+                        understanding_delta=4,
                         notebook_entry=_note(
                             "h_note_notice",
                             "住院部告示牌",
@@ -132,12 +138,16 @@ def _hospital_config() -> DungeonConfig:
                 visible_objects=["值班表", "交接本", "空白工牌"],
                 clues=["夜班名单里没有白大褂的名字。", "交接本上反复出现'双响铃后四秒空窗'。"],
                 discoverable_rules=["h_rule_cart"],
+                understanding_rewards={"inspect_object": 4, "verify_rule": 3},
+                insight_threshold=150,
+                bonus_description_by_understanding="你意识到值班表和交接本被故意错开放置，因为只要把两者同时看见，白大褂身份就站不住了。",
                 interactions=[
                     SceneInteraction(
                         interaction_id="inspect_schedule",
                         aliases=["值班表", "查看值班表", "检查值班表", "查看排班", "查看值班安排"],
                         response="值班表只登记了一名真正的夜班护士。药车巡回时间和偶数门牌完全对得上。",
                         discover_rules=["h_rule_cart"],
+                        understanding_delta=5,
                         notebook_entry=_note(
                             "h_note_schedule",
                             "护士站值班表",
@@ -151,6 +161,7 @@ def _hospital_config() -> DungeonConfig:
                         aliases=["交接本", "查看交接本"],
                         response="交接本页脚写着: '四秒空窗只给记住顺序的人。' 这像是在暗示铃声规则是真规则。",
                         discover_rules=["h_rule_bell"],
+                        understanding_delta=3,
                     ),
                 ],
                 move_aliases={
@@ -167,12 +178,16 @@ def _hospital_config() -> DungeonConfig:
                 visible_objects=["门牌", "观察窗", "紧急按钮"],
                 clues=["单数病房的门后声音最急。", "观察窗内的人影数量会波动。"],
                 discoverable_rules=["h_rule_mask"],
+                understanding_rewards={"observe": 2, "inspect_object": 4},
+                insight_threshold=180,
+                bonus_description_by_understanding="你注意到门牌和药车停靠规律根本对不上，这里的“求救最急”很可能正是诱导你站错门口。",
                 interactions=[
                     SceneInteraction(
                         interaction_id="inspect_window",
                         aliases=["观察窗", "病房窗", "查看观察窗"],
                         response="戴上口罩后，人影从三道缩回一道。没有口罩时，你几乎会以为里面站着整排人。",
                         discover_rules=["h_rule_mask"],
+                        understanding_delta=5,
                         notebook_entry=_note(
                             "h_note_window",
                             "隔离病房观察窗",
@@ -196,6 +211,9 @@ def _hospital_config() -> DungeonConfig:
                 description="铁门外的走廊没有风，却不断传来衣料摩擦声。双响铃从天花板深处落下来，正好卡在你迈步前一瞬。",
                 visible_objects=["铁门", "天花板广播", "掉落的工牌"],
                 clues=["铃声一响，广播会短暂停顿。"],
+                understanding_rewards={"move_to_area": 2},
+                insight_threshold=220,
+                bonus_description_by_understanding="你能分辨出广播的停顿和脚步摩擦声并不同步，说明眼前真正靠近你的并不是广播里那套说辞。",
                 encounter_monster_id="h_mon_echo_nurse",
                 is_exit=True,
                 move_aliases={"回隔离病房": "isolation_ward"},
@@ -211,7 +229,7 @@ def _apartment_config() -> DungeonConfig:
         kind="误导与追猎",
         difficulty_band="T1",
         recommended_style="多验证照明与门后声音，不要急着回应熟悉的人。",
-        reward_pool=["楼道钥匙扣", "静电灯丝", "关系碎片"],
+        reward_pool=["spare_battery", "faded_charm", "archive_fragment_107"],
         entry_node_id="apartment_stairwell",
         success_rule_id="a_rule_lit_door",
         failure_rule_id="a_rule_shoes",
@@ -278,12 +296,16 @@ def _apartment_config() -> DungeonConfig:
                 visible_objects=["公告栏", "门牌", "楼梯扶手"],
                 clues=["公告栏贴着停电通知。", "门牌有一块似乎被倒挂过。"],
                 discoverable_rules=["a_rule_lit_door", "a_rule_nameplate"],
+                understanding_rewards={"observe": 2, "inspect_object": 3},
+                insight_threshold=90,
+                bonus_description_by_understanding="你注意到门牌的阴影方向和应急灯不一致，说明这里至少有一层信息是被倒过来的。",
                 interactions=[
                     SceneInteraction(
                         interaction_id="inspect_notice",
                         aliases=["公告栏", "停电通知", "查看公告栏"],
                         response="停电通知背面写着潦草字迹: 只有灯亮着时，才回应门后的声音。",
                         discover_rules=["a_rule_lit_door"],
+                        understanding_delta=4,
                         notebook_entry=_note(
                             "a_note_notice",
                             "公寓停电通知",
@@ -297,6 +319,7 @@ def _apartment_config() -> DungeonConfig:
                         aliases=["门牌", "检查门牌", "查看门牌"],
                         response="门牌背面有划痕，说明它曾被倒挂。确认方向前，别急着认定谁住在门后。",
                         discover_rules=["a_rule_nameplate"],
+                        understanding_delta=4,
                     ),
                 ],
                 move_aliases={
@@ -341,18 +364,23 @@ def _apartment_config() -> DungeonConfig:
                 description="熟悉的门后声音隔着防盗门压得很低，脚边却只有一双不该属于那个人的旧鞋，声线一会儿像哭一会儿像笑。",
                 visible_objects=["防盗门", "旧鞋", "猫眼"],
                 clues=["门外没有真正的脚步回声。", "灯亮与不亮时，人声语气完全不同。"],
+                understanding_rewards={"inspect_object": 4, "respond_voice": -2},
+                insight_threshold=170,
+                bonus_description_by_understanding="你几乎能确定门后的声音并不是在等你开门，而是在等你先承认它像你认识的人。",
                 interactions=[
                     SceneInteraction(
                         interaction_id="inspect_shoes",
                         aliases=["旧鞋", "鞋子", "查看鞋子"],
                         response="鞋尖始终朝向安全线外，像故意摆给你看。'熟悉鞋子就开门' 更像诱饵。",
                         discover_rules=["a_rule_shoes"],
+                        understanding_delta=4,
                     ),
                     SceneInteraction(
                         interaction_id="inspect_peephole",
                         aliases=["猫眼", "查看猫眼"],
                         response="灯亮时，猫眼里的人影会退后半步；灯灭时，它反而贴在门上等你开口。",
                         discover_rules=["a_rule_lit_door"],
+                        understanding_delta=4,
                     ),
                 ],
                 move_aliases={
@@ -368,6 +396,9 @@ def _apartment_config() -> DungeonConfig:
                 description="你看见单元外的街口本该空无一人，却有一道影子跟着你的影子慢半拍地拐出来，像直到你开口才有形体。",
                 visible_objects=["街灯", "影子", "单元门"],
                 clues=["街灯忽明忽暗时，影子最接近。"],
+                understanding_rewards={"move_to_area": 2},
+                insight_threshold=210,
+                bonus_description_by_understanding="你能看出影子的步幅只在你准备开口时贴近，这更像回应机制，而不是单纯追猎。",
                 encounter_monster_id="a_mon_hall_stalker",
                 is_exit=True,
                 move_aliases={"回租客门口": "tenant_door"},
@@ -383,7 +414,7 @@ def _black_zone_config() -> DungeonConfig:
         kind="高污染隐藏事件",
         difficulty_band="T2",
         recommended_style="接受不可靠叙事，但别把真实姓名交给镜厅。",
-        reward_pool=["黑区通行印", "镜纹残片", "管理员侧写"],
+        reward_pool=["temporary_black_pass", "mirror_shard", "nameless_note"],
         entry_node_id="mirror_hall",
         success_rule_id="b_rule_true_name",
         failure_rule_id="b_rule_reflection",
@@ -451,12 +482,16 @@ def _black_zone_config() -> DungeonConfig:
                 visible_objects=["门楣刻字", "镜面", "引导线"],
                 clues=["镜里的自己总慢半拍。", "门楣刻字故意避开姓名栏。"],
                 discoverable_rules=["b_rule_true_name"],
+                understanding_rewards={"inspect_object": 4, "observe": 2},
+                insight_threshold=120,
+                bonus_description_by_understanding="你注意到门楣刻字避开的不是名字本身，而是任何能把“你是谁”钉死的栏位。",
                 interactions=[
                     SceneInteraction(
                         interaction_id="inspect_lintel",
                         aliases=["门楣", "门楣刻字", "查看门楣刻字"],
                         response="门楣刻着一句极浅的话: 不要说出自己的真实姓名。靠近后，最后两个字像刚被重新描过。",
                         discover_rules=["b_rule_true_name"],
+                        understanding_delta=5,
                         notebook_entry=_note(
                             "b_note_lintel",
                             "镜厅门楣",
@@ -479,12 +514,16 @@ def _black_zone_config() -> DungeonConfig:
                 visible_objects=["残页", "井壁刻痕", "翻页绳"],
                 clues=["缺失名字的记录会自己错位。", "井壁提示需要反向阅读。"],
                 discoverable_rules=["b_rule_logbook", "b_rule_reverse_reading"],
+                understanding_rewards={"inspect_object": 4, "observe": 2},
+                insight_threshold=170,
+                bonus_description_by_understanding="你能感觉到这些残页不是缺了名字，而是故意把名字从顺序里剥了出去。",
                 interactions=[
                     SceneInteraction(
                         interaction_id="inspect_scratches",
                         aliases=["井壁刻痕", "查看井壁刻痕"],
                         response="井壁刻痕要求你倒着读访客记录，否则出口编号会慢慢变掉。",
                         discover_rules=["b_rule_reverse_reading"],
+                        understanding_delta=4,
                     )
                 ],
                 move_aliases={
@@ -501,12 +540,16 @@ def _black_zone_config() -> DungeonConfig:
                 visible_objects=["访客记录", "签字笔", "镜面编号牌"],
                 clues=["缺失名字与未归者有关。", "编号牌在正读和反读时会变。"],
                 discoverable_rules=["b_rule_logbook"],
+                understanding_rewards={"inspect_object": 5, "verify_rule": 3},
+                insight_threshold=220,
+                bonus_description_by_understanding="你能断定“缺名者未必已死”才是这层的核心，而不是记录表面写出来的那套归档逻辑。",
                 interactions=[
                     SceneInteraction(
                         interaction_id="inspect_logbook",
                         aliases=["访客记录", "查看访客记录", "查看日志", "查看记录"],
                         response="你倒着核对记录后发现，缺失名字的人反而都还保留了离开时间。记录在误导你把消失当成死亡。",
                         discover_rules=["b_rule_logbook", "b_rule_reverse_reading"],
+                        understanding_delta=6,
                         notebook_entry=_note(
                             "b_note_logbook",
                             "镜厅访客记录",
@@ -529,6 +572,9 @@ def _black_zone_config() -> DungeonConfig:
                 description="出口门牌在你视野边缘不断跳号，镜里的你像提前一步抵达门前，正等待你先报上名字以便核对。",
                 visible_objects=["出口门牌", "镜中倒影", "归档口"],
                 clues=["镜中人先开口就意味着你慢了。"],
+                understanding_rewards={"move_to_area": 3},
+                insight_threshold=260,
+                bonus_description_by_understanding="你意识到出口真正检测的不是你的姓名，而是你是否会为了通过而先交出自己的定义权。",
                 encounter_monster_id="b_mon_name_eater",
                 is_exit=True,
                 move_aliases={"回访客记录": "visitor_log"},
