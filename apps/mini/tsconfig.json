@@ -10,7 +10,7 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"],
-      "@game-core/*": ["src/game-core/*"]
+      "@game-core/*": ["../../packages/game-core/src/*"]
     }
   },
   "include": ["src", "config"]

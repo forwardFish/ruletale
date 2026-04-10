@@ -2,6 +2,8 @@ import path from "node:path";
 
 import { defineConfig } from "@tarojs/cli";
 
+const sharedGameCorePath = path.resolve(__dirname, "..", "..", "..", "packages", "game-core", "src");
+
 export default defineConfig({
   projectName: "ruletale-mini",
   date: "2026-04-09",
@@ -16,10 +18,13 @@ export default defineConfig({
   compiler: "webpack5",
   alias: {
     "@": path.resolve(__dirname, "..", "src"),
-    "@game-core": path.resolve(__dirname, "..", "src", "game-core"),
+    "@game-core": sharedGameCorePath,
   },
   plugins: ["@tarojs/plugin-framework-react"],
   mini: {
+    compile: {
+      include: [sharedGameCorePath],
+    },
     postcss: {
       pxtransform: {
         enable: true,

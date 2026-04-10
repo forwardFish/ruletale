@@ -24,6 +24,16 @@ npm install
 npm run dev:weapp
 ```
 
+WeChat mini program runbook:
+
+```powershell
+cd D:\lyh\agent\agent-frame\ruletale\apps\mini
+npm install
+npm run build:weapp
+```
+
+Then import `D:\lyh\agent\agent-frame\ruletale\apps\mini` in WeChat DevTools. The project keeps `project.config.json` pointed at `dist`, so DevTools loads the compiled mini program from `apps/mini/dist/`. The default `appid` is `touristappid` for local development; replace it only when preparing an official WeChat release. The mini program and the Next.js web app both depend on `packages/game-core`, so web deployment remains on the existing `apps/web` Next.js path instead of a separate Taro H5 target.
+
 Key local routes:
 
 - API docs: [http://127.0.0.1:8011/docs](http://127.0.0.1:8011/docs)

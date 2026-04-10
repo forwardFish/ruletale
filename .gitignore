@@ -6,6 +6,8 @@ node_modules/
 .runtime/
 dist/
 build/
+.swc/
+*.tsbuildinfo
 apps/web/.env.local
 apps/web/.env*.local
 
