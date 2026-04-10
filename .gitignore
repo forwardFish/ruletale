@@ -8,6 +8,7 @@ dist/
 build/
 .swc/
 *.tsbuildinfo
+apps/mini/project.private.config.json
 apps/web/.env.local
 apps/web/.env*.local
 
