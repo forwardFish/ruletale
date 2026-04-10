@@ -16,5 +16,6 @@ Notes:
 
 - `appid` is intentionally `touristappid` for local development.
 - Gameplay is local-only and uses Taro storage for saves.
-- Shared rules, dungeon data, engine logic, and types come from `../../packages/game-core`.
+- Shared rules, dungeon data, engine logic, types, and page presentation contracts come from `../../packages/game-core`.
+- Keep Mini functionally and visually isomorphic with Web `/mvp` by consuming `@game-core/presentation`; do not duplicate hall/dungeon/archive/settlement business copy directly in Mini pages.
 - The deployable web app remains the existing Next.js app under `apps/web`; this mini app does not introduce a separate Taro H5 target.

@@ -11,6 +11,7 @@ export * from "./engine/ruleEngine";
 export * from "./engine/scoringEngine";
 export * from "./engine/threatEngine";
 export * from "./engine/understandingEngine";
+export * from "./presentation";
 export * from "./data/dungeon_apartment_night_return";
 export * from "./data/dungeon_campus_night_patrol";
 export * from "./data/dungeon_hospital_night";

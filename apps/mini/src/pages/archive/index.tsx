@@ -1,32 +1,34 @@
 import { Text, View } from "@tarojs/components";
 
 import { loadMiniState } from "@/lib/gameState";
+import { buildArchivePresentation } from "@game-core/presentation";
 
 export default function ArchivePage() {
   const state = loadMiniState();
+  const presentation = buildArchivePresentation(state);
 
   return (
     <View className="page-shell">
-      <Text className="page-title">怪谈档案</Text>
-      <View className="page-subtitle">按副本沉淀规则、怪物、结局和管理员碎片。</View>
+      <Text className="page-title">{presentation.title}</Text>
+      <View className="page-subtitle">{presentation.subtitle}</View>
 
       <View className="surface-card">
-        <Text className="card-title">规则记录</Text>
+        <Text className="card-title">{presentation.rules.title}</Text>
         <View className="list-stack">
-          {state.progress.archive.rules.map((rule) => (
-            <View key={rule.id} className="card-copy">
-              {rule.text}
+          {presentation.rules.items.map((rule) => (
+            <View key={rule} className="card-copy">
+              {rule}
             </View>
           ))}
-          {state.progress.archive.rules.length === 0 ? <View className="card-copy">暂无已确认规则。</View> : null}
+          {presentation.rules.items.length === 0 ? <View className="card-copy">{presentation.rules.empty}</View> : null}
         </View>
       </View>
 
       <View className="surface-card">
         <Text className="card-title">怪物与结局</Text>
-        <View className="card-copy">怪物: {state.progress.archive.monsters.map((monster) => monster.name).join(" / ") || "暂无"}</View>
-        <View className="card-copy">结局: {state.progress.archive.endings.join(" / ") || "暂无"}</View>
-        <View className="card-copy">管理员碎片: {state.progress.archive.adminFragments.join(" / ") || "暂无"}</View>
+        <View className="card-copy">{presentation.monsters.title}: {presentation.monsters.items.join(" / ") || presentation.monsters.empty}</View>
+        <View className="card-copy">{presentation.endings.title}: {presentation.endings.items.join(" / ") || presentation.endings.empty}</View>
+        <View className="card-copy">{presentation.adminFragments.title}: {presentation.adminFragments.items.join(" / ") || presentation.adminFragments.empty}</View>
       </View>
     </View>
   );

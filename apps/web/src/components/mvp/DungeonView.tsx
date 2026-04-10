@@ -7,6 +7,7 @@ import { ArrowLeft, Compass, Package2, ShieldAlert, Sparkles } from "lucide-reac
 import { MONSTERS } from "@game-core/data/monsters";
 import { parseInput } from "@game-core/engine/inputParser";
 import { buildSceneNode, getDungeonConfig, getNode } from "@game-core/engine/nodeEngine";
+import { buildDungeonPresentation } from "@game-core/presentation";
 import type { DeepseekSceneRequest, DeepseekSceneResponse } from "@game-core/types/assistant";
 import type { SceneActionSuggestion } from "@game-core/types/node";
 import { ArchivePanel } from "@/components/mvp/layout/ArchivePanel";
@@ -425,6 +426,7 @@ export function DungeonView({ dungeonId }: { dungeonId: string }) {
   const player = useGameStore((state) => state.player);
   const progress = useGameStore((state) => state.progress);
   const inventory = useGameStore((state) => state.inventory);
+  const lobby = useGameStore((state) => state.lobby);
   const input = useGameStore((state) => state.input);
   const drawer = useGameStore((state) => state.meta.currentDrawer);
   const enterDungeon = useGameStore((state) => state.enterDungeon);
@@ -464,6 +466,29 @@ export function DungeonView({ dungeonId }: { dungeonId: string }) {
     return node ? buildSceneNode(node, player.understanding, inventory) : null;
   }, [inventory, player.understanding, runtime]);
 
+  const dungeonPresentation = useMemo(
+    () =>
+      buildDungeonPresentation({
+        state: {
+          meta: {
+            version: 1,
+            hasHydrated,
+            debugMode: false,
+            currentView: "dungeon",
+            currentDrawer: drawer,
+          },
+          player,
+          progress,
+          inventory,
+          lobby,
+          runtime,
+          input,
+        },
+        activeNode,
+      }),
+    [activeNode, drawer, hasHydrated, input, inventory, lobby, player, progress, runtime],
+  );
+
   const dungeonConfig = useMemo(() => getDungeonConfig(dungeonId), [dungeonId]);
   const activeMonster = runtime?.activeCombat ? MONSTER_MAP.get(runtime.activeCombat.monsterId) ?? null : null;
   const recentFeedback = runtime?.log.slice(-3) ?? [];
@@ -499,7 +524,7 @@ export function DungeonView({ dungeonId }: { dungeonId: string }) {
       : withInventoryChoice(localInputPreview?.suggestions ?? activeNode?.suggestedActions ?? [], inventory)
     : sceneSuggestions?.length
       ? withInventoryChoice(sceneSuggestions, inventory)
-      : withInventoryChoice(activeNode?.suggestedActions ?? [], inventory);
+      : withInventoryChoice(dungeonPresentation.suggestedActions, inventory);
 
   const displayedHint = input.text.trim()
     ? assistantEnabled
@@ -507,7 +532,7 @@ export function DungeonView({ dungeonId }: { dungeonId: string }) {
       : localInputPreview?.hint ?? "当前是纯本地判定模式，动作语义、规则命中和副本推进都会由本地引擎结算。"
     : assistantEnabled
       ? sceneHint ?? "你可以直接点击这些动作推进副本；如果想更自由地表达，也可以继续使用下方的输入框。"
-      : "当前是纯本地副本模式，可直接点击动作或输入指令，副本结算不依赖任何在线模型。";
+      : dungeonPresentation.subtitle;
   const displayedGuidance = assistantEnabled
     ? input.text.trim()
       ? inputGuidance ?? localInputPreview?.guidance ?? null
@@ -815,9 +840,9 @@ export function DungeonView({ dungeonId }: { dungeonId: string }) {
             />
             <DungeonHero
               dungeonId={runtime.dungeonId}
-              dungeonTitle={runtime.dungeonTitle}
+              dungeonTitle={dungeonPresentation.title}
               intro={dungeonConfig.intro}
-              activeNodeTitle={activeNode.title}
+              activeNodeTitle={dungeonPresentation.scene?.title ?? activeNode.title}
               understanding={player.understanding}
               contamination={player.contamination}
               onReturn={() => {
@@ -841,12 +866,12 @@ export function DungeonView({ dungeonId }: { dungeonId: string }) {
             ) : null}
 
             <SceneRenderer
-              title={activeNode.title}
-              area={activeNode.area}
-              description={activeNode.description}
-              visibleObjects={activeNode.visibleObjects}
-              suspiciousPoints={activeNode.suspiciousPoints}
-              currentGoal={activeNode.currentGoal}
+              title={dungeonPresentation.scene?.title ?? activeNode.title}
+              area={dungeonPresentation.scene?.area ?? activeNode.area}
+              description={dungeonPresentation.scene?.description ?? activeNode.description}
+              visibleObjects={dungeonPresentation.scene?.visibleObjects ?? activeNode.visibleObjects}
+              suspiciousPoints={dungeonPresentation.scene?.suspiciousPoints ?? activeNode.suspiciousPoints}
+              currentGoal={dungeonPresentation.scene?.currentGoal ?? activeNode.currentGoal}
             />
 
             <InsightPanel insight={"bonusInsight" in activeNode ? activeNode.bonusInsight : null} />

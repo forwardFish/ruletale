@@ -45,12 +45,23 @@ Validation:
 
 ```powershell
 cd D:\lyh\agent\agent-frame\ruletale
+.\scripts\validate_ruletale_targets.ps1
+```
+
+The full validation command runs API tests, Web tests, Web build, Mini build, and the Mini/Web parity contract. For lower-level troubleshooting, the individual commands are:
+
+```powershell
+cd D:\lyh\agent\agent-frame\ruletale
 python scripts\check_scaffold.py
 python scripts\full_flow_smoke.py
 python -m pytest apps/api/tests -q
 cd D:\lyh\agent\agent-frame\ruletale\apps\web
 npm run test
 npm run build
+cd D:\lyh\agent\agent-frame\ruletale\apps\mini
+npm run build:weapp
+cd D:\lyh\agent\agent-frame\ruletale
+node scripts\check_mini_web_parity.mjs
 ```
 
 Frontend MVP notes:
@@ -58,6 +69,8 @@ Frontend MVP notes:
 - `/mvp` is fully local and does not depend on `apps/api`
 - state, inventory, archives, settlement, rewards, and understanding are persisted with localStorage
 - `apps/mini` is wired for the same local-first loop through `packages/game-core` and Taro storage adapters
+- Web `/mvp` and WeChat Mini must stay functionally and visually isomorphic through `packages/game-core/src/presentation.ts`; UI shells may adapt layout, but business copy, flow, task-wall entries, archive/settlement summaries, and status semantics must come from shared presentation builders.
+- Future feature changes default to both targets. If a feature is intentionally Web-only or Mini-only, mark that decision explicitly in code/docs and keep `scripts/check_mini_web_parity.mjs` green.
 - the current MVP loop is:
   - lobby
   - choose dungeon

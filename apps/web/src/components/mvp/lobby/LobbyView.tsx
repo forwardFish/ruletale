@@ -24,8 +24,8 @@ import { Button } from "@/components/mvp/ui/Button";
 import { EmptyState } from "@/components/mvp/ui/EmptyState";
 import { SurfaceHeader } from "@/components/mvp/ui/Surface";
 import { ITEM_DEFINITIONS, SHOP_PRICES } from "@game-core/data/items";
-import { buildDungeonCards } from "@game-core/data/lobby";
-import { useGameStore, usePrimaryBehaviorLabel } from "@/store/gameStore";
+import { buildHallPresentation } from "@game-core/presentation";
+import { useGameStore } from "@/store/gameStore";
 
 type SectionTitleProps = {
   icon: ComponentType<{ className?: string }>;
@@ -283,39 +283,11 @@ function OverlayPanel({
 export function LobbyView() {
   const router = useRouter();
   const [showSettlement, setShowSettlement] = useState(false);
-  const player = useGameStore((state) => state.player);
-  const progress = useGameStore((state) => state.progress);
-  const inventory = useGameStore((state) => state.inventory);
-  const lobby = useGameStore((state) => state.lobby);
-  const drawer = useGameStore((state) => state.meta.currentDrawer);
-  const enterDungeon = useGameStore((state) => state.enterDungeon);
-  const setDrawer = useGameStore((state) => state.setDrawer);
-  const purchaseItem = useGameStore((state) => state.purchaseItem);
-  const primaryBehavior = usePrimaryBehaviorLabel();
-
-  const dungeonCards = buildDungeonCards(progress, lobby, player);
-  const playableDungeons = dungeonCards.filter((entry) => entry.id !== "black_zone_entry");
-  const blackZoneCard = dungeonCards.find((entry) => entry.id === "black_zone_entry");
-  const latestReward = progress.recentRewards[0];
-  const latestRewardName = latestReward ? ITEM_DEFINITIONS[latestReward.itemId]?.name ?? latestReward.itemId : "暂无";
-  const blackTalkValue = String(lobby.blackZone.conditions.filter((item) => item.satisfied).length).padStart(2, "0");
-
-  const recentRules = useMemo(
-    () => progress.archive.rules.slice(-3).reverse().map((rule) => rule.title || rule.text),
-    [progress.archive.rules],
-  );
-
-  const recentItems = useMemo(() => {
-    if (progress.recentRewards.length > 0) {
-      return progress.recentRewards
-        .slice(0, 4)
-        .map((reward) => ITEM_DEFINITIONS[reward.itemId]?.name ?? reward.itemId);
-    }
-
-    return inventory.slice(0, 4).map((item) => ITEM_DEFINITIONS[item.id]?.name ?? item.id);
-  }, [inventory, progress.recentRewards]);
-
-  const recentFragments = useMemo(() => progress.archive.adminFragments.slice(-3).reverse(), [progress.archive.adminFragments]);
+  const state = useGameStore((store) => store);
+  const { player, progress, inventory, lobby } = state;
+  const drawer = state.meta.currentDrawer;
+  const { enterDungeon, purchaseItem, setDrawer } = state;
+  const presentation = useMemo(() => buildHallPresentation(state), [state]);
 
   const shopItems = useMemo<MarketItem[]>(
     () =>
@@ -361,53 +333,56 @@ export function LobbyView() {
             <div className="relative grid gap-8 p-6 sm:p-8 lg:grid-cols-[1.1fr_0.9fr] lg:p-10">
               <div>
                 <div className="mb-5 flex items-center gap-3 text-xs uppercase tracking-[0.26em] text-white/45">
-                  <span className="rounded-full border border-white/10 bg-white/5 px-3 py-1">Ruletale Hall</span>
+                  <span className="rounded-full border border-white/10 bg-white/5 px-3 py-1">{presentation.hero.eyebrow}</span>
                   <span>2026 Revision</span>
                 </div>
 
                 <h1 className="max-w-3xl text-4xl font-semibold leading-tight tracking-tight text-white sm:text-5xl lg:text-[58px]">
-                  规则之外，
-                  <span className="block text-white/90">才是大厅真正的入口。</span>
+                  {presentation.hero.title.split("，")[0]}，
+                  <span className="block text-white/90">{presentation.hero.title.split("，").slice(1).join("，")}</span>
                 </h1>
 
                 <p className="mt-6 max-w-2xl text-base leading-8 text-white/62 sm:text-[17px]">
-                  这里不是菜单，而是一处会持续记录你判断方式的外层空间。你带回来的理解、污染、物品与错误，都会在这里留下痕迹。真正危险的从来不是没有规则，而是你开始分不清哪些规则在保护你，哪些规则想把你引向更深处。
+                  {presentation.hero.subtitle}
                 </p>
 
                 <div className="mt-8 flex flex-wrap gap-3">
-                  <button
-                    type="button"
-                    onClick={() => document.getElementById("task-wall")?.scrollIntoView({ behavior: "smooth", block: "start" })}
-                    className="rounded-2xl border border-rose-300/25 bg-gradient-to-r from-rose-500/18 to-red-500/8 px-5 py-3 text-sm font-medium text-white shadow-[0_10px_30px_rgba(120,12,24,0.22)] transition hover:border-rose-300/40 hover:bg-rose-500/15"
-                  >
-                    继续进入大厅
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => setShowSettlement(true)}
-                    className="rounded-2xl border border-white/10 bg-white/5 px-5 py-3 text-sm font-medium text-white/78 transition hover:bg-white/8"
-                  >
-                    查看上次结算
-                  </button>
+                  {presentation.hero.primaryActions.map((action) => (
+                    <button
+                      key={action.id}
+                      type="button"
+                      onClick={() => {
+                        if (action.id === "settlement") {
+                          setShowSettlement(true);
+                          return;
+                        }
+                        document.getElementById("task-wall")?.scrollIntoView({ behavior: "smooth", block: "start" });
+                      }}
+                      className={
+                        action.tone === "primary"
+                          ? "rounded-2xl border border-rose-300/25 bg-gradient-to-r from-rose-500/18 to-red-500/8 px-5 py-3 text-sm font-medium text-white shadow-[0_10px_30px_rgba(120,12,24,0.22)] transition hover:border-rose-300/40 hover:bg-rose-500/15"
+                          : "rounded-2xl border border-white/10 bg-white/5 px-5 py-3 text-sm font-medium text-white/78 transition hover:bg-white/8"
+                      }
+                    >
+                      {action.label}
+                    </button>
+                  ))}
                 </div>
               </div>
 
               <div className="grid content-end gap-4 lg:pl-8">
                 <div className="rounded-[24px] border border-white/10 bg-black/25 p-5 backdrop-blur-sm">
-                  <div className="text-[11px] uppercase tracking-[0.26em] text-white/40">Hall Mood</div>
-                  <div className="mt-3 text-lg font-semibold text-white">深红压迫感作为背景，而不是单独插画卡片</div>
+                  <div className="text-[11px] uppercase tracking-[0.26em] text-white/40">{presentation.hero.mood.eyebrow}</div>
+                  <div className="mt-3 text-lg font-semibold text-white">{presentation.hero.mood.title}</div>
                   <p className="mt-2 text-sm leading-7 text-white/60">
-                    背景改为整块 Hero 氛围底图，文字与状态悬浮在其上，让画面更像真正的首页背景，而不是右侧单独摆了一张图。
+                    {presentation.hero.mood.description}
                   </p>
                 </div>
 
                 <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-6">
-                  <StatusCard label="理解度" value={String(player.understanding)} hint="窥界者 · 更容易发现规则冲突" accent="from-rose-500/28 via-red-400/10 to-transparent" />
-                  <StatusCard label="污染值" value={String(player.contamination).padStart(2, "0")} hint="处于可控范围，但镜面异常更容易靠近" accent="from-orange-500/16 via-red-500/10 to-transparent" />
-                  <StatusCard label="行为标签" value={primaryBehavior} hint="偏向观察、求证与延迟回应" accent="from-white/8 via-white/4 to-transparent" />
-                  <StatusCard label="怪谈币" value={String(progress.supplyMarks)} hint="用于普通商店购买常规道具与补给。" accent="from-amber-400/18 via-transparent to-transparent" />
-                  <StatusCard label="怪谈值" value={blackTalkValue} hint="用于黑市交易高风险、高收益物品。" accent="from-fuchsia-500/18 via-transparent to-transparent" />
-                  <StatusCard label="最近奖励" value={latestRewardName} hint={latestReward ? "识别镜像异常，但会轻度提升污染" : "完成正式副本后，这里会记录最近带回大厅的奖励。"} accent="from-rose-400/18 via-transparent to-transparent" />
+                  {presentation.statusCards.map((card) => (
+                    <StatusCard key={card.id} label={card.label} value={card.value} hint={card.hint} accent={card.accent} />
+                  ))}
                 </div>
               </div>
             </div>
@@ -418,14 +393,14 @@ export function LobbyView() {
               <div id="task-wall">
                 <SectionTitle
                   icon={MoonStar}
-                  eyebrow="Task Wall"
-                  title="可进入副本"
-                  description="大厅不会替你判断哪条路更安全，它只会把已经浮出水面的入口整齐地推到你面前。"
+                  eyebrow={presentation.taskWall.eyebrow}
+                  title={presentation.taskWall.title}
+                  description={presentation.taskWall.description}
                 />
               </div>
 
               <div className="grid gap-4">
-                {playableDungeons.map((dungeon) => (
+                {presentation.taskWall.playableDungeons.map((dungeon) => (
                   <div key={dungeon.id} className="group overflow-hidden rounded-[26px] border border-white/10 bg-white/[0.05] p-4 backdrop-blur-sm transition hover:bg-white/[0.07]">
                     <div className="grid gap-4 md:grid-cols-[280px_1fr]">
                       <DungeonCardArt locked={dungeon.locked} />
@@ -465,7 +440,7 @@ export function LobbyView() {
                             }
                           >
                             {dungeon.locked ? <Lock className="h-4 w-4" /> : <ChevronRight className="h-4 w-4" />}
-                            {dungeon.locked ? "尚未开放" : "进入副本"}
+                              {dungeon.buttonLabel}
                           </button>
                         </div>
                       </div>
@@ -481,7 +456,7 @@ export function LobbyView() {
               transition={{ duration: 0.48, delay: 0.1 }}
               className="space-y-4"
             >
-              {blackZoneCard ? (
+              {presentation.taskWall.blackZone ? (
                 <div className="group overflow-hidden rounded-[26px] border border-white/10 bg-white/[0.05] p-4 backdrop-blur-sm transition hover:bg-white/[0.07]">
                   <div className="grid gap-4 md:grid-cols-[280px_1fr]">
                     <DungeonCardArt locked />
@@ -489,29 +464,29 @@ export function LobbyView() {
                       <div>
                         <div className="flex flex-wrap items-center gap-2">
                           <span className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs uppercase tracking-[0.2em] text-white/45">
-                            {blackZoneCard.statusLabel || "尚未开放"}
+                            {presentation.taskWall.blackZone.statusLabel}
                           </span>
                           <span className="rounded-full border border-rose-300/15 bg-rose-400/10 px-3 py-1 text-xs uppercase tracking-[0.2em] text-rose-100/75">
-                            {blackZoneCard.riskLabel}
+                            {presentation.taskWall.blackZone.riskLabel}
                           </span>
                         </div>
 
-                        <h2 className="mt-4 text-2xl font-semibold text-white">{blackZoneCard.title}</h2>
-                        <p className="mt-2 text-sm leading-7 text-white/58">需要更高理解度与关键物品后才可进入</p>
+                        <h2 className="mt-4 text-2xl font-semibold text-white">{presentation.taskWall.blackZone.title}</h2>
+                        <p className="mt-2 text-sm leading-7 text-white/58">{presentation.taskWall.blackZone.subtitle}</p>
                         <p className="mt-4 rounded-2xl border border-white/8 bg-black/20 px-4 py-3 text-sm leading-7 text-white/70">
-                          推荐风格：{blackZoneCard.recommendedStyle}
+                          推荐风格：{presentation.taskWall.blackZone.recommendedStyle}
                         </p>
                       </div>
 
                       <div className="mt-5 flex items-center justify-between gap-3">
-                        <div className="text-sm text-white/42">{blackZoneCard.lockReason}</div>
+                        <div className="text-sm text-white/42">{presentation.taskWall.blackZone.lockReason}</div>
                         <button
                           type="button"
                           disabled
                           className="inline-flex items-center gap-2 rounded-2xl border border-white/8 bg-white/[0.04] px-4 py-3 text-sm font-medium text-white/35"
                         >
                           <Lock className="h-4 w-4" />
-                          尚未开放
+                          {presentation.taskWall.blackZone.buttonLabel}
                         </button>
                       </div>
                     </div>
@@ -613,9 +588,9 @@ export function LobbyView() {
             />
 
             <div className="grid gap-4 xl:grid-cols-3">
-              <MiniList title="最近发现规则" data={recentRules} empty="你还没有掌握足够稳定的规则线索。" />
-              <MiniList title="最近获得物品" data={recentItems} empty="完成一轮正式探索后，这里会出现最新带回大厅的物品。" />
-              <MiniList title="管理员碎片记录" data={recentFragments} empty="管理员相关碎片还没有足够完整地浮出水面。" />
+              <MiniList title={presentation.recentTraces.rules.title} data={presentation.recentTraces.rules.items} empty={presentation.recentTraces.rules.empty} />
+              <MiniList title={presentation.recentTraces.items.title} data={presentation.recentTraces.items.items} empty={presentation.recentTraces.items.empty} />
+              <MiniList title={presentation.recentTraces.fragments.title} data={presentation.recentTraces.fragments.items} empty={presentation.recentTraces.fragments.empty} />
             </div>
           </motion.section>
         </div>
